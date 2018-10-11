@@ -10,7 +10,7 @@ import UIKit
 
 class HomeController: UIViewController {
     
-    private let messages = ["message 1", "message 2", "message 3"]
+    private let messages = [Post]()
     private var tableView: UITableView!
     private var cellId = "cellId"
     
@@ -48,14 +48,12 @@ class HomeController: UIViewController {
         
         
         setupTableView()
-       
-        
     }
     
     fileprivate func setupTableView() {
 
         tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(HomePostCell.self, forCellReuseIdentifier: cellId)
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
@@ -71,18 +69,19 @@ class HomeController: UIViewController {
 
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath as IndexPath)
-        cell.textLabel?.text = "\(messages[indexPath.row])"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HomePostCell
+//        cell.textLabel?.text = "\(messages[indexPath.row])"
+        cell.messageLabel.text = "This is a harcoded message"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(messages[indexPath.row])")
+//        print("Num: \(indexPath.row)")
+//        print("Value: \(messages[indexPath.row])")
     }
     
 }

@@ -17,6 +17,10 @@
 		562E5808216D07D000A517E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 562E5806216D07D000A517E2 /* LaunchScreen.storyboard */; };
 		562E5813216D07D000A517E2 /* CVAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E5812216D07D000A517E2 /* CVAppTests.swift */; };
 		562E581E216D07D000A517E2 /* CVAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E581D216D07D000A517E2 /* CVAppUITests.swift */; };
+		567074E0216FCABB00C6FFFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074DF216FCABB00C6FFFC /* User.swift */; };
+		567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E1216FCB0C00C6FFFC /* Comment.swift */; };
+		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
+		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		562E5819216D07D000A517E2 /* CVAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CVAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		562E581D216D07D000A517E2 /* CVAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVAppUITests.swift; sourceTree = "<group>"; };
 		562E581F216D07D000A517E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		567074DF216FCABB00C6FFFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		567074E1216FCB0C00C6FFFC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				56254D3D216D3AA8005C6FA0 /* HomeController.swift */,
+				567074E5216FD2F200C6FFFC /* HomePostCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -112,6 +121,9 @@
 		56254D45216D4B54005C6FA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				567074DF216FCABB00C6FFFC /* User.swift */,
+				567074E1216FCB0C00C6FFFC /* Comment.swift */,
+				567074E3216FCBC600C6FFFC /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,6 +319,10 @@
 			files = (
 				56254D40216D4B02005C6FA0 /* Extension.swift in Sources */,
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
+				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
+				567074E0216FCABB00C6FFFC /* User.swift in Sources */,
+				567074E4216FCBC600C6FFFC /* Post.swift in Sources */,
+				567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */,
 				562E5800216D07CF00A517E2 /* ViewController.swift in Sources */,
 				562E57FE216D07CF00A517E2 /* AppDelegate.swift in Sources */,
 				56254D3C216D2E5C005C6FA0 /* MainTabBarController.swift in Sources */,
