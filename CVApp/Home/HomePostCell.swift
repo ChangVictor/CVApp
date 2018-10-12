@@ -8,7 +8,12 @@
 
 import UIKit
 
-class HomePostCell: UITableViewCell {
+protocol HomePostCellDelegate {
+    func didTapComment(post: Post)
+    func didLike(for cell: HomePostCell)
+}
+
+class HomePostCell: UICollectionViewCell {
     
     var comment: Comment? {
         didSet {
@@ -58,8 +63,8 @@ class HomePostCell: UITableViewCell {
         print("Handling like for comment")
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         addSubview(usernameLabel)
         addSubview(userProfileImageView)

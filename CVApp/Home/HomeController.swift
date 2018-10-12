@@ -24,7 +24,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
         
         collectionView?.backgroundColor = .white
-//        collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -35,8 +35,36 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     @objc fileprivate func handleRefresh() {
 
         print("Handling refresh...")
+        collectionView.reloadData()
     }
     
+    
+}
+
+extension HomeController {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var height: CGFloat = 20 + 8 + 8
+        height += view.frame.width
+//        height += 50    // stackview
+//        height += 60 // captionLabel
+        
+        return CGSize(width: view.frame.width, height: height)
+        
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return post.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
+
+        
+        return cell
+    }
     
 }
 

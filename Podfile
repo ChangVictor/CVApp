@@ -7,6 +7,7 @@ target 'CVApp' do
 
   # Pods for CVApp
 
+
   target 'CVAppTests' do
     inherit! :search_paths
     # Pods for testing
@@ -16,5 +17,10 @@ target 'CVApp' do
     inherit! :search_paths
     # Pods for testing
   end
+
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/Storage'
 
 end
