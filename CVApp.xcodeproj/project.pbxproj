@@ -22,6 +22,7 @@
 		562EB04D2172111000939D94 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB04C2172111000939D94 /* MapController.swift */; };
 		562EB04F2172122500939D94 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB04E2172122500939D94 /* UserProfileViewController.swift */; };
 		562EB051217212D400939D94 /* VictorProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB050217212D400939D94 /* VictorProfileController.swift */; };
+		562EB05321729A5F00939D94 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB05221729A5F00939D94 /* SignUpController.swift */; };
 		5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630EBD02170ED5200098749 /* GoogleService-Info.plist */; };
 		565ED24121701844001ECF81 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565ED24021701844001ECF81 /* HomeHeader.swift */; };
 		567074E0216FCABB00C6FFFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074DF216FCABB00C6FFFC /* User.swift */; };
@@ -71,6 +72,7 @@
 		562EB04C2172111000939D94 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		562EB04E2172122500939D94 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		562EB050217212D400939D94 /* VictorProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileController.swift; sourceTree = "<group>"; };
+		562EB05221729A5F00939D94 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5630EBD02170ED5200098749 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		565ED24021701844001ECF81 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		567074DF216FCABB00C6FFFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				562EB0492171427200939D94 /* LoginController.swift */,
+				562EB05221729A5F00939D94 /* SignUpController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
 				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
 				562EB04D2172111000939D94 /* MapController.swift in Sources */,
+				562EB05321729A5F00939D94 /* SignUpController.swift in Sources */,
 				567074E0216FCABB00C6FFFC /* User.swift in Sources */,
 				567074E4216FCBC600C6FFFC /* Post.swift in Sources */,
 				567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */,
