@@ -19,6 +19,9 @@
 		562E5813216D07D000A517E2 /* CVAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E5812216D07D000A517E2 /* CVAppTests.swift */; };
 		562E581E216D07D000A517E2 /* CVAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E581D216D07D000A517E2 /* CVAppUITests.swift */; };
 		562EB04A2171427200939D94 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB0492171427200939D94 /* LoginController.swift */; };
+		562EB04D2172111000939D94 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB04C2172111000939D94 /* MapController.swift */; };
+		562EB04F2172122500939D94 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB04E2172122500939D94 /* UserProfileViewController.swift */; };
+		562EB051217212D400939D94 /* VictorProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB050217212D400939D94 /* VictorProfileController.swift */; };
 		5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630EBD02170ED5200098749 /* GoogleService-Info.plist */; };
 		565ED24121701844001ECF81 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565ED24021701844001ECF81 /* HomeHeader.swift */; };
 		567074E0216FCABB00C6FFFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074DF216FCABB00C6FFFC /* User.swift */; };
@@ -65,6 +68,9 @@
 		562E581F216D07D000A517E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		562EB04721713E0900939D94 /* CVApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CVApp.entitlements; sourceTree = "<group>"; };
 		562EB0492171427200939D94 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		562EB04C2172111000939D94 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		562EB04E2172122500939D94 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		562EB050217212D400939D94 /* VictorProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileController.swift; sourceTree = "<group>"; };
 		5630EBD02170ED5200098749 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		565ED24021701844001ECF81 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		567074DF216FCABB00C6FFFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 		56254D41216D4B29005C6FA0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				562EB04E2172122500939D94 /* UserProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 		56254D42216D4B2B005C6FA0 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				562EB04C2172111000939D94 /* MapController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 		56254D43216D4B2E005C6FA0 /* Victor */ = {
 			isa = PBXGroup;
 			children = (
+				562EB050217212D400939D94 /* VictorProfileController.swift */,
 			);
 			path = Victor;
 			sourceTree = "<group>";
@@ -176,12 +185,9 @@
 		562E57FC216D07CF00A517E2 /* CVApp */ = {
 			isa = PBXGroup;
 			children = (
+				562EB04B217210E200939D94 /* Controllers */,
 				562EB0482171425900939D94 /* Login */,
 				56254D45216D4B54005C6FA0 /* Model */,
-				56254D44216D4B31005C6FA0 /* Home */,
-				56254D43216D4B2E005C6FA0 /* Victor */,
-				56254D42216D4B2B005C6FA0 /* Map */,
-				56254D41216D4B29005C6FA0 /* Profile */,
 				562E57FD216D07CF00A517E2 /* AppDelegate.swift */,
 				562E57FF216D07CF00A517E2 /* ViewController.swift */,
 				56254D3B216D2E5C005C6FA0 /* MainTabBarController.swift */,
@@ -220,6 +226,17 @@
 				562EB0492171427200939D94 /* LoginController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		562EB04B217210E200939D94 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				56254D44216D4B31005C6FA0 /* Home */,
+				56254D43216D4B2E005C6FA0 /* Victor */,
+				56254D42216D4B2B005C6FA0 /* Map */,
+				56254D41216D4B29005C6FA0 /* Profile */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A95FDAAD048993269831CC01 /* Pods */ = {
@@ -493,10 +510,13 @@
 				56254D40216D4B02005C6FA0 /* Extension.swift in Sources */,
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
 				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
+				562EB04D2172111000939D94 /* MapController.swift in Sources */,
 				567074E0216FCABB00C6FFFC /* User.swift in Sources */,
 				567074E4216FCBC600C6FFFC /* Post.swift in Sources */,
 				567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */,
+				562EB04F2172122500939D94 /* UserProfileViewController.swift in Sources */,
 				562E5800216D07CF00A517E2 /* ViewController.swift in Sources */,
+				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,
 				562E57FE216D07CF00A517E2 /* AppDelegate.swift in Sources */,
 				56254D3C216D2E5C005C6FA0 /* MainTabBarController.swift in Sources */,
 				565ED24121701844001ECF81 /* HomeHeader.swift in Sources */,
