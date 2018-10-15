@@ -12,7 +12,11 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysTemplate), for: .normal)
+
+        button.tintColor = .gray
         button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         return button
     }()
@@ -44,6 +48,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
@@ -75,17 +80,17 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         if isFormValid {
             signUpButton.isEnabled = true
-            signUpButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+            signUpButton.backgroundColor = .darkGray
         } else {
             signUpButton.isEnabled = false
-            signUpButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+            signUpButton.backgroundColor = .lightGray
         }
     }
     
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.backgroundColor = .lightGray
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
@@ -96,12 +101,48 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         print("Signup Button Triggered")
     }
 
+    let alreadyHaveAccount: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        attributedTitle.append(NSMutableAttributedString(string: "Login", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.darkGray]))
+        button.addTarget(self, action: #selector(handleAlreadyHaveAcocunt), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleAlreadyHaveAcocunt() {
+        _ = navigationController?.popViewController(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(alreadyHaveAccount)
+        alreadyHaveAccount.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 12, paddingRight: 0, width: 0, height: 50)
+        
         view.backgroundColor = .white
         
+        view.addSubview(plusPhotoButton)
+        plusPhotoButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        plusPhotoButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        plusPhotoButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        plusPhotoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        
+        setupInputFields()
+        
+    }
+    
+    fileprivate func setupInputFields() {
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signUpButton])
+        
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        
+        view.addSubview(stackView)
+        stackView.anchor(top: plusPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 200)
     }
     
 }
