@@ -16,15 +16,19 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.delegate = self
         
-        if Auth.auth().currentUser == nil {
-            DispatchQueue.main.async {
-                let loginController = LoginController()
-                let navController = UINavigationController(rootViewController: loginController)
-                self.present(navController, animated: true, completion: nil)
-            }
-            
-            return
-        }
+//        if Auth.auth().currentUser == nil {
+//            DispatchQueue.main.async {
+//                let loginController = LoginController()
+//                let navController = UINavigationController(rootViewController: loginController)
+//                self.present(navController, animated: true, completion: nil)
+//            }
+//
+//            return
+//        }
+        
+        let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
+        let navController = UINavigationController(rootViewController: homeController)
+        self.present(navController, animated: true, completion: nil)
         
         setupViewControllers()
     }
