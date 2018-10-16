@@ -52,6 +52,20 @@ class  LoginController: UIViewController {
     
     @objc fileprivate func handleLogin() {
         print("Login Triggered")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                print("Failed to sign in with email: ", error)
+                return
+            }
+            print("Succesfully logged in with user: ", Auth.auth().currentUser?.uid ?? "Username not found")
+            
+            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+            mainTabBarController.setupViewControllers()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     let dontHaveAccountButton: UIButton = {
