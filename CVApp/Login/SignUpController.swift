@@ -16,7 +16,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         button.translatesAutoresizingMaskIntoConstraints = false
 //        button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysTemplate), for: .normal)
-
         button.tintColor = .gray
         button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         return button
@@ -28,29 +27,23 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
     }
+
     
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//
-//        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-//            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
-//        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-//            plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
-//        }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
-    
+        
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
         plusPhotoButton.layer.masksToBounds = true
-        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
+        plusPhotoButton.layer.borderColor = UIColor.darkGray.cgColor
         plusPhotoButton.layer.borderWidth = 3
         dismiss(animated: true, completion: nil)
-        
     }
+
     
     let emailTextField: UITextField = {
         let textField = UITextField()
@@ -105,6 +98,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         button.addTarget(self  , action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
+    
     @objc fileprivate func handleSignUp() {
         print("Signup Button Triggered")
         guard let email = emailTextField.text, email.count > 0 else { return }
@@ -197,6 +191,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         stackView.spacing = 10
         
         view.addSubview(stackView)
+        
         stackView.anchor(top: plusPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 200)
     }
     
