@@ -15,26 +15,42 @@ protocol HomePostCellDelegate {
 
 class HomePostCell: UICollectionViewCell {
     
-    var comment: Comment? {
+    var post: Post? {
         didSet {
             
-            guard let comment = comment else { return }
-
-            let attributedText = NSMutableAttributedString(string: comment.user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)] )
-            attributedText.append(NSAttributedString(string: " " + comment.text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected@2x.png").withRenderingMode(.alwaysOriginal), for: .normal)
             
-            textView.attributedText = attributedText
-            // set profileimageView
+            usernameLabel.text = "Username"
+            usernameLabel.text = post?.user.username
+            
+            setupAttributedCaption()
         }
     }
     
+    fileprivate func setupAttributedCaption() {
+        
+        guard let post = self.post else { return }
+        
+        let attributedText = NSMutableAttributedString(string: post.user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+        
+        attributedText.append(NSAttributedString(string: "\(post.message)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+        
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
+        
+        let timaAgoDisplay = post.creationDate.timeAgoDisplay()
+        attributedText.append(NSAttributedString(string: timaAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        
+        self.messageLabel.attributedText = attributedText
+        
+    }
+    
    
-    let textView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 14)
-        textView.isScrollEnabled = false
-        return textView
-    }()
+//    let textView: UITextView = {
+//        let textView = UITextView()
+//        textView.font = UIFont.systemFont(ofSize: 14)
+//        textView.isScrollEnabled = false
+//        return textView
+//    }()
     
     let usernameLabel: UILabel = {
         let label = UILabel()
@@ -49,6 +65,12 @@ class HomePostCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.backgroundColor = .red
         return imageView
+    }()
+    
+    let messageLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
     }()
     
     
@@ -68,15 +90,16 @@ class HomePostCell: UICollectionViewCell {
         
         addSubview(usernameLabel)
         addSubview(userProfileImageView)
-        addSubview(textView)
+//        addSubview(textView)
         addSubview(likeButton)
+        addSubview(messageLabel)
         
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         userProfileImageView.layer.cornerRadius = 40 / 2
         
-        textView.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: messageLabel.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
-      
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

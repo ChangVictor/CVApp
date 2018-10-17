@@ -155,9 +155,9 @@
 		56254D45216D4B54005C6FA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				567074E3216FCBC600C6FFFC /* Post.swift */,
 				567074DF216FCABB00C6FFFC /* User.swift */,
 				567074E1216FCB0C00C6FFFC /* Comment.swift */,
-				567074E3216FCBC600C6FFFC /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
