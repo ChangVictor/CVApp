@@ -25,10 +25,13 @@
 		562EB05321729A5F00939D94 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB05221729A5F00939D94 /* SignUpController.swift */; };
 		5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630EBD02170ED5200098749 /* GoogleService-Info.plist */; };
 		565ED24121701844001ECF81 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565ED24021701844001ECF81 /* HomeHeader.swift */; };
+		566442D721793363008FDF60 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566442D621793363008FDF60 /* FirebaseUtils.swift */; };
+		566442D921793524008FDF60 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566442D821793524008FDF60 /* CustomImageView.swift */; };
 		567074E0216FCABB00C6FFFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074DF216FCABB00C6FFFC /* User.swift */; };
 		567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E1216FCB0C00C6FFFC /* Comment.swift */; };
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
 		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
+		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
 		9B2BAE6050529C836427A175 /* Pods_CVApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C97B59C631F1E5A0404D364 /* Pods_CVApp.framework */; };
 		F21A75634CC230BA2182C0D8 /* Pods_CVAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3798166B1E7EC979A4717 /* Pods_CVAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -75,10 +78,13 @@
 		562EB05221729A5F00939D94 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5630EBD02170ED5200098749 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		565ED24021701844001ECF81 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		566442D621793363008FDF60 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		566442D821793524008FDF60 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		567074DF216FCABB00C6FFFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		567074E1216FCB0C00C6FFFC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
 		8BC9D6DA3A68D782DD235C1A /* Pods-CVApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-CVApp/Pods-CVApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C97B59C631F1E5A0404D364 /* Pods_CVApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962A849FBBD11B736A005818 /* Pods-CVAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVAppTests/Pods-CVAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,9 +193,10 @@
 		562E57FC216D07CF00A517E2 /* CVApp */ = {
 			isa = PBXGroup;
 			children = (
+				56CCE4922178C6FC000E4AC6 /* Services */,
 				562EB04B217210E200939D94 /* Controllers */,
-				562EB0482171425900939D94 /* Login */,
 				56254D45216D4B54005C6FA0 /* Model */,
+				566442D521793333008FDF60 /* Utils */,
 				562E57FD216D07CF00A517E2 /* AppDelegate.swift */,
 				562E57FF216D07CF00A517E2 /* ViewController.swift */,
 				56254D3B216D2E5C005C6FA0 /* MainTabBarController.swift */,
@@ -198,7 +205,6 @@
 				562E5806216D07D000A517E2 /* LaunchScreen.storyboard */,
 				562E5809216D07D000A517E2 /* Info.plist */,
 				5630EBD02170ED5200098749 /* GoogleService-Info.plist */,
-				56254D3F216D4B02005C6FA0 /* Extension.swift */,
 				562EB04721713E0900939D94 /* CVApp.entitlements */,
 			);
 			path = CVApp;
@@ -234,12 +240,39 @@
 		562EB04B217210E200939D94 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				562EB0482171425900939D94 /* Login */,
 				56254D44216D4B31005C6FA0 /* Home */,
 				56254D43216D4B2E005C6FA0 /* Victor */,
+				56CCE4912178C3B3000E4AC6 /* PostMessage */,
 				56254D42216D4B2B005C6FA0 /* Map */,
 				56254D41216D4B29005C6FA0 /* Profile */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		566442D521793333008FDF60 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				56254D3F216D4B02005C6FA0 /* Extension.swift */,
+				566442D621793363008FDF60 /* FirebaseUtils.swift */,
+				566442D821793524008FDF60 /* CustomImageView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		56CCE4912178C3B3000E4AC6 /* PostMessage */ = {
+			isa = PBXGroup;
+			children = (
+				56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */,
+			);
+			path = PostMessage;
+			sourceTree = "<group>";
+		};
+		56CCE4922178C6FC000E4AC6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A95FDAAD048993269831CC01 /* Pods */ = {
@@ -510,10 +543,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				562EB04A2171427200939D94 /* LoginController.swift in Sources */,
+				566442D921793524008FDF60 /* CustomImageView.swift in Sources */,
 				56254D40216D4B02005C6FA0 /* Extension.swift in Sources */,
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
 				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
 				562EB04D2172111000939D94 /* MapController.swift in Sources */,
+				566442D721793363008FDF60 /* FirebaseUtils.swift in Sources */,
+				56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */,
 				562EB05321729A5F00939D94 /* SignUpController.swift in Sources */,
 				567074E0216FCABB00C6FFFC /* User.swift in Sources */,
 				567074E4216FCBC600C6FFFC /* Post.swift in Sources */,

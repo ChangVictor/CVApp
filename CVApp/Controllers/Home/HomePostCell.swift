@@ -40,17 +40,18 @@ class HomePostCell: UICollectionViewCell {
         let timaAgoDisplay = post.creationDate.timeAgoDisplay()
         attributedText.append(NSAttributedString(string: timaAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
-        self.messageLabel.attributedText = attributedText
+        self.messageTextView.attributedText = attributedText
         
     }
     
    
-//    let textView: UITextView = {
-//        let textView = UITextView()
-//        textView.font = UIFont.systemFont(ofSize: 14)
-//        textView.isScrollEnabled = false
-//        return textView
-//    }()
+    let messageTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.text = "This is a test message"
+        textView.isScrollEnabled = false
+        return textView
+    }()
     
     let usernameLabel: UILabel = {
         let label = UILabel()
@@ -59,6 +60,12 @@ class HomePostCell: UICollectionViewCell {
         return label
     }()
     
+    //    let messageLabel: UILabel = {
+    //        let label = UILabel()
+    //        label.numberOfLines = 0
+    //        return label
+    //    }()
+    
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -66,13 +73,6 @@ class HomePostCell: UICollectionViewCell {
         imageView.backgroundColor = .red
         return imageView
     }()
-    
-    let messageLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
-    }()
-    
     
     lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -89,15 +89,15 @@ class HomePostCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(usernameLabel)
+        addSubview(messageTextView) 
         addSubview(userProfileImageView)
-//        addSubview(textView)
         addSubview(likeButton)
-        addSubview(messageLabel)
+//        addSubview(messageLabel)
         
-        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
-        userProfileImageView.layer.cornerRadius = 40 / 2
+        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
+        userProfileImageView.layer.cornerRadius = 50 / 2
         
-        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: messageLabel.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        messageTextView.anchor(top: self.topAnchor, left: userProfileImageView.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         
     }

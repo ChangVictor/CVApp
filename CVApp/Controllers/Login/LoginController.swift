@@ -82,8 +82,8 @@ class  LoginController: UIViewController {
     @objc fileprivate func handleShowSignUp() {
         print("SignUp Button Triggered")
         let signUpController = SignUpController()
-        navigationController?.pushViewController(signUpController, animated: true)
-        
+//        navigationController?.pushViewController(signUpController, animated: true)
+        self.present(signUpController, animated: true, completion: nil)
         
     }
     override func viewDidLoad() {

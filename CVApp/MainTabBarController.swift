@@ -38,6 +38,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         let victorNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "V_icon"), selectedImage: #imageLiteral(resourceName: "V_icon"), rootViewController: VictorProfileController())
+            
+        let postMessageController = templateNavController(unselectedImage: #imageLiteral(resourceName: "send2"), selectedImage: #imageLiteral(resourceName: "send2"), rootViewController: PostMessageController())
         
         let mapNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "location_unselected"), selectedImage: #imageLiteral(resourceName: "location_selected"), rootViewController: MapController())
         
@@ -47,6 +49,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         viewControllers = [homeNavController,
                            victorNavController,
+                           postMessageController,
                            mapNavController,
                            profileNavController
                           ]
