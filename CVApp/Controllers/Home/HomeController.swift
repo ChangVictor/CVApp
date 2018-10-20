@@ -12,8 +12,7 @@ import Firebase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-//    private let post = [Post]()
-    var messages = ["This is the first Message!", "This is Post number 2 This is Post number 2 This is Post number 2 This is Post number 2 This is Post number 2", "This is the las post This is the las post This is the las post This is the las post This is the las post This is the las post This is the las post This is the las post This is the las post This is the las post "]
+    private var posts = [Post]()
     
     private var cellId = "cellId"
     
@@ -36,9 +35,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.refreshControl = refreshControl
         
         fetchPost()
-    }
-    
-    @objc fileprivate func handlePostButton() {
         
     }
     
@@ -52,14 +48,39 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         Database.fetchUserWithUID(uid: uid) { (user) in
-            self.fetchAllPosts()
+            self.fetchPostFromUser(user: user)
         }
     }
     
-    fileprivate func fetchAllPosts() {
+    fileprivate func fetchPostFromUser(user: User) {
+        
+        let ref = Database.database().reference().child("posts")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.collectionView?.refreshControl?.endRefreshing()
+
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach({ (key, value) in
+                guard let dictionary = value as? [String: Any] else { return }
+                
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                
+                self.posts.append(post)
+                self.posts.sort(by: { (p1, p2) -> Bool in
+                    return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                })
+                
+                self.collectionView?.reloadData()
+    
+            })
+           
+        }) { (error) in
+            print("Failed to fecth posts: ", error)
+        }
     }
-    
-    
 }
 
 extension HomeController {
@@ -68,8 +89,7 @@ extension HomeController {
         
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let dummyCell = HomePostCell(frame: frame)
-//        dummyCell.post = post[indexPath.item]
-        dummyCell.messages = messages[indexPath.item]
+        dummyCell.post = posts[indexPath.item]
         dummyCell.layoutIfNeeded()
         
         let targetSize = CGSize(width: view.frame.width, height: 1000)
@@ -80,18 +100,15 @@ extension HomeController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return posts.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
         
-        cell.messageTextView.text = messages[indexPath.item]
+        cell.messageLabel.text = posts[indexPath.item].message
 
         
         return cell

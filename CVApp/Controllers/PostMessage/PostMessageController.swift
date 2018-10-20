@@ -90,7 +90,7 @@ class PostMessageController: UIViewController {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let value = ["text": textView.text,
+        let value = ["message": textView.text,
                      "creationDate": Date().timeIntervalSince1970,
         "uid": uid] as [String: Any]
         
