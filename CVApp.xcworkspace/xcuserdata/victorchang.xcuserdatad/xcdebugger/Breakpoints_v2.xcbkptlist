@@ -57,14 +57,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CVApp/Controllers/Home/HomePostCell.swift"
-            timestampString = "561651105.224787"
+            filePath = "CVApp/Model/Post.swift"
+            timestampString = "561738683.515027"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "init(frame:)"
-            landmarkType = "7">
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "Post"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

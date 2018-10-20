@@ -11,6 +11,21 @@ import Firebase
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.index(of: viewController)
+        
+        if index == 2 {
+            let postMessageViewController = PostMessageController()
+            let navController = UINavigationController(rootViewController: postMessageViewController)
+            
+            present(navController, animated: true, completion: nil)
+            
+            return false
+        }
+        
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
