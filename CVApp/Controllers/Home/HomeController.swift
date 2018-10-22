@@ -15,6 +15,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     private var posts = [Post]()
     var user: User?
     
+    
     private var cellId = "cellId"
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -27,7 +28,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 //        navigationController?.isNavigationBarHidden = false
         navigationItem.title = "Home"
         
-        collectionView?.backgroundColor = .white
+        collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         self.collectionView?.refreshControl?.endRefreshing()
 
@@ -60,7 +61,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     fileprivate func fetchPostFromUser(user: User) {
         
-        let ref = Database.database().reference().child("posts")
+        let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.collectionView?.refreshControl?.endRefreshing()
@@ -72,7 +73,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key
-                guard let uid = Auth.auth().currentUser?.uid else { return }
+//                guard let uid = Auth.auth().currentUser?.uid else { return }
                 
                 self.posts.append(post)
                 self.posts.sort(by: { (p1, p2) -> Bool in
@@ -104,6 +105,10 @@ extension HomeController {
 
         let height = max(40 + 8 + 8, estimatedSize.height)
         return CGSize(width: view.frame.width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

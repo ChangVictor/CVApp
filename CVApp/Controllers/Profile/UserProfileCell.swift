@@ -15,7 +15,7 @@ class UserProfileCell: UICollectionViewCell {
     let label = UILabel()
     label.numberOfLines = 0
     label.font = UIFont.systemFont(ofSize: 14)
-    label.backgroundColor = .gray
+    label.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
     return label
     }()
     
@@ -30,7 +30,7 @@ class UserProfileCell: UICollectionViewCell {
     let imageView = CustomImageView()
     imageView.contentMode = .scaleAspectFill
     imageView.clipsToBounds = true
-    imageView.backgroundColor = .red
+    imageView.backgroundColor = .lightGray
     return imageView
     }()
     

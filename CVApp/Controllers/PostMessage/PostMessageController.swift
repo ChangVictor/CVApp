@@ -95,19 +95,24 @@ class PostMessageController: UIViewController {
         guard let message = textView.text else { return }
         let values = ["message": message,
                       "creationDate": Date().timeIntervalSince1970,
-                      "uid": uid] as [String: Any]
-        let userPostRef = Database.database().reference().child("posts")
+                      ] as [String: Any]
+        
+        let userPostRef = Database.database().reference().child("posts").child(uid)
         let ref = userPostRef.childByAutoId()
         
         ref.updateChildValues(values) { (error, reference) in
         
             if let error = error {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
                 print("Failed to inser post: ", error)
                 return
             }
             
             print("Succesfully inserted post: \(self.textView.text ?? "No post")")
             self.dismiss(animated: true, completion: nil)
+//            let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
+//            let navController = UINavigationController(rootViewController: homeController)
+//            self.present(navController, animated: true, completion: nil)
             NotificationCenter.default.post(name: PostMessageController.updateFeedNotificationName, object: nil)
 
         }
@@ -166,6 +171,7 @@ extension PostMessageController: UITextViewDelegate {
             
             textView.text = "Enter Message..."
             textView.textColor = UIColor.lightGray
+            textView.isPagingEnabled = false
             
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
         }

@@ -12,6 +12,7 @@ import Firebase
 class UserProfileController: UICollectionViewController {
     
     var user: User?
+    var post: Post?
     private var posts = [Post]()
     private var cellId = "cellId"
     
@@ -29,18 +30,42 @@ class UserProfileController: UICollectionViewController {
     }
 
     fileprivate func fetchPost() {
-        print("Trying to fetch posts")
-
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = Database.database().reference().child("posts")
         
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value)
-        }) { (error) in
-            print("Failed to fetch posts: ", error)
-            return
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.fetchPostFromUser(user: user)
         }
         
+    }
+    
+    fileprivate func fetchPostFromUser(user: User) {
+        
+        let ref = Database.database().reference().child("posts").child(user.uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.collectionView?.refreshControl?.endRefreshing()
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach({ (key, value) in
+                guard let dictionary = value as? [String: Any] else { return }
+                
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
+                //                guard let uid = Auth.auth().currentUser?.uid else { return }
+                
+                self.posts.append(post)
+                self.posts.sort(by: { (p1, p2) -> Bool in
+                    return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                })
+                
+                self.collectionView?.reloadData()
+                
+            })
+            
+        }) { (error) in
+            print("Failed to fecth posts: ", error)
+        }
     }
 
     fileprivate func fetchUser() {
