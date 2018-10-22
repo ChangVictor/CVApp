@@ -15,6 +15,15 @@ protocol HomePostCellDelegate {
 
 class HomePostCell: UICollectionViewCell {
     
+    var user: User? {
+        didSet {
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+            
+            userProfileImageView.loadImage(urlString: profileImageUrl)
+            usernameLabel.text = user?.username
+        }
+    }
+    
     var post: Post? {
         didSet {
             
@@ -26,7 +35,7 @@ class HomePostCell: UICollectionViewCell {
             userProfileImageView.loadImage(urlString: profileImageUrl)
 
             setupAttributedCaption()
-
+            usernameLabel.text = post?.user.username
             messageLabel.text = post?.message
         }
     }
@@ -66,6 +75,13 @@ class HomePostCell: UICollectionViewCell {
         return label
     }()
     
+    let bubbleBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "Username"
@@ -77,7 +93,7 @@ class HomePostCell: UICollectionViewCell {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
     
@@ -96,22 +112,25 @@ class HomePostCell: UICollectionViewCell {
         
         super.init(frame: frame)
         
+        addSubview(bubbleBackgroundView)
         addSubview(usernameLabel)
 //        addSubview(messageTextView)
         addSubview(userProfileImageView)
         addSubview(likeButton)
         addSubview(messageLabel)
 
-//        addSubview(messageLabel)
         
-        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
-        userProfileImageView.layer.cornerRadius = 50 / 2
+        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        userProfileImageView.layer.cornerRadius = 40 / 2
         
-        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: -4, paddingRight: 0, width: 0, height: 0)
+        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
 //        messageTextView.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        messageLabel.anchor(top: usernameLabel.bottomAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 0)
+        messageLabel.anchor(top: usernameLabel.bottomAnchor, left: userProfileImageView.rightAnchor, bottom: bottomAnchor, right: nil, paddingTop: 2, paddingLeft: 4, paddingBottom: 20, paddingRight: 0, width: 280, height: 0)
+        
+        bubbleBackgroundView.anchor(top: usernameLabel.topAnchor, left: userProfileImageView.leftAnchor, bottom: messageLabel.bottomAnchor, right: messageLabel.rightAnchor, paddingTop: -10, paddingLeft: -6, paddingBottom: -10, paddingRight: 12, width: 0, height: 0)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

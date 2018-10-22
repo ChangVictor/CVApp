@@ -9,18 +9,58 @@
 import UIKit
 import Firebase
 
-class UserProfileController: UIViewController {
+class UserProfileController: UICollectionViewController {
+    
+    var user: User?
+    private var posts = [Post]()
+    private var cellId = "cellId"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        collectionView?.backgroundColor = .white
         
+
         setupLogOutButton()
+        fetchUser()
+        fetchPost()
+        collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
+        collectionView?.register(UserProfileCell.self, forCellWithReuseIdentifier: cellId)
     }
 
+    fileprivate func fetchPost() {
+        print("Trying to fetch posts")
 
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts")
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot.value)
+        }) { (error) in
+            print("Failed to fetch posts: ", error)
+            return
+        }
+        
+    }
 
-fileprivate func setupLogOutButton() {
+    fileprivate func fetchUser() {
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            self.user = User(uid: uid, dictionary: dictionary)
+            self.navigationItem.title = self.user?.username
+            
+            self.collectionView.reloadData()
+            
+        }) { (error) in
+            print("Failed to fetch user", error)
+        }
+    }
+
+    fileprivate func setupLogOutButton() {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleLogOut))
     navigationItem.rightBarButtonItem?.tintColor = .white
 }
@@ -47,4 +87,51 @@ fileprivate func setupLogOutButton() {
     }
 
 
+}
+
+extension UserProfileController: UICollectionViewDelegateFlowLayout {
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! UserProfileHeader
+        
+        header.user = self.user
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        return CGSize(width: view.frame.width, height: 200)
+        
+    }
+    
+}
+
+extension UserProfileController {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = HomePostCell(frame: frame)
+        dummyCell.post = posts[indexPath.item]
+        dummyCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        
+        let height = max(40 + 8 + 8, estimatedSize.height)
+        return CGSize(width: view.frame.width, height: height)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfileCell
+        
+        cell.messageLabel.text = posts[indexPath.item].message
+        
+        return cell
+        
+    }
 }

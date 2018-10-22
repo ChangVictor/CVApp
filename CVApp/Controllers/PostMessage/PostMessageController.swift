@@ -14,8 +14,7 @@ class PostMessageController: UIViewController {
     var user: User? {
         didSet {
             
-            guard let profileImageUrl = user?.profileImageUrl else { return }
-            profileImageView.loadImage(urlString: profileImageUrl)
+            setupProfileImage()
             
         }
     }
@@ -62,6 +61,7 @@ class PostMessageController: UIViewController {
         setupNavigationButton()
         setupConstrains()
         
+        fetchUser()
     }
     
     fileprivate func setupConstrains() {
@@ -79,6 +79,8 @@ class PostMessageController: UIViewController {
         textView.anchor(top: containerView.topAnchor, left: profileImageView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
+    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UptadeFeed")
+
     fileprivate func setupNavigationButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain
             , target: self, action: #selector(handleCancel))
@@ -86,30 +88,70 @@ class PostMessageController: UIViewController {
     }
     
     @objc fileprivate func handlePost() {
+        
         print("Trying to insert post into Firebase")
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let message = textView.text else { return }
+        let values = ["message": message,
+                      "creationDate": Date().timeIntervalSince1970,
+                      "uid": uid] as [String: Any]
+        let userPostRef = Database.database().reference().child("posts")
+        let ref = userPostRef.childByAutoId()
         
-        let value = ["message": textView.text,
-                     "creationDate": Date().timeIntervalSince1970,
-        "uid": uid] as [String: Any]
+        ref.updateChildValues(values) { (error, reference) in
         
-        Database.database().reference().child("posts").childByAutoId().updateChildValues(value) { (error, reference) in
-            
             if let error = error {
                 print("Failed to inser post: ", error)
                 return
             }
             
-            print("Succesfully inserted post: ")
+            print("Succesfully inserted post: \(self.textView.text ?? "No post")")
             self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: PostMessageController.updateFeedNotificationName, object: nil)
 
         }
-        
     }
     
     @objc fileprivate func handleCancel() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    fileprivate func setupProfileImage() {
+        
+        print("Did set user: \(user?.username ?? "no user set")")
+        guard let profileImageUrl = user?.profileImageUrl else { return }
+        guard let url = URL(string: profileImageUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            // check for error & construc image using data
+            if let error = error {
+                print("Failed to fetch profile image: ", error)
+                return
+            }
+            // could check for response 200 (HTTP OK)
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.profileImageView.image = image
+            }
+            }.resume()
+    }
+    
+    fileprivate func fetchUser() {
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            self.user = User(uid: uid, dictionary: dictionary)
+            self.navigationItem.title = self.user?.username
+            
+            
+            
+        }) { (error) in
+            print("Failed to fetch user", error)
+        }
     }
     
 }

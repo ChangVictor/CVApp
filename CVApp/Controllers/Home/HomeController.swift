@@ -13,6 +13,7 @@ import Firebase
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private var posts = [Post]()
+    var user: User?
     
     private var cellId = "cellId"
     
@@ -28,7 +29,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView?.backgroundColor = .white
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
-        
+        self.collectionView?.refreshControl?.endRefreshing()
+
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -41,15 +43,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     @objc fileprivate func handleRefresh() {
 
         print("Handling refresh...")
-        collectionView.reloadData()
+        posts.removeAll()
+        collectionView?.reloadData()
+        fetchPost()
+        
     }
     
     fileprivate func fetchPost() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
+
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPostFromUser(user: user)
         }
+        
     }
     
     fileprivate func fetchPostFromUser(user: User) {
@@ -92,9 +98,10 @@ extension HomeController {
         dummyCell.post = posts[indexPath.item]
         dummyCell.layoutIfNeeded()
         
-        let targetSize = CGSize(width: view.frame.width, height: 1000)
+
+        let targetSize = CGSize(width: view.frame.width, height: 200)
         let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
-        
+
         let height = max(40 + 8 + 8, estimatedSize.height)
         return CGSize(width: view.frame.width, height: height)
     }
@@ -108,8 +115,8 @@ extension HomeController {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
         
-        cell.messageLabel.text = posts[indexPath.item].message
-
+        cell.post = posts[indexPath.item]
+        
         
         return cell
     }
