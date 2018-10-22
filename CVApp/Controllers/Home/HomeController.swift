@@ -46,22 +46,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("Handling refresh...")
         posts.removeAll()
         collectionView?.reloadData()
-        fetchPost()
+//        fetchPost()
+        fetchAllposts()
         
     }
     
     fileprivate func fetchPost() {
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         Database.fetchUserWithUID(uid: uid) { (user) in
-            self.fetchPostFromUser(user: user)
+            self.fetchPostWithUser(user: user)
         }
         
     }
     
-    fileprivate func fetchPostFromUser(user: User) {
+    fileprivate func fetchPostWithUser(user: User) {
         
-        let ref = Database.database().reference().child("posts").child(user.uid)
+        let ref = Database.database().reference().child("posts")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.collectionView?.refreshControl?.endRefreshing()
@@ -87,6 +89,23 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }) { (error) in
             print("Failed to fecth posts: ", error)
         }
+    }
+    fileprivate func fetchAllposts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let userIdDictionary = snapshot.value as? [String: Any] else { return }
+            
+            userIdDictionary.forEach({ (key, value) in
+                Database.fetchUserWithUID(uid: key, completion: { (user) in
+                    self.fetchPostWithUser(user: user)
+                })
+            })
+            
+        }) { (error) in
+            print("Failed to fetch following users id: ", error)
+        }
+        
     }
 }
 

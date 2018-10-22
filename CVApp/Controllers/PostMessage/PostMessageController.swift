@@ -95,10 +95,11 @@ class PostMessageController: UIViewController {
         guard let message = textView.text else { return }
         let values = ["message": message,
                       "creationDate": Date().timeIntervalSince1970,
+                      "uid": uid
                       ] as [String: Any]
         
-        let userPostRef = Database.database().reference().child("posts").child(uid)
-        let ref = userPostRef.childByAutoId()
+        let userPostRef = Database.database().reference().child("posts")
+        let ref = userPostRef.child(uid)
         
         ref.updateChildValues(values) { (error, reference) in
         
