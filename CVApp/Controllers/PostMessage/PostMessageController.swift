@@ -99,7 +99,7 @@ class PostMessageController: UIViewController {
                       ] as [String: Any]
         
         let userPostRef = Database.database().reference().child("posts")
-        let ref = userPostRef.child(uid)
+        let ref = userPostRef.child(uid).childByAutoId()
         
         ref.updateChildValues(values) { (error, reference) in
         
@@ -108,7 +108,6 @@ class PostMessageController: UIViewController {
                 print("Failed to inser post: ", error)
                 return
             }
-            
             print("Succesfully inserted post: \(self.textView.text ?? "No post")")
             self.dismiss(animated: true, completion: nil)
 //            let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())

@@ -37,8 +37,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView?.refreshControl = refreshControl
         
-        fetchPost()
-        
+//        fetchPost()
+        fetchAllposts()
     }
     
     @objc fileprivate func handleRefresh() {
@@ -63,7 +63,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     fileprivate func fetchPostWithUser(user: User) {
         
-        let ref = Database.database().reference().child("posts")
+        let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.collectionView?.refreshControl?.endRefreshing()
