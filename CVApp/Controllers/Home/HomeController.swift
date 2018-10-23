@@ -17,6 +17,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     
     private var cellId = "cellId"
+    private var headerId = "HeaderId"
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -29,6 +30,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.title = "Home"
         
         collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+        collectionView.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         self.collectionView?.refreshControl?.endRefreshing()
 
