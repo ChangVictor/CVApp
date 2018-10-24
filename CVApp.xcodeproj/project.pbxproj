@@ -16,7 +16,6 @@
 		562E57FE216D07CF00A517E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E57FD216D07CF00A517E2 /* AppDelegate.swift */; };
 		562E5800216D07CF00A517E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E57FF216D07CF00A517E2 /* ViewController.swift */; };
 		562E5803216D07CF00A517E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 562E5801216D07CF00A517E2 /* Main.storyboard */; };
-		562E5805216D07D000A517E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 562E5804216D07D000A517E2 /* Assets.xcassets */; };
 		562E5808216D07D000A517E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 562E5806216D07D000A517E2 /* LaunchScreen.storyboard */; };
 		562E5813216D07D000A517E2 /* CVAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E5812216D07D000A517E2 /* CVAppTests.swift */; };
 		562E581E216D07D000A517E2 /* CVAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E581D216D07D000A517E2 /* CVAppUITests.swift */; };
@@ -34,6 +33,7 @@
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
 		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
 		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
+		56EC67C6218113E1008C24BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56EC67C5218113E1008C24BD /* Assets.xcassets */; };
 		9B2BAE6050529C836427A175 /* Pods_CVApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C97B59C631F1E5A0404D364 /* Pods_CVApp.framework */; };
 		F21A75634CC230BA2182C0D8 /* Pods_CVAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3798166B1E7EC979A4717 /* Pods_CVAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -65,7 +65,6 @@
 		562E57FD216D07CF00A517E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		562E57FF216D07CF00A517E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		562E5802216D07CF00A517E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		562E5804216D07D000A517E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		562E5807216D07D000A517E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		562E5809216D07D000A517E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		562E580E216D07D000A517E2 /* CVAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CVAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +88,7 @@
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
+		56EC67C5218113E1008C24BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BC9D6DA3A68D782DD235C1A /* Pods-CVApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-CVApp/Pods-CVApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C97B59C631F1E5A0404D364 /* Pods_CVApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962A849FBBD11B736A005818 /* Pods-CVAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVAppTests/Pods-CVAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +177,7 @@
 		562E57F1216D07CF00A517E2 = {
 			isa = PBXGroup;
 			children = (
+				56EC67C5218113E1008C24BD /* Assets.xcassets */,
 				562E57FC216D07CF00A517E2 /* CVApp */,
 				562E5811216D07D000A517E2 /* CVAppTests */,
 				562E581C216D07D000A517E2 /* CVAppUITests */,
@@ -207,7 +208,6 @@
 				562E57FF216D07CF00A517E2 /* ViewController.swift */,
 				56254D3B216D2E5C005C6FA0 /* MainTabBarController.swift */,
 				562E5801216D07CF00A517E2 /* Main.storyboard */,
-				562E5804216D07D000A517E2 /* Assets.xcassets */,
 				562E5806216D07D000A517E2 /* LaunchScreen.storyboard */,
 				562E5809216D07D000A517E2 /* Info.plist */,
 				5630EBD02170ED5200098749 /* GoogleService-Info.plist */,
@@ -419,7 +419,7 @@
 			files = (
 				562E5808216D07D000A517E2 /* LaunchScreen.storyboard in Resources */,
 				5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */,
-				562E5805216D07D000A517E2 /* Assets.xcassets in Resources */,
+				56EC67C6218113E1008C24BD /* Assets.xcassets in Resources */,
 				562E5803216D07CF00A517E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
