@@ -29,18 +29,43 @@ class MapController: UIViewController {
         view = mapView
         
 //         map center marker -34.610668, -58.433800
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
-        marker.title = "Victor's Home Radius"
-        marker.snippet = "I've lived in Caballito for about 20."
-        marker.opacity = 0.6
-
-        marker.map = mapView
+        let homeMarker = GMSMarker()
+        homeMarker.position = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
+        homeMarker.title = "Victor's Home Location"
+        homeMarker.snippet = "I've been living in Caballito for more than 20."
+        homeMarker.opacity = 0.6
+        homeMarker.map = mapView
+        
+        let gymMarker = GMSMarker()
+        gymMarker.position = CLLocationCoordinate2D(latitude: -34.612626, longitude: -58.432023)
+        gymMarker.title = "Tuluka Crossfit"
+        gymMarker.snippet = "This is where I usually work out"
+        gymMarker.opacity = 0.6
+        gymMarker.layer.cornerRadius = 5
+        gymMarker.map = mapView
+        
+        let universityMarker = GMSMarker()
+        universityMarker.position = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
+        universityMarker.title = "Universidad del CEMA"
+        universityMarker.snippet = "Busin"
+        
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
         circle.fillColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.2)
         circle.strokeColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.75)
         circle.map = mapView
+        
     }
-
+    
+    // getTappedLocation
+//    func mapView(mapViewUIView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+//        marker.position.latitude = coordinate.latitude
+//        marker.position.longitude = coordinate.longitude
+//
+//        println(marker.position.latitude)
+//        let ULlocation = marker.position.latitude
+//        let ULlgocation = marker.position.longitude
+//
+//    }
 }
+
