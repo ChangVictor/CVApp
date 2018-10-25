@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
+import GoogleMaps
+import GooglePlaces
 
 
 extension UINavigationController {
@@ -25,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        GMSServices.provideAPIKey("AIzaSyCtHJ5HGhl3ueGVH4wGeZ2yQPwd3LCAwJE")
+        GMSPlacesClient.provideAPIKey("AIzaSyCtHJ5HGhl3ueGVH4wGeZ2yQPwd3LCAwJE")
         
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = true

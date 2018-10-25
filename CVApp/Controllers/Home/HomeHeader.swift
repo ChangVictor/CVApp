@@ -29,7 +29,7 @@ class HomeHeader: UICollectionViewCell {
         logoImageView.clipsToBounds = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 70).isActive = true
-        view.backgroundColor = UIColor.rgb(red: 0, green: 0, blue: 0)
+        view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         logoImageView.image = UIImage(named: "VictorChang")
         logoImageView.contentMode = .scaleAspectFill
         return view
