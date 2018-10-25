@@ -18,6 +18,7 @@ class MapController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
         loadView()
     }
     
@@ -25,7 +26,7 @@ class MapController: UIViewController {
         
         let camera = GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 15.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        
+        mapView.settings.myLocationButton = true
         view = mapView
         
 //         map center marker -34.610668, -58.433800
@@ -44,10 +45,12 @@ class MapController: UIViewController {
         gymMarker.layer.cornerRadius = 5
         gymMarker.map = mapView
         
-        let universityMarker = GMSMarker()
-        universityMarker.position = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
-        universityMarker.title = "Universidad del CEMA"
-        universityMarker.snippet = "Busin"
+//        let universityMarker = GMSMarker()
+//        universityMarker.position = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: CLLocationDegrees)
+//        universityMarker.title = "Universidad del CEMA"
+//        universityMarker.snippet = "BA degree in Business Administration"
+//        universityMarker.map = mapView
+        
         
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
