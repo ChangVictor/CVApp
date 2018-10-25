@@ -28,19 +28,18 @@ class MapController: UIViewController {
         
         view = mapView
         
-        // map center marker
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: -34.608795, longitude: -58.434670)
-//        marker.title = "Home"
-//        marker.snippet = "I've lived in Caballito for about 20 years."
-//        marker.opacity = 0.6
-//
-//        marker.map = mapView
-        let circleCenter = CLLocationCoordinate2D(latitude: -34.609005, longitude: -58.434628)
+//         map center marker -34.610668, -58.433800
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
+        marker.title = "Victor's Home Radius"
+        marker.snippet = "I've lived in Caballito for about 20."
+        marker.opacity = 0.6
+
+        marker.map = mapView
+        let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
         circle.fillColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.2)
         circle.strokeColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.75)
-        circle.title = "Victor's Home Radius"
         circle.map = mapView
     }
 
