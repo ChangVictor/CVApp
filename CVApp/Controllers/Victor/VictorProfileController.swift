@@ -16,5 +16,8 @@ class VictorProfileController: UITableViewController {
         view.backgroundColor = .white
         
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
 }

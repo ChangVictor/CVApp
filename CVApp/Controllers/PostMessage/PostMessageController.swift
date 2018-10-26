@@ -11,6 +11,10 @@ import Firebase
 
 class PostMessageController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var user: User? {
         didSet {
             

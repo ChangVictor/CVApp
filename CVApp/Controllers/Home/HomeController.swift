@@ -109,6 +109,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
     }
+    
 }
 
 extension HomeController {
@@ -122,6 +123,7 @@ extension HomeController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 200)
     }
+    
     
 }
 
@@ -161,8 +163,10 @@ extension HomeController {
         return cell
     }
     
+   
 }
 
 
-    
+
+
 

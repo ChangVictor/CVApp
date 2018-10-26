@@ -16,6 +16,10 @@ class UserProfileController: UICollectionViewController {
     private var posts = [Post]()
     private var cellId = "cellId"
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

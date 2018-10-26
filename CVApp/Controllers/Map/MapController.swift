@@ -10,10 +10,18 @@ import UIKit
 import GoogleMaps
 
 class MapController: UIViewController {
+    
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,5 +78,5 @@ class MapController: UIViewController {
 //        let ULlgocation = marker.position.longitude
 //
 //    }
+   
 }
-

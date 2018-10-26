@@ -9,6 +9,18 @@
 
 import UIKit
 
+//extension UINavigationController {
+//    open override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
+//}
+
+extension UINavigationController {
+    override open var childForStatusBarStyle: UIViewController? {
+        return self.topViewController
+    }
+}
+
 extension UIColor {
     
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
