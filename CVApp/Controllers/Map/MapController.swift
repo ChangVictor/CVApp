@@ -21,9 +21,22 @@ class MapController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search for Victor's Places..."
+        searchBar.barTintColor = .white
+        searchBar.isTranslucent = false
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.rgb(red: 250, green: 250, blue: 250)
+        return searchBar
+    }()
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let navBar = navigationController?.navigationBar
+        navigationController?.navigationBar.addSubview(searchBar)
+        searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor, bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         view.backgroundColor = .white
         
@@ -79,4 +92,8 @@ class MapController: UIViewController {
 //
 //    }
    
+}
+
+extension MapController: UISearchBarDelegate {
+    
 }
