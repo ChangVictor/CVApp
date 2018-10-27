@@ -8,6 +8,8 @@
 
 import Foundation
 import Firebase
+import FacebookLogin
+import FBSDKLoginKit
 
 class  LoginController: UIViewController {
 
@@ -68,6 +70,7 @@ class  LoginController: UIViewController {
         }
     }
     
+    
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         
@@ -86,14 +89,24 @@ class  LoginController: UIViewController {
         self.present(signUpController, animated: true, completion: nil)
         
     }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
         
+        view.addSubview(loginButton)
+        
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 12, paddingRight: 0, width: 0, height: 50)
+        
+        let fbloginButton = LoginButton(readPermissions: [ .publicProfile ])
+//        loginButton.center = view.center
+        view.addSubview(fbloginButton)
+        fbloginButton.center = view.center
+        
         
         setupInputFields()
         

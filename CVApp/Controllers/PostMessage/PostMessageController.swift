@@ -39,7 +39,7 @@ class PostMessageController: UIViewController {
         let imageView = CustomImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = UIColor.lightGray
+        imageView.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         return imageView
     }()
     
@@ -60,7 +60,9 @@ class PostMessageController: UIViewController {
         
         textView.delegate = self
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
-        
+        profileImageView.layer.borderColor = UIColor.rgb(red: 197, green: 0, blue: 0).cgColor
+        profileImageView.layer.borderWidth = 1
+        profileImageView.layer.masksToBounds = true
         navigationItem.title = "Comment"
         setupNavigationButton()
         setupConstrains()

@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
+import FacebookCore
 import GoogleMaps
 import GooglePlaces
 
@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return SDKApplicationDelegate.shared.application(app, open: url, options: options)
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,26 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey("AIzaSyCtHJ5HGhl3ueGVH4wGeZ2yQPwd3LCAwJE")
         
         UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().barTintColor = .black
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 197, green: 0, blue: 0)
 //        UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         FirebaseApp.configure()
-        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        
         
         window = UIWindow()
         window?.rootViewController = MainTabBarController()
         
         return true
-    }
-    
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application,
-                                                         open: url,
-                                                         sourceApplication: sourceApplication,
-                                                         annotation: annotation)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

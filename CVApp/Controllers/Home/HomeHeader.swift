@@ -9,27 +9,27 @@
 import UIKit
 
 class HomeHeader: UICollectionViewCell {
+    
     let containerView: UIView = {
         let coverImage = "coverImage"
         let view = UIImageView()
         let logoImageView: UIImageView = {
             let imageView = UIImageView()
-            
             imageView.backgroundColor = .gray
-            
             return imageView
         }()
         
         logoImageView.contentMode = .scaleAspectFill
         view.addSubview(logoImageView)
         logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 120, height: 120)
-        logoImageView.layer.cornerRadius = 125 / 2
+        logoImageView.layer.cornerRadius = 120 / 2
         logoImageView.layer.masksToBounds = true
         logoImageView.layer.borderColor = UIColor.white.cgColor
         logoImageView.layer.borderWidth = 2
         logoImageView.clipsToBounds = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 70).isActive = true
+        
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
 //        view.backgroundColor = UIColor.init(patternImage: (coverImage ?? nil)!.withRenderingMode(.alwaysOriginal))
         view.image = UIImage(named: coverImage)
