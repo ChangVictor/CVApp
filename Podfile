@@ -25,6 +25,8 @@ pod 'Firebase/Storage'
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 

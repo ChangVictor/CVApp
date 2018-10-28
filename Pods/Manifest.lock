@@ -109,6 +109,8 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - FBSDKCoreKit
+  - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -165,6 +167,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: b78ae6d9433fb43c33667742d7e8636b0a86827f
+PODFILE CHECKSUM: cec417594cc84eb26b539f9e15cb0fcd20b572b8
 
 COCOAPODS: 1.5.3

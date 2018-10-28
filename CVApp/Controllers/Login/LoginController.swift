@@ -105,10 +105,15 @@ class  LoginController: UIViewController {
         let fbloginButton = LoginButton(readPermissions: [ .publicProfile ])
 //        loginButton.center = view.center
         view.addSubview(fbloginButton)
-        fbloginButton.center = view.center
+//        fbloginButton.center = view.center
         
+        if let accesToken = FBSDKAccessToken.current() {
+            print(accesToken)
+        }
         
         setupInputFields()
+        fbloginButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
+        fbloginButton.layer.cornerRadius = 5
         
     }
     
