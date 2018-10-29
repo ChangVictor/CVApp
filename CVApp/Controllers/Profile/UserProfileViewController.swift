@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
+import FacebookCore
 
 class UserProfileController: UICollectionViewController {
     
@@ -73,19 +75,31 @@ class UserProfileController: UICollectionViewController {
     }
 
     fileprivate func fetchUser() {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        if FBSDKProfile.current() != nil {
             
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            guard let username = Auth.auth().currentUser?.displayName else { return }
+            let profileImageUrl = "http://graph.facebook.com/\(uid)/picture?type=large"
+                self.user = User(uid: uid, dictionary: ["uid": uid,
+                                                        "username": username,
+                                                        "profileImageUrl": profileImageUrl])
+                
+            self.navigationItem.title = Auth.auth().currentUser?.displayName
             
-            self.user = User(uid: uid, dictionary: dictionary)
-            self.navigationItem.title = self.user?.username
-            
-            self.collectionView.reloadData()
-            
-        }) { (error) in
-            print("Failed to fetch user", error)
+        } else {
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                
+                self.user = User(uid: uid, dictionary: dictionary)
+                self.navigationItem.title = self.user?.username
+                
+                self.collectionView.reloadData()
+                
+            }) { (error) in
+                print("Failed to fetch user", error)
+            }
         }
     }
 

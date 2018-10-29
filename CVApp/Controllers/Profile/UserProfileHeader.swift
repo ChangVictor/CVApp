@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
+import FacebookCore
 
 class UserProfileHeader: UICollectionViewCell {
     
@@ -41,6 +43,8 @@ class UserProfileHeader: UICollectionViewCell {
         
         print("Did set user: \(user?.username ?? "no user set")")
         guard let profileImageUrl = user?.profileImageUrl else { return }
+
+//        let profileImageUrl = "http://graph.facebook.com/\(uid)/picture?type=large"
         guard let url = URL(string: profileImageUrl) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             // check for error & construc image using data

@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FacebookLogin
 import FBSDKLoginKit
+import Kingfisher
 
 class  LoginController: UIViewController {
 
@@ -70,6 +71,50 @@ class  LoginController: UIViewController {
         }
     }
     
+    let fbLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Login with Facebook", for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 59, green: 89, blue: 152)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(handleFacebookLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleFacebookLogin() {
+        let fbLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if let error = error {
+                print("Failed to login: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let accesToken = FBSDKAccessToken.current() else {
+                print("Failed to get acces token")
+                return
+            }
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: accesToken.tokenString)
+            
+            Auth.auth().signInAndRetrieveData(with: credential, completion: { (user, error) in
+                if let error = error {
+                    print("Login error: \(error.localizedDescription)")
+                    let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(okayAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    return
+                }
+                print("Succesfully logged in with user: ", Auth.auth().currentUser?.displayName ?? "Username not found")
+                guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                mainTabBarController.setupViewControllers()
+                self.dismiss(animated: true, completion: nil)
+                
+            })
+        }
+    }
     
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
@@ -102,9 +147,10 @@ class  LoginController: UIViewController {
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 12, paddingRight: 0, width: 0, height: 50)
         
-        let fbloginButton = LoginButton(readPermissions: [ .publicProfile ])
+//        let fbloginButton = LoginButton(readPermissions: [ .publicProfile ])
+
 //        loginButton.center = view.center
-        view.addSubview(fbloginButton)
+//        view.addSubview(fbloginButton)
 //        fbloginButton.center = view.center
         
         if let accesToken = FBSDKAccessToken.current() {
@@ -112,21 +158,42 @@ class  LoginController: UIViewController {
         }
         
         setupInputFields()
-        fbloginButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
-        fbloginButton.layer.cornerRadius = 5
+//        fbloginButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
+//        fbloginButton.layer.cornerRadius = 5
         
     }
     
     fileprivate func setupInputFields() {
         
-        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton, fbLoginButton])
         stackView.axis = .vertical
         stackView.spacing = 15
         stackView.distribution = .fillEqually
         
         view.addSubview(stackView)
-        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 200, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 140)
+        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 200, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 190)
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        if FBSDKAccessToken.currentAccessTokenIsActive() {
+//            FBSDKProfile.loadCurrentProfile { (profile, error) in
+//                if let profile = profile {
+//                    print("user: \(profile.name) logged")
+//                    guard let accesToken = FBSDKAccessToken.current() else { return }
+//
+//                    let credential = FacebookAuthProvider.credential(withAccessToken: accesToken.tokenString)
+//
+//                }
+//            }
+//            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+//            mainTabBarController.setupViewControllers()
+//            self.dismiss(animated: true, completion: nil)
+//        } else {
+//            print("Failed to login with Facebook")
+//        }
+//
+    }
+
 }
