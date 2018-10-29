@@ -130,7 +130,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                     
                     let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl]
                     let values = [uid: dictionaryValues]
-                    Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: {(errpr, reference) in
+                    Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: {(error, reference) in
                         
                         if let error = error {
                             print("Failed to save user info into database: ", error)

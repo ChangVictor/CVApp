@@ -107,10 +107,40 @@ class  LoginController: UIViewController {
                     
                     return
                 }
-                print("Succesfully logged in with user: ", Auth.auth().currentUser?.displayName ?? "Username not found")
-                guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-                mainTabBarController.setupViewControllers()
-                self.dismiss(animated: true, completion: nil)
+                
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                let ref = Database.database().reference()
+                ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if snapshot.exists() {
+                        print("Succesfully logged in with user: ", Auth.auth().currentUser?.displayName ?? "Username not found")
+                        guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                        mainTabBarController.setupViewControllers()
+                        self.dismiss(animated: true, completion: nil)
+                        
+                    } else {
+                        
+                        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+                        guard let uid = Auth.auth().currentUser?.uid else { return }
+                        guard let username = Auth.auth().currentUser?.displayName else { return }
+                        
+                        let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl] as [String : Any]
+                        let values = [uid: dictionaryValues]
+                        
+                        Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                            if let error = error {
+                                print("Failed to save user info into database", error.localizedDescription)
+                                return
+                            }
+                            
+                            print("Succesfully saved user info into database")
+                            guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                            maintabBarController.setupViewControllers()
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                        
+                    }
+                })
                 
             })
         }

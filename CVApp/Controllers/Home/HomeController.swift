@@ -93,6 +93,29 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     fileprivate func fetchAllposts() {
+        
+        if FBSDKProfile.current() != nil {
+            
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            guard let username = Auth.auth().currentUser?.displayName else { return }
+            guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+            
+            self.user = User(uid: uid, dictionary: ["uid": uid,
+                                                    "username": username,
+                                                    "profileImageUrl": profileImageUrl as Any])
+            
+            Database.database().reference().child("posts").observeSingleEvent(of: .value) { (snapshot) in
+                guard let userIdDictionary = snapshot.value as? [String: Any] else { return }
+                
+                userIdDictionary.forEach({ (key, value) in
+                    Database.fetchUserWithUID(uid: key, completion: { (user) in
+                        guard let user = self.user else { return }
+                        self.fetchPostWithUser(user: user)
+                    })
+                })
+            }
+            
+        } else {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -106,10 +129,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
         }) { (error) in
             print("Failed to fetch following users id: ", error)
-        }
+            }
         
+        }
     }
-    
 }
 
 extension HomeController {

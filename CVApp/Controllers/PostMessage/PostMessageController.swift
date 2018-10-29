@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
+import FacebookCore
 
 class PostMessageController: UIViewController {
     
@@ -131,8 +133,8 @@ class PostMessageController: UIViewController {
     fileprivate func setupProfileImage() {
         
         print("Did set user: \(user?.username ?? "no user set")")
-        guard let profileImageUrl = user?.profileImageUrl else { return }
-        guard let url = URL(string: profileImageUrl) else { return }
+        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+        guard let url = URL(string: "\(profileImageUrl)") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             // check for error & construc image using data
             if let error = error {
@@ -149,23 +151,30 @@ class PostMessageController: UIViewController {
     }
     
     fileprivate func fetchUser() {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        print("User posting message: \(Auth.auth().currentUser?.displayName)")
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        if FBSDKProfile.current() != nil {
             
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            guard let username = Auth.auth().currentUser?.displayName else { return }
+            guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
             
-            self.user = User(uid: uid, dictionary: dictionary)
-            self.navigationItem.title = self.user?.username
+            self.user = User(uid: uid, dictionary: ["uid": uid,
+                                                    "username": username,
+                                                    "profileImageUrl": profileImageUrl as Any])
             
             
-            
-        }) { (error) in
-            print("Failed to fetch user", error)
+        } else {
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                
+                self.user = User(uid: uid, dictionary: dictionary)
+                
+            }) { (error) in
+                print("Failed to fetch user", error)
+            }
         }
     }
-    
 }
 
 extension PostMessageController: UITextViewDelegate {
