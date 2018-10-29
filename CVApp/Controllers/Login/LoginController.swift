@@ -112,7 +112,8 @@ class  LoginController: UIViewController {
                 let ref = Database.database().reference()
                 ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                    if snapshot.exists() {
+                    if snapshot.hasChild(uid) {
+                        
                         print("Succesfully logged in with user: ", Auth.auth().currentUser?.displayName ?? "Username not found")
                         guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
                         mainTabBarController.setupViewControllers()
@@ -137,6 +138,7 @@ class  LoginController: UIViewController {
                             guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
                             maintabBarController.setupViewControllers()
                             self.dismiss(animated: true, completion: nil)
+                            
                         })
                         
                     }
