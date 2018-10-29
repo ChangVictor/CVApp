@@ -116,6 +116,21 @@ class  LoginController: UIViewController {
         }
     }
     
+    let googleLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Login with Google", for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 214, green: 45, blue: 32)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(handleGoogleLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleGoogleLogin() {
+        print("Google login not yet set")
+    }
+    
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         
@@ -165,13 +180,13 @@ class  LoginController: UIViewController {
     
     fileprivate func setupInputFields() {
         
-        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton, fbLoginButton])
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton, fbLoginButton, googleLoginButton])
         stackView.axis = .vertical
         stackView.spacing = 15
         stackView.distribution = .fillEqually
         
         view.addSubview(stackView)
-        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 200, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 190)
+        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 200, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
         
     }
     

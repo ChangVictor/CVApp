@@ -151,6 +151,7 @@ class PostMessageController: UIViewController {
     fileprivate func fetchUser() {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        print("User posting message: \(Auth.auth().currentUser?.displayName)")
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionary = snapshot.value as? [String: Any] else { return }

@@ -4,15 +4,13 @@
 //
 //  Created by Victor Chang on 09/10/2018.
 //  Copyright © 2018 Victor Chang. All rights reserved.
-//
+//import UIKit
 
-import UIKit
 import Firebase
 import FacebookCore
 import GoogleMaps
 import GooglePlaces
 import FBSDKCoreKit
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

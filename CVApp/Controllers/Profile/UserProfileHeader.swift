@@ -42,10 +42,9 @@ class UserProfileHeader: UICollectionViewCell {
     fileprivate func setupProfileImage() {
         
         print("Did set user: \(user?.username ?? "no user set")")
-        guard let profileImageUrl = user?.profileImageUrl else { return }
-
-//        let profileImageUrl = "http://graph.facebook.com/\(uid)/picture?type=large"
-        guard let url = URL(string: profileImageUrl) else { return }
+//        guard let profileImageUrl = user?.profileImageUrl else { return }
+        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+        guard let url = URL(string: "\(profileImageUrl)") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             // check for error & construc image using data
             if let error = error {

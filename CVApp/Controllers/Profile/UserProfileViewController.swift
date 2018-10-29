@@ -79,10 +79,11 @@ class UserProfileController: UICollectionViewController {
             
             guard let uid = Auth.auth().currentUser?.uid else { return }
             guard let username = Auth.auth().currentUser?.displayName else { return }
-            let profileImageUrl = "http://graph.facebook.com/\(uid)/picture?type=large"
-                self.user = User(uid: uid, dictionary: ["uid": uid,
-                                                        "username": username,
-                                                        "profileImageUrl": profileImageUrl])
+            guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+            
+            self.user = User(uid: uid, dictionary: ["uid": uid,
+                                                    "username": username,
+                                                    "profileImageUrl": profileImageUrl as Any])
                 
             self.navigationItem.title = Auth.auth().currentUser?.displayName
             
