@@ -118,9 +118,6 @@ class PostMessageController: UIViewController {
             }
             print("Succesfully inserted post: \(self.textView.text ?? "No post")")
             self.dismiss(animated: true, completion: nil)
-//            let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
-//            let navController = UINavigationController(rootViewController: homeController)
-//            self.present(navController, animated: true, completion: nil)
             NotificationCenter.default.post(name: PostMessageController.updateFeedNotificationName, object: nil)
 
         }

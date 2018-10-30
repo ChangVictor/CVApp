@@ -36,7 +36,7 @@ class  LoginController: UIViewController {
         textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return textField
     }()
-    
+   
     @objc fileprivate func handleTextInputChange() {
         print("handleTextInputChange Triggered")
     }
@@ -121,26 +121,57 @@ class  LoginController: UIViewController {
                         
                     } else {
                         
-                        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
-                        guard let uid = Auth.auth().currentUser?.uid else { return }
-                        guard let username = Auth.auth().currentUser?.displayName else { return }
-                        
-                        let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl] as [String : Any]
-                        let values = [uid: dictionaryValues]
-                        
-                        Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
-                            if let error = error {
-                                print("Failed to save user info into database", error.localizedDescription)
+                        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"])?.start { (connection, result, error) in
+                            if error != nil {
+                                print("Graph failed: ", error)
                                 return
                             }
+                            print(result ?? "")
+                            guard let uid = Auth.auth().currentUser?.uid else { return }
+                            guard let data = result as? [String: Any] else { return }
+                            guard let email = data["email"] as? String else { return }
+                            guard let username = data["name"] as? String else { return }
+                            guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+
                             
-                            print("Succesfully saved user info into database")
-                            guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                            let userInfo: [String: Any] = ["uid": uid,
+                                                           "username": username,
+                                                           "email": email,
+                                                           ]
+                            let values = [uid: userInfo]
+                            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                                if let error = error {
+                                    print("Failed top save Facebook user into database", error)
+                                    return
+                                }
+                                
+                                print("Succesfully saved Facebook user into Database", reference)
+                            })
+                            
+                        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
                             maintabBarController.setupViewControllers()
                             self.dismiss(animated: true, completion: nil)
-                            
-                        })
+                        }
                         
+                        
+//                        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+//                        guard let uid = Auth.auth().currentUser?.uid else { return }
+//                        guard let username = Auth.auth().currentUser?.displayName else { return }
+//
+//                        let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl] as [String : Any]
+//                        let values = [uid: dictionaryValues]
+//
+//                        Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+//                            if let error = error {
+//                                print("Failed to save user info into database", error.localizedDescription)
+//                                return
+//                            }
+//
+//                            print("Succesfully saved user info into database")
+//                        })
+//                        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+//                        maintabBarController.setupViewControllers()
+//                        self.dismiss(animated: true, completion: nil)
                     }
                 })
                 
