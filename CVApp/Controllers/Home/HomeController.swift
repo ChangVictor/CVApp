@@ -40,7 +40,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.refreshControl = refreshControl
         
 //        fetchPost()
-        fetchAllposts()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        fetchAllposts()
+        handleRefresh()
+
     }
     
     @objc fileprivate func handleRefresh() {
