@@ -121,57 +121,54 @@ class  LoginController: UIViewController {
                         
                     } else {
                         
-                        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"])?.start { (connection, result, error) in
+                        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture.width(480).height(480)"])?.start { (connection, result, error) in
                             if error != nil {
-                                print("Graph failed: ", error)
+                                print("Graph failed: ", error ?? "")
                                 return
                             }
                             print(result ?? "")
-                            guard let uid = Auth.auth().currentUser?.uid else { return }
                             guard let data = result as? [String: Any] else { return }
                             guard let email = data["email"] as? String else { return }
                             guard let username = data["name"] as? String else { return }
-                            guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
-
-                            
-                            let userInfo: [String: Any] = ["uid": uid,
-                                                           "username": username,
-                                                           "email": email,
-                                                           ]
-                            let values = [uid: userInfo]
-                            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
-                                if let error = error {
-                                    print("Failed top save Facebook user into database", error)
-                                    return
-                                }
+                            if let profilePictureUrl = ((data["picture"] as? [String: Any])? ["data"] as? [String: Any])? ["url"] as? String {
+                                print(profilePictureUrl)
+                                guard let url = URL(string: profilePictureUrl) else { return }
+                                guard let data = NSData(contentsOf: url) else { return }
+                                guard let uid = Auth.auth().currentUser?.uid else { return }
+                                let image = UIImage(data: data as Data)
+                                guard let uploadData = image?.jpegData(compressionQuality: 0.4) else { return }
+                                Storage.storage().reference().child("profile_images").child(uid).putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                    if let error = error {
+                                        print("Failed to save facebook profile picture on storage", error)
+                                        return
+                                    }
+                                    Storage.storage().reference().child("profile_pictures").child(uid).downloadURL(completion: { (downloadUrl, error) in
+                                        guard let profileImageUrl = downloadUrl?.absoluteString else { return }
+                                        print("Succesfully uploaded profile image", profileImageUrl)
+                                        
+                                    })
+                                })
                                 
-                                print("Succesfully saved Facebook user into Database", reference)
-                            })
-                            
-                        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-                            maintabBarController.setupViewControllers()
-                            self.dismiss(animated: true, completion: nil)
+                                let userInfo: [String: Any] = ["uid": uid,
+                                                               "username": username,
+                                                               "email": email,
+                                                               "profileImageUrl": profilePictureUrl
+                                ]
+                                let values = [uid: userInfo]
+                                Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                                    if let error = error {
+                                        print("Failed top save Facebook user into database", error)
+                                        return
+                                    }
+                                    
+                                    print("Succesfully saved Facebook user into Database", reference)
+                                    
+                                })  
+                            }
                         }
-                        
-                        
-//                        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
-//                        guard let uid = Auth.auth().currentUser?.uid else { return }
-//                        guard let username = Auth.auth().currentUser?.displayName else { return }
-//
-//                        let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl] as [String : Any]
-//                        let values = [uid: dictionaryValues]
-//
-//                        Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
-//                            if let error = error {
-//                                print("Failed to save user info into database", error.localizedDescription)
-//                                return
-//                            }
-//
-//                            print("Succesfully saved user info into database")
-//                        })
-//                        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-//                        maintabBarController.setupViewControllers()
-//                        self.dismiss(animated: true, completion: nil)
+                        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                        maintabBarController.setupViewControllers()
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
                 
@@ -255,23 +252,7 @@ class  LoginController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if FBSDKAccessToken.currentAccessTokenIsActive() {
-//            FBSDKProfile.loadCurrentProfile { (profile, error) in
-//                if let profile = profile {
-//                    print("user: \(profile.name) logged")
-//                    guard let accesToken = FBSDKAccessToken.current() else { return }
-//
-//                    let credential = FacebookAuthProvider.credential(withAccessToken: accesToken.tokenString)
-//
-//                }
-//            }
-//            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-//            mainTabBarController.setupViewControllers()
-//            self.dismiss(animated: true, completion: nil)
-//        } else {
-//            print("Failed to login with Facebook")
-//        }
-//
+
     }
 
 }
