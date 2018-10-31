@@ -26,7 +26,7 @@ class UserProfileController: UICollectionViewController {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = .white
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         setupLogOutButton()
         fetchUser()

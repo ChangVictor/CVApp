@@ -24,8 +24,8 @@ class HomeHeader: UICollectionViewCell {
         logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 120, height: 120)
         logoImageView.layer.cornerRadius = 120 / 2
         logoImageView.layer.masksToBounds = true
-        logoImageView.layer.borderColor = UIColor.white.cgColor
-        logoImageView.layer.borderWidth = 2
+        logoImageView.layer.borderColor = UIColor.rgb(red: 180, green: 48, blue: 49).cgColor
+        logoImageView.layer.borderWidth = 3
         logoImageView.clipsToBounds = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 70).isActive = true
@@ -35,7 +35,8 @@ class HomeHeader: UICollectionViewCell {
         view.image = UIImage(named: coverImage)
         view.contentMode = .scaleAspectFit
         
-        logoImageView.image = UIImage(named: "VictorChang")
+        logoImageView.image = UIImage(named: "VictorChangMemoji")
+        logoImageView.contentMode = .center
         logoImageView.contentMode = .scaleAspectFill
         return view
     }()

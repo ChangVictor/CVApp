@@ -28,6 +28,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
 //        navigationController?.isNavigationBarHidden = false
         navigationItem.title = "Home"
+//        navigationController?.navigationBar.prefersLargeTitles = true
         
         collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         collectionView.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
@@ -61,11 +62,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate func fetchPost() {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
-
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPostWithUser(user: user)
         }
-        
     }
     
     fileprivate func fetchPostWithUser(user: User) {
@@ -82,15 +81,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key
-//                guard let uid = Auth.auth().currentUser?.uid else { return }
-                
                 self.posts.append(post)
                 self.posts.sort(by: { (p1, p2) -> Bool in
                     return p1.creationDate.compare(p2.creationDate) == .orderedDescending
                 })
-                
                 self.collectionView?.reloadData()
-    
             })
            
         }) { (error) in
@@ -108,11 +103,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     self.fetchPostWithUser(user: user)
                 })
             })
-            
         }) { (error) in
             print("Failed to fetch following users id: ", error)
             }
-        
         }
     }
 
@@ -158,11 +151,8 @@ extension HomeController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell 
         cell.post = posts[indexPath.item]
-        
-        
         return cell
     }
     

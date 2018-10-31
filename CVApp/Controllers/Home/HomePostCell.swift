@@ -34,8 +34,8 @@ class HomePostCell: UICollectionViewCell {
             userProfileImageView.loadImage(urlString: profileImageUrl)
 
             setupAttributedCaption()
-            usernameLabel.text = post?.user.username
-            messageLabel.text = post?.message
+//            usernameLabel.text = post?.user.username
+//            messageLabel.text = post?.message
         }
     }
     
@@ -50,10 +50,10 @@ class HomePostCell: UICollectionViewCell {
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
         
         let timaAgoDisplay = post.creationDate.timeAgoDisplay()
-        attributedText.append(NSAttributedString(string: timaAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        attributedText.append(NSAttributedString(string: timaAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
 //        self.messageTextView.attributedText = attributedText
-            messageLabel.attributedText = attributedText
+            self.messageLabel.attributedText = attributedText
     }
     
    
@@ -74,16 +74,19 @@ class HomePostCell: UICollectionViewCell {
         return label
     }()
     
+    
+    
     let bubbleBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 5
+        view.contentMode = .center
         return view
     }()
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Username"
+//        label.text = "Username"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()

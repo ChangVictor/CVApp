@@ -34,48 +34,29 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.layer.cornerRadius = 80 / 2
         profileImageView.clipsToBounds = true
         profileImageView.layer.masksToBounds = true
-        profileImageView.layer.borderWidth = 2
-        profileImageView.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
+        profileImageView.layer.borderWidth = 3
+        profileImageView.layer.borderColor = UIColor.darkGray.cgColor
         
     }
     
     fileprivate func setupProfileImage() {
-        // TODO: - REFACTOR THIS
-        print("Did set user: \(user?.username ?? "no user set")")
-        if let profileImageUrl = user?.profileImageUrl {
         
-            guard let url = URL(string: "\(profileImageUrl)") else { return }
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                // check for error & construc image using data
-                if let error = error {
-                    print("Failed to fetch profile image: ", error)
-                    return
-                }
-                // could check for response 200 (HTTP OK)
-                guard let data = data else { return }
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self.profileImageView.image = image
-                }
-                }.resume()
-            
-        } else if let profileImageUrl = Auth.auth().currentUser?.photoURL {
-            guard let url = URL(string: "\(profileImageUrl)") else { return }
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                // check for error & construc image using data
-                if let error = error {
-                    print("Failed to fetch profile image: ", error)
-                    return
-                }
-                // could check for response 200 (HTTP OK)
-                guard let data = data else { return }
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self.profileImageView.image = image
-                }
-                }.resume()
-        }
-       
+        print("Did set user: \(user?.username ?? "no user set")")
+        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
+        guard let url = URL(string: "\(profileImageUrl)") else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            // check for error & construc image using data
+            if let error = error {
+                print("Failed to fetch profile image: ", error)
+                return
+            }
+            // could check for response 200 (HTTP OK)
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.profileImageView.image = image
+            }
+            }.resume()
     }
     
     required init?(coder aDecoder: NSCoder) {

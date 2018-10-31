@@ -62,8 +62,8 @@ class PostMessageController: UIViewController {
         
         textView.delegate = self
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
-        profileImageView.layer.borderColor = UIColor.rgb(red: 197, green: 0, blue: 0).cgColor
-        profileImageView.layer.borderWidth = 1
+        profileImageView.layer.borderColor = UIColor.rgb(red: 214, green: 48, blue: 49).cgColor
+        profileImageView.layer.borderWidth = 2
         profileImageView.layer.masksToBounds = true
         navigationItem.title = "Comment"
         setupNavigationButton()
