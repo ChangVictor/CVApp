@@ -34,6 +34,7 @@
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
 		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
 		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
+		56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */; };
 		56EC67C6218113E1008C24BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56EC67C5218113E1008C24BD /* Assets.xcassets */; };
 		751D5544818DB274325076C0 /* Pods_CVAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D41604481DBB1CEED984D18 /* Pods_CVAppUITests.framework */; };
 		8B6AA35A2BE641958FE9B77B /* Pods_CVAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F87EF483EE770631A47FB1 /* Pods_CVAppTests.framework */; };
@@ -91,6 +92,7 @@
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
+		56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileCell.swift; sourceTree = "<group>"; };
 		56EC67C5218113E1008C24BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DED6B3807E8D23C3ECB657D /* Pods-CVApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVApp/Pods-CVApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7FCAFDA54917AFD296F9EBD5 /* Pods-CVAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVAppTests/Pods-CVAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				562EB050217212D400939D94 /* VictorProfileController.swift */,
 				561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */,
+				56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */,
 			);
 			path = Victor;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,
 				562E57FE216D07CF00A517E2 /* AppDelegate.swift in Sources */,
 				5605166B217D38B200674029 /* UserProfileCell.swift in Sources */,
+				56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */,
 				56254D3C216D2E5C005C6FA0 /* MainTabBarController.swift in Sources */,
 				56051669217CB99700674029 /* UserProfileHeader.swift in Sources */,
 				565ED24121701844001ECF81 /* HomeHeader.swift in Sources */,
