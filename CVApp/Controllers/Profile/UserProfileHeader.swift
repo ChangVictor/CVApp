@@ -35,7 +35,7 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.clipsToBounds = true
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 3
-        profileImageView.layer.borderColor = UIColor.darkGray.cgColor
+        profileImageView.layer.borderColor = UIColor.rgb(red: 214, green: 48, blue: 49).cgColor
         
     }
     

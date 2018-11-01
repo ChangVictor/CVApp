@@ -35,7 +35,7 @@ class HomeHeader: UICollectionViewCell {
         view.image = UIImage(named: coverImage)
         view.contentMode = .scaleAspectFit
         
-        logoImageView.image = UIImage(named: "VictorChangMemoji")
+        logoImageView.image = UIImage(named: "VictorMemoji630x630")
         logoImageView.contentMode = .center
         logoImageView.contentMode = .scaleAspectFill
         return view

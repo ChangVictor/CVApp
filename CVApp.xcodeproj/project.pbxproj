@@ -10,6 +10,7 @@
 		1A62098069B04286E5F47CF0 /* Pods_CVApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F8E22F281E824566C44BF6 /* Pods_CVApp.framework */; };
 		56051669217CB99700674029 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56051668217CB99700674029 /* UserProfileHeader.swift */; };
 		5605166B217D38B200674029 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605166A217D38B200674029 /* UserProfileCell.swift */; };
+		561B980F218B42E700BA41F4 /* VictorProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */; };
 		56254D3C216D2E5C005C6FA0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56254D3B216D2E5C005C6FA0 /* MainTabBarController.swift */; };
 		56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56254D3D216D3AA8005C6FA0 /* HomeController.swift */; };
 		56254D40216D4B02005C6FA0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56254D3F216D4B02005C6FA0 /* Extension.swift */; };
@@ -59,6 +60,7 @@
 		34F8E22F281E824566C44BF6 /* Pods_CVApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56051668217CB99700674029 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		5605166A217D38B200674029 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileHeader.swift; sourceTree = "<group>"; };
 		56254D3B216D2E5C005C6FA0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		56254D3D216D3AA8005C6FA0 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		56254D3F216D4B02005C6FA0 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				562EB050217212D400939D94 /* VictorProfileController.swift */,
+				561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */,
 			);
 			path = Victor;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				567074E0216FCABB00C6FFFC /* User.swift in Sources */,
 				567074E4216FCBC600C6FFFC /* Post.swift in Sources */,
 				567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */,
+				561B980F218B42E700BA41F4 /* VictorProfileHeader.swift in Sources */,
 				562EB04F2172122500939D94 /* UserProfileViewController.swift in Sources */,
 				562E5800216D07CF00A517E2 /* ViewController.swift in Sources */,
 				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,

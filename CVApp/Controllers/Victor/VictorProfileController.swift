@@ -8,12 +8,12 @@
 
 import UIKit
 
-class VictorProfileController: UITableViewController {
+class VictorProfileController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        collectionView.backgroundColor = .white
         
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
