@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-import FacebookLogin
+//import FacebookLogin
 import FBSDKLoginKit
 import Kingfisher
 
