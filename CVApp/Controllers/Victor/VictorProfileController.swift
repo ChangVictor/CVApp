@@ -18,6 +18,10 @@ class VictorProfileController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.register(VictorProfileCell.self, forCellWithReuseIdentifier: cellId)
         
+        if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+        }
+        
         
     }
     
@@ -57,3 +61,11 @@ extension VictorProfileController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+
+//extension VictorProfileController: PinterestLayoutDelegate {
+//    
+//    func collectionView(collectionView: UICollectionView, heightForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return photos[indexPath.item].image.size.height
+//    }
+//}

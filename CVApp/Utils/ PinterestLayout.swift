@@ -16,7 +16,7 @@ protocol PinterestLayoutDelegate {
 
 class PinterestLayout: UICollectionViewLayout {
     
-    var delegate: PinterestLayoutDelegate! // fix the force unwrap
+    var delegate: PinterestLayoutDelegate? // fix the force unwrap
     
     fileprivate var numberOfColumns = 2
     fileprivate var cellPadding: CGFloat = 6
@@ -52,7 +52,7 @@ class PinterestLayout: UICollectionViewLayout {
             
             let indexPath = IndexPath(item: item, section: 0)
             
-            let photoHeight = delegate.collectionView(collectionView: collectionView, heightForItemAtIndexPath: indexPath as NSIndexPath)
+            guard let photoHeight = delegate?.collectionView(collectionView: collectionView, heightForItemAtIndexPath: indexPath as NSIndexPath) else { return }
             let height = cellPadding * 2 + photoHeight
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: CGFloat(height))
             
@@ -68,6 +68,22 @@ class PinterestLayout: UICollectionViewLayout {
             column = column < (numberOfColumns - 1) ? (column + 1) : 0
             
         }
+    }
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
+        var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
+        
+        for attributes in cache {
+            if attributes.frame.intersects(rect) {
+                visibleLayoutAttributes.append(attributes)
+            }
+        }
+        return visibleLayoutAttributes
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cache[indexPath.item]
     }
     
 }
