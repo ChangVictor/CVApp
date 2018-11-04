@@ -5,7 +5,7 @@
       location = "group:CVApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Assets.xcassets">
+      location = "group:/Users/victorchang/Documents/Projects/CVApp/CVApp/Assets.xcassets">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -26,9 +26,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationController?.isNavigationBarHidden = false
         navigationItem.title = "Home"
-//        navigationController?.navigationBar.prefersLargeTitles = true
         
         collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         collectionView.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
@@ -40,7 +38,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView?.refreshControl = refreshControl
         
-//        fetchPost()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

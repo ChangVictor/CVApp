@@ -8,15 +8,20 @@
 
 import UIKit
 
-protocol PinterestLayoutDelegate {
-    
-    func collectionView(collectionView: UICollectionView, heightForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat
-    
+//protocol PinterestLayoutDelegate {
+//
+//    func collectionView(collectionView: UICollectionView, heightForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat
+//
+//}
+
+protocol PinterestLayoutDelegate: class {
+    // 1. Method to ask the delegate for the height of the image
+    func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat
 }
 
 class PinterestLayout: UICollectionViewLayout {
     
-    var delegate: PinterestLayoutDelegate? // fix the force unwrap
+    weak var delegate: PinterestLayoutDelegate?
     
     fileprivate var numberOfColumns = 2
     fileprivate var cellPadding: CGFloat = 6
@@ -52,7 +57,7 @@ class PinterestLayout: UICollectionViewLayout {
             
             let indexPath = IndexPath(item: item, section: 0)
             
-            guard let photoHeight = delegate?.collectionView(collectionView: collectionView, heightForItemAtIndexPath: indexPath as NSIndexPath) else { return }
+            guard let photoHeight = delegate?.collectionView(collectionView, heightForPhotoAtIndexPath: (indexPath as NSIndexPath) as IndexPath) else { return }
             let height = cellPadding * 2 + photoHeight
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: CGFloat(height))
             

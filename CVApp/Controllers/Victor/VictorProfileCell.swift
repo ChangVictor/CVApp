@@ -10,6 +10,14 @@ import UIKit
 
 class VictorProfileCell: UICollectionViewCell {
     
+    var photo: Photo? {
+        didSet {
+            if let photo = photo {
+                photoImageView.image = photo.image
+            }
+        }
+    }
+    
     let photoImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
@@ -24,7 +32,8 @@ class VictorProfileCell: UICollectionViewCell {
         
         addSubview(photoImageView)
         photoImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
+        photoImageView.layer.cornerRadius = 6
+        photoImageView.layer.masksToBounds = true
     }
     
     

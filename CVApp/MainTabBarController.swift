@@ -49,10 +49,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
         func setupViewControllers() {
-        
+            
         let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
-        
-            let victorNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "V_icon"), selectedImage: #imageLiteral(resourceName: "V_icon"), rootViewController: VictorProfileController(collectionViewLayout: PinterestLayout()))
+            
+        let victorNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "V_icon"), selectedImage: #imageLiteral(resourceName: "V_icon"), rootViewController: VictorProfileController(collectionViewLayout: PinterestLayout()))
             
         let postMessageController = templateNavController(unselectedImage: #imageLiteral(resourceName: "send2"), selectedImage: #imageLiteral(resourceName: "send2"), rootViewController: PostMessageController())
         

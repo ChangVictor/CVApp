@@ -29,6 +29,10 @@
 		565ED24121701844001ECF81 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565ED24021701844001ECF81 /* HomeHeader.swift */; };
 		566442D721793363008FDF60 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566442D621793363008FDF60 /* FirebaseUtils.swift */; };
 		566442D921793524008FDF60 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566442D821793524008FDF60 /* CustomImageView.swift */; };
+		566B7304218F24D700AF9634 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566B7303218F24D700AF9634 /* Photo.swift */; };
+		566B730C218F2E8300AF9634 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 566B730B218F2E8300AF9634 /* Photos.plist */; };
+		566B730F218F3BFD00AF9634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566B730E218F3AC700AF9634 /* Assets.xcassets */; };
+		566B7311218F3F5C00AF9634 /* Photos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566B7310218F3F5C00AF9634 /* Photos.xcassets */; };
 		567074E0216FCABB00C6FFFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074DF216FCABB00C6FFFC /* User.swift */; };
 		567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E1216FCB0C00C6FFFC /* Comment.swift */; };
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
@@ -36,7 +40,6 @@
 		5674A4F2218CD1FF00C50F91 /*  PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674A4F1218CD1FF00C50F91 /*  PinterestLayout.swift */; };
 		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
 		56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */; };
-		56EC67C6218113E1008C24BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56EC67C5218113E1008C24BD /* Assets.xcassets */; };
 		751D5544818DB274325076C0 /* Pods_CVAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D41604481DBB1CEED984D18 /* Pods_CVAppUITests.framework */; };
 		8B6AA35A2BE641958FE9B77B /* Pods_CVAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F87EF483EE770631A47FB1 /* Pods_CVAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +91,10 @@
 		565ED24021701844001ECF81 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		566442D621793363008FDF60 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
 		566442D821793524008FDF60 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		566B7303218F24D700AF9634 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		566B730B218F2E8300AF9634 /* Photos.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
+		566B730E218F3AC700AF9634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/victorchang/Documents/Projects/CVApp/CVApp/Assets.xcassets; sourceTree = "<absolute>"; };
+		566B7310218F3F5C00AF9634 /* Photos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Photos.xcassets; sourceTree = "<group>"; };
 		567074DF216FCABB00C6FFFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		567074E1216FCB0C00C6FFFC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -95,7 +102,6 @@
 		5674A4F1218CD1FF00C50F91 /*  PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " PinterestLayout.swift"; sourceTree = "<group>"; };
 		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
 		56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileCell.swift; sourceTree = "<group>"; };
-		56EC67C5218113E1008C24BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DED6B3807E8D23C3ECB657D /* Pods-CVApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVApp/Pods-CVApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7FCAFDA54917AFD296F9EBD5 /* Pods-CVAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVAppTests/Pods-CVAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D41604481DBB1CEED984D18 /* Pods_CVAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +184,7 @@
 				567074E3216FCBC600C6FFFC /* Post.swift */,
 				567074DF216FCABB00C6FFFC /* User.swift */,
 				567074E1216FCB0C00C6FFFC /* Comment.swift */,
+				566B7303218F24D700AF9634 /* Photo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,7 +192,7 @@
 		562E57F1216D07CF00A517E2 = {
 			isa = PBXGroup;
 			children = (
-				56EC67C5218113E1008C24BD /* Assets.xcassets */,
+				566B7307218F2D7C00AF9634 /* Assets */,
 				562E57FC216D07CF00A517E2 /* CVApp */,
 				562E5811216D07D000A517E2 /* CVAppTests */,
 				562E581C216D07D000A517E2 /* CVAppUITests */,
@@ -273,6 +280,16 @@
 				5674A4F1218CD1FF00C50F91 /*  PinterestLayout.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		566B7307218F2D7C00AF9634 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				566B730B218F2E8300AF9634 /* Photos.plist */,
+				566B730E218F3AC700AF9634 /* Assets.xcassets */,
+				566B7310218F3F5C00AF9634 /* Photos.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		56CCE4912178C3B3000E4AC6 /* PostMessage */ = {
@@ -429,8 +446,10 @@
 			files = (
 				562E5808216D07D000A517E2 /* LaunchScreen.storyboard in Resources */,
 				5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */,
-				56EC67C6218113E1008C24BD /* Assets.xcassets in Resources */,
+				566B7311218F3F5C00AF9634 /* Photos.xcassets in Resources */,
 				562E5803216D07CF00A517E2 /* Main.storyboard in Resources */,
+				566B730C218F2E8300AF9634 /* Photos.plist in Resources */,
+				566B730F218F3BFD00AF9634 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +611,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				566B7304218F24D700AF9634 /* Photo.swift in Sources */,
 				562EB04A2171427200939D94 /* LoginController.swift in Sources */,
 				566442D921793524008FDF60 /* CustomImageView.swift in Sources */,
 				56254D40216D4B02005C6FA0 /* Extension.swift in Sources */,
