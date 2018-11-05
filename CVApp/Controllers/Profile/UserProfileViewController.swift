@@ -27,12 +27,31 @@ class UserProfileController: UICollectionViewController {
         
         collectionView?.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        refreshControl()
         setupLogOutButton()
         fetchUser()
-        fetchPost()
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView?.register(UserProfileCell.self, forCellWithReuseIdentifier: cellId)
+    }
+    
+    fileprivate func refreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = .white
+        collectionView?.refreshControl = refreshControl
+        self.collectionView?.refreshControl?.endRefreshing()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchPost()
+    }
+    
+    @objc fileprivate func handleRefresh() {
+        print("Refreshing User's messages")
+        posts.removeAll()
+        collectionView.reloadData()
+        fetchPost()
     }
 
     fileprivate func fetchPost() {

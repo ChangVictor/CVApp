@@ -43,7 +43,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidAppear(animated)
 //        fetchAllposts()
         handleRefresh()
-
     }
     
     @objc fileprivate func handleRefresh() {
@@ -51,7 +50,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("Handling refresh...")
         posts.removeAll()
         collectionView?.reloadData()
-//        fetchPost()
         fetchAllposts()
         
     }

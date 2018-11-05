@@ -85,7 +85,7 @@ class UserProfileCell: UICollectionViewCell {
     addSubview(likeButton)
     addSubview(messageLabel)
     
-        messageLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        messageLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 14, paddingLeft: 24, paddingBottom: 0, paddingRight: 24, width: 0, height: 0)
         
         bubbleBackgroundView.anchor(top: messageLabel.topAnchor, left: leftAnchor, bottom: messageLabel.bottomAnchor, right: rightAnchor, paddingTop: -10, paddingLeft: 12, paddingBottom: -10, paddingRight: 12, width: 0, height: 0)
     }

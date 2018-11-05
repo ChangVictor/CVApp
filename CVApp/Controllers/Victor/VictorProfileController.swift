@@ -19,7 +19,7 @@ class VictorProfileController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.register(VictorProfileCell.self, forCellWithReuseIdentifier: cellId)
         
-//        collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
