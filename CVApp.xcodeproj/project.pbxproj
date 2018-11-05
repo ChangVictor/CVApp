@@ -172,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				56254D3D216D3AA8005C6FA0 /* HomeController.swift */,
-				567074E5216FD2F200C6FFFC /* HomePostCell.swift */,
 				565ED24021701844001ECF81 /* HomeHeader.swift */,
+				567074E5216FD2F200C6FFFC /* HomePostCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";

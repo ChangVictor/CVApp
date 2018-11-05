@@ -41,7 +41,6 @@ class UserProfileController: UICollectionViewController {
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPostFromUser(user: user)
         }
-        
     }
     
     fileprivate func fetchPostFromUser(user: User) {
@@ -129,8 +128,6 @@ class UserProfileController: UICollectionViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
-
-
 }
 
 extension UserProfileController: UICollectionViewDelegateFlowLayout {
@@ -173,7 +170,7 @@ extension UserProfileController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfileCell
         
-        cell.messageLabel.text = posts[indexPath.item].message
+        cell.post = posts[indexPath.item]
         
         return cell
         

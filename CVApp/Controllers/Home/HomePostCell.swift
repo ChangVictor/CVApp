@@ -9,7 +9,6 @@
 import UIKit
 
 protocol HomePostCellDelegate {
-    func didTapComment(post: Post)
     func didLike(for cell: HomePostCell)
 }
 
@@ -20,14 +19,11 @@ class HomePostCell: UICollectionViewCell {
             
             guard let profileImageUrl = post?.user.profileImageUrl else { return }
 
-            
             likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
             
             userProfileImageView.loadImage(urlString: profileImageUrl)
 
             setupAttributedCaption()
-//            usernameLabel.text = post?.user.username
-//            messageLabel.text = post?.message
         }
     }
     
@@ -41,32 +37,28 @@ class HomePostCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
         
-        let timaAgoDisplay = post.creationDate.timeAgoDisplay()
-        attributedText.append(NSAttributedString(string: timaAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        let timeAgoDisplay = post.creationDate.timeAgoDisplay()
+        attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
-//        self.messageTextView.attributedText = attributedText
-            self.messageLabel.attributedText = attributedText
+        self.messageLabel.attributedText = attributedText
     }
     
    
-    let messageTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 14)
-        textView.isScrollEnabled = false
-        textView.isSelectable = false
-        textView.isEditable = false
-        return textView
-    }()
+//    let messageTextView: UITextView = {
+//        let textView = UITextView()
+//        textView.font = UIFont.systemFont(ofSize: 14)
+//        textView.isScrollEnabled = false
+//        textView.isSelectable = false
+//        textView.isEditable = false
+//        return textView
+//    }()
     
     let messageLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 14)
-
         return label
     }()
-    
-    
     
     let bubbleBackgroundView: UIView = {
         let view = UIView()
