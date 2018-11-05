@@ -18,11 +18,20 @@ class VictorProfileCell: UICollectionViewCell {
         }
     }
     
-    let photoImageView: CustomImageView = {
-        let imageView = CustomImageView()
+    let containerView: UIView = {
+        let view = UIView()
+        view.contentMode = .center
+        view.layer.cornerRadius = 6
+        view.backgroundColor = .none
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    let photoImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor.rgb(red: 255, green: 204, blue: 204)
-        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -31,9 +40,13 @@ class VictorProfileCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(photoImageView)
-        photoImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        addSubview(containerView)
+        
+        containerView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        photoImageView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         photoImageView.layer.cornerRadius = 6
-        photoImageView.layer.masksToBounds = true
+        
     }
     
     

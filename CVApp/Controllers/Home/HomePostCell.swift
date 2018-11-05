@@ -15,14 +15,6 @@ protocol HomePostCellDelegate {
 
 class HomePostCell: UICollectionViewCell {
     
-//    var user: User? {
-//        didSet {
-//            guard let profileImageUrl = user?.profileImageUrl else { return }
-//
-//            userProfileImageView.loadImage(urlString: profileImageUrl)
-//        }
-//    }
-    
     var post: Post? {
         didSet {
             

@@ -19,15 +19,12 @@ class VictorProfileController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.register(VictorProfileCell.self, forCellWithReuseIdentifier: cellId)
         
-        collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+//        collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
         
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
-        
-        
-        
-        
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -36,7 +33,7 @@ class VictorProfileController: UICollectionViewController {
     
 }
 
-extension VictorProfileController: UICollectionViewDelegateFlowLayout {
+extension VictorProfileController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
@@ -50,22 +47,23 @@ extension VictorProfileController: UICollectionViewDelegateFlowLayout {
 //        return 1
 //    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width = (view.frame.width - 2) / 2
-        return CGSize(width: width, height: width)
-        
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let width = (view.frame.width - 2) / 2
+//        return CGSize(width: width, height: width)
+//
 //        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
 //        return CGSize(width: itemSize, height: itemSize)
-        
-    }
+//
+//    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath as IndexPath) as! VictorProfileCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        cell.photo = photos[indexPath.item]
-        
+        if let cell = cell as? VictorProfileCell {
+            cell.photo = photos[indexPath.item]
+        }
         return cell
         
     }
