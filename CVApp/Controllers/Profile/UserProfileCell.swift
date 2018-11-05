@@ -21,9 +21,16 @@ class UserProfileCell: UICollectionViewCell {
     let label = UILabel()
     label.numberOfLines = 0
     label.font = UIFont.systemFont(ofSize: 14)
-    label.layer.cornerRadius = 6
     label.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
     return label
+    }()
+    
+    let bubbleBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+        view.layer.cornerRadius = 5
+        view.contentMode = .center
+        return view
     }()
     
     let usernameLabel: UILabel = {
@@ -72,13 +79,15 @@ class UserProfileCell: UICollectionViewCell {
     
     super.init(frame: frame)
     
+    addSubview(bubbleBackgroundView)
     addSubview(usernameLabel)
     addSubview(userProfileImageView)
     addSubview(likeButton)
     addSubview(messageLabel)
-
     
-        messageLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 2, paddingLeft: 4, paddingBottom: 2, paddingRight: 4, width: 0, height: 0)
+        messageLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
+        bubbleBackgroundView.anchor(top: messageLabel.topAnchor, left: leftAnchor, bottom: messageLabel.bottomAnchor, right: rightAnchor, paddingTop: -10, paddingLeft: 12, paddingBottom: -10, paddingRight: 12, width: 0, height: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {
