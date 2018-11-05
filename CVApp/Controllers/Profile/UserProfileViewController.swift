@@ -27,9 +27,9 @@ class UserProfileController: UICollectionViewController {
         
         collectionView?.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        refreshControl()
         setupLogOutButton()
         fetchUser()
+        refreshControl()
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView?.register(UserProfileCell.self, forCellWithReuseIdentifier: cellId)
     }
@@ -44,7 +44,7 @@ class UserProfileController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchPost()
+        handleRefresh()
     }
     
     @objc fileprivate func handleRefresh() {
