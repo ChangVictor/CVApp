@@ -17,6 +17,8 @@ class VictorProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "About Me"
+        navigationController?.navigationBar.prefersLargeTitles = true
         collectionView.backgroundColor = .white
         collectionView.register(VictorProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(VictorProfileCell.self, forCellWithReuseIdentifier: cellId)

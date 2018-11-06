@@ -21,13 +21,13 @@ class UserProfileCell: UICollectionViewCell {
     let label = UILabel()
     label.numberOfLines = 0
     label.font = UIFont.systemFont(ofSize: 14)
-    label.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+    label.backgroundColor = UIColor.rgb(red: 253, green: 253, blue: 253)
     return label
     }()
     
     let bubbleBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+        view.backgroundColor = UIColor.rgb(red: 253, green: 253, blue: 253)
         view.layer.cornerRadius = 5
         view.contentMode = .center
         return view

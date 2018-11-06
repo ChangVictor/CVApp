@@ -21,21 +21,21 @@ class UserProfileHeader: UICollectionViewCell {
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+        imageView.backgroundColor = UIColor.white
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
         profileImageView.layer.cornerRadius = 80 / 2
         profileImageView.clipsToBounds = true
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 2
-        profileImageView.layer.borderColor = UIColor.rgb(red: 214, green: 48, blue: 49).cgColor
+        profileImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
         
     }
     

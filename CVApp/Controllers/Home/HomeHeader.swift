@@ -24,7 +24,7 @@ class HomeHeader: UICollectionViewCell {
         logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 120, height: 120)
         logoImageView.layer.cornerRadius = 120 / 2
         logoImageView.layer.masksToBounds = true
-        logoImageView.layer.borderColor = UIColor.rgb(red: 180, green: 48, blue: 49).cgColor
+        logoImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
         logoImageView.layer.borderWidth = 3
         logoImageView.clipsToBounds = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
