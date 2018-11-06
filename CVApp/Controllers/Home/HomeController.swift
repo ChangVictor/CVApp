@@ -17,7 +17,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     
     private var cellId = "cellId"
-    private var headerId = "HeaderId"
+    private var headerId = "homeHeader"
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -115,7 +115,6 @@ extension HomeController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height / 3)
     }
-    
 }
 
 extension HomeController {
@@ -127,7 +126,6 @@ extension HomeController {
         dummyCell.post = posts[indexPath.item]
         dummyCell.layoutIfNeeded()
         
-
         let targetSize = CGSize(width: view.frame.width, height: 200)
         let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
 
@@ -143,7 +141,6 @@ extension HomeController {
         return posts.count
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell 
@@ -151,7 +148,6 @@ extension HomeController {
         return cell
     }
     
-   
 }
 
 

@@ -33,6 +33,16 @@ class VictorProfileHeader: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(nameLabel)
+        addSubview(infoLabel)
+        addSubview(profileImageView)
+        
+        profileImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+        profileImageView.layer.cornerRadius = 100 / 2
+        profileImageView.layer.masksToBounds = true
+        profileImageView.clipsToBounds = true
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

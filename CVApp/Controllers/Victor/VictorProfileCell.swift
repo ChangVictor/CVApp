@@ -31,7 +31,8 @@ class VictorProfileCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor.rgb(red: 255, green: 204, blue: 204)
-        imageView.layer.masksToBounds = true
+//        imageView.layer.masksToBounds = true
+        imageView.clipsToBounds = true
         return imageView
     }()
     
