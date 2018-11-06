@@ -38,6 +38,56 @@ class VictorProfileHeader: UICollectionViewCell {
         return label
     }()
     
+    lazy var linkedinButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
+        return button
+    }()
+    lazy var instagramButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
+        return button
+    }()
+    lazy var githubButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
+        return button
+    }()
+    lazy var websiteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleButtonLink() {
+        print("webKit not implemented")
+    }
+    
+    fileprivate func setupSocialMediaBar() {
+        
+        let topDividerView = UIView()
+        topDividerView.backgroundColor = UIColor.lightGray
+        let bottomDividerView = UIView()
+        bottomDividerView.backgroundColor = UIColor.lightGray
+        
+        let stackView = UIStackView(arrangedSubviews: [linkedinButton, instagramButton, githubButton, websiteButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        addSubview(stackView)
+        addSubview(topDividerView)
+        addSubview(bottomDividerView)
+        
+        stackView.anchor(top: nil, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        topDividerView.anchor(top: stackView.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+        bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(nameLabel)
@@ -49,7 +99,7 @@ class VictorProfileHeader: UICollectionViewCell {
         
         nameLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         infoLabel.anchor(top: nameLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        
+        setupSocialMediaBar()
     }
     
     fileprivate func setupProfileImage() {

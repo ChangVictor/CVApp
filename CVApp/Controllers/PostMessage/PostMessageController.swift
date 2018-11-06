@@ -57,6 +57,8 @@ class PostMessageController: UIViewController {
         return textView
     }()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
