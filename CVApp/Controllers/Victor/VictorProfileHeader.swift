@@ -8,9 +8,9 @@
 
 import UIKit
 import Firebase
-import WebKit
 
 class VictorProfileHeader: UICollectionViewCell {
+    
     
     let profileImageView: CustomImageView = {
         let victorProfile = "victorProfile"
@@ -59,13 +59,25 @@ class VictorProfileHeader: UICollectionViewCell {
     }()
     lazy var websiteButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setImage(#imageLiteral(resourceName: "browser .png").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
         return button
     }()
     
-    @objc fileprivate func handleButtonLink() {
-        print("webKit not implemented")
+    @objc fileprivate func handleButtonLink(button: UIButton?) {
+        
+//        if let button = githubButton {
+//            var buttonUrl = "https://www.github.com/ChangVictor/CVApp/"
+//        } else if button = linkedinButton {
+//            var buttonUrl = "https://www.linkedin.com/in/victorchangyu/"
+//        } else if button = instagramButton {
+//            var buttonIUrl = "https://www.instagram.com/veectorch/"
+//        } else {
+//            var buttonUrl = "https://victorchangyu.com/"
+//
+//        }
+        
     }
     
     fileprivate func setupSocialMediaBar() {
@@ -116,4 +128,9 @@ class VictorProfileHeader: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension VictorProfileHeader: WKUIDelegate {
+    
+    
 }

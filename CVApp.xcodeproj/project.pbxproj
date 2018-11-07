@@ -26,6 +26,7 @@
 		562EB051217212D400939D94 /* VictorProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB050217212D400939D94 /* VictorProfileController.swift */; };
 		562EB05321729A5F00939D94 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB05221729A5F00939D94 /* SignUpController.swift */; };
 		5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630EBD02170ED5200098749 /* GoogleService-Info.plist */; };
+		565A2C7A21938B6400E851EC /* WebSocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A2C7921938B6400E851EC /* WebSocialMediaViewController.swift */; };
 		565ED24121701844001ECF81 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565ED24021701844001ECF81 /* HomeHeader.swift */; };
 		566442D721793363008FDF60 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566442D621793363008FDF60 /* FirebaseUtils.swift */; };
 		566442D921793524008FDF60 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566442D821793524008FDF60 /* CustomImageView.swift */; };
@@ -88,6 +89,7 @@
 		562EB050217212D400939D94 /* VictorProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileController.swift; sourceTree = "<group>"; };
 		562EB05221729A5F00939D94 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5630EBD02170ED5200098749 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		565A2C7921938B6400E851EC /* WebSocialMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocialMediaViewController.swift; sourceTree = "<group>"; };
 		565ED24021701844001ECF81 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		566442D621793363008FDF60 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
 		566442D821793524008FDF60 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				562EB050217212D400939D94 /* VictorProfileController.swift */,
 				561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */,
 				56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */,
+				565A2C7921938B6400E851EC /* WebSocialMediaViewController.swift */,
 			);
 			path = Victor;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,
 				562E57FE216D07CF00A517E2 /* AppDelegate.swift in Sources */,
 				5605166B217D38B200674029 /* UserProfileCell.swift in Sources */,
+				565A2C7A21938B6400E851EC /* WebSocialMediaViewController.swift in Sources */,
 				56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */,
 				56254D3C216D2E5C005C6FA0 /* MainTabBarController.swift in Sources */,
 				56051669217CB99700674029 /* UserProfileHeader.swift in Sources */,
