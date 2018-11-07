@@ -11,6 +11,7 @@ import Firebase
 
 class VictorProfileHeader: UICollectionViewCell {
     
+    var webViewDelegate : WebViewDelegate?
     
     let profileImageView: CustomImageView = {
         let victorProfile = "victorProfile"
@@ -65,18 +66,16 @@ class VictorProfileHeader: UICollectionViewCell {
         return button
     }()
     
-    @objc fileprivate func handleButtonLink(button: UIButton?) {
+    @objc fileprivate func handleButtonLink(_ sender: UIButton?) {
         
-//        if let button = githubButton {
-//            var buttonUrl = "https://www.github.com/ChangVictor/CVApp/"
-//        } else if button = linkedinButton {
-//            var buttonUrl = "https://www.linkedin.com/in/victorchangyu/"
-//        } else if button = instagramButton {
-//            var buttonIUrl = "https://www.instagram.com/veectorch/"
-//        } else {
-//            var buttonUrl = "https://victorchangyu.com/"
-//
-//        }
+        print("webView button triggered")
+        webViewDelegate?.toWebPage()
+        
+//"https://www.github.com/ChangVictor/CVApp/"
+//"https://www.linkedin.com/in/victorchangyu/"
+//"https://www.instagram.com/veectorch/"
+//"https://victorchangyu.com/"
+
         
     }
     
@@ -130,7 +129,3 @@ class VictorProfileHeader: UICollectionViewCell {
     }
 }
 
-extension VictorProfileHeader: WKUIDelegate {
-    
-    
-}

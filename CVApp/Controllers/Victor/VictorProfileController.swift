@@ -8,7 +8,18 @@
 
 import UIKit
 
-class VictorProfileController: UICollectionViewController {
+protocol WebViewDelegate {
+    func toWebPage()
+}
+
+class VictorProfileController: UICollectionViewController, WebViewDelegate {
+    
+    func toWebPage() {
+        let webViewController = WebSocialMediaViewController()
+        let navController = UINavigationController(rootViewController: webViewController)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     
     private var cellId = "cellId"
     private var headerId = "victorHeader"
@@ -16,6 +27,7 @@ class VictorProfileController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         navigationItem.title = "About Me"
         navigationController?.navigationBar.prefersLargeTitles = true

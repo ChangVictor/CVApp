@@ -11,15 +11,23 @@ import WebKit
 
 class WebSocialMediaViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
-    var progressBar: UIProgressView!
+//    var progressBar: UIProgressView
     var webView: WKWebView!
-    var url: String = ""
+    var url: String = "http://www.github.com/ChangVictor"
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        guard let myURL = URL(string: url) else { return }
+        let myRequest = URLRequest(url: myURL)
+        webView.load(myRequest)
         
     }
     
