@@ -81,17 +81,18 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         if isFormValid {
             signUpButton.isEnabled = true
-            signUpButton.backgroundColor = .darkGray
+            signUpButton.backgroundColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 1)
         } else {
             signUpButton.isEnabled = false
-            signUpButton.backgroundColor = .lightGray
+            signUpButton.backgroundColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 0.5)
         }
     }
     
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 0.5)
+        button.isEnabled = false
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)

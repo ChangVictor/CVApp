@@ -39,13 +39,22 @@ class  LoginController: UIViewController {
    
     @objc fileprivate func handleTextInputChange() {
         print("handleTextInputChange Triggered")
+        let isFormValid = emailTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0
+        
+        if isFormValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 1)
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 0.5)
+        }
     }
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
-//        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
-        button.backgroundColor = .darkGray
+        button.isEnabled = false
+        button.backgroundColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 0.5)
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
@@ -214,7 +223,7 @@ class  LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         navigationController?.isNavigationBarHidden = true
         
         view.addSubview(loginButton)

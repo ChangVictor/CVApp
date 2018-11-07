@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "VIctorMemoji.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "instagram.png",
       "scale" : "2x"
     },
     {

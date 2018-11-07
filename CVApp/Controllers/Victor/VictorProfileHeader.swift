@@ -40,25 +40,25 @@ class VictorProfileHeader: UICollectionViewCell {
     
     lazy var linkedinButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "linkedin.png").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
         return button
     }()
     lazy var instagramButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "instagram.png").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
         return button
     }()
     lazy var githubButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "github.png").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
         return button
     }()
     lazy var websiteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "browser.png").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
         return button
     }()
@@ -74,7 +74,7 @@ class VictorProfileHeader: UICollectionViewCell {
         let bottomDividerView = UIView()
         bottomDividerView.backgroundColor = UIColor.lightGray
         
-        let stackView = UIStackView(arrangedSubviews: [linkedinButton, instagramButton, githubButton, websiteButton])
+        let stackView = UIStackView(arrangedSubviews: [githubButton, linkedinButton, instagramButton, websiteButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         
