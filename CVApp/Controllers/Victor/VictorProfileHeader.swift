@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import WebKit
 
 class VictorProfileHeader: UICollectionViewCell {
     
@@ -58,7 +59,7 @@ class VictorProfileHeader: UICollectionViewCell {
     }()
     lazy var websiteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "browser.png").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "browser .png").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleButtonLink), for: .touchUpInside)
         return button
     }()
