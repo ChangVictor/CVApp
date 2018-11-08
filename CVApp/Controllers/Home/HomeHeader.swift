@@ -11,7 +11,7 @@ import UIKit
 class HomeHeader: UICollectionViewCell {
     
     let containerView: UIView = {
-        let coverImage = "coverImage"
+        let coverImage = "pink_bg"
         let view = UIImageView()
         let logoImageView: UIImageView = {
             let imageView = UIImageView()
