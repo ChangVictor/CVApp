@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey("AIzaSyCtHJ5HGhl3ueGVH4wGeZ2yQPwd3LCAwJE")
         
         UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 224, green: 57, blue: 62)
 //        UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

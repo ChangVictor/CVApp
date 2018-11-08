@@ -7,17 +7,31 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol WebViewDelegate {
     func toWebPage()
 }
 
-class VictorProfileController: UICollectionViewController, WebViewDelegate {
+class VictorProfileController: UICollectionViewController, WebViewDelegate, UIViewControllerTransitioningDelegate {
     
     func toWebPage() {
-        let webViewController = WebSocialMediaViewController()
-        let navController = UINavigationController(rootViewController: webViewController)
-        self.present(navController, animated: true, completion: nil)
+//        let webViewController = WebSocialMediaViewController()
+//        let navController = UINavigationController(rootViewController: webViewController)
+//        self.present(navController, animated: true, completion: nil)
+        if let url = URL(string: "https://www.instagram.com/veectorch/") {
+            let config = SFSafariViewController.Configuration()
+            let viewController = SFSafariViewController(url: url, configuration: config)
+            viewController.preferredBarTintColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 1)
+            viewController.preferredControlTintColor = UIColor.white
+            viewController.transitioningDelegate = self //use default modal presentation instead of push
+//            present(viewController, animated: true, completion: nil)
+            present(viewController, animated: true) {
+                var frame = viewController.view.frame
+                frame.size = CGSize(width: frame.width, height: frame.height + 44.0)
+                viewController.view.frame = frame
+            }
+        }
     }
     
     
@@ -49,7 +63,7 @@ extension VictorProfileController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! VictorProfileHeader
-        
+            header.webViewDelegate = self
         return header
     }
     

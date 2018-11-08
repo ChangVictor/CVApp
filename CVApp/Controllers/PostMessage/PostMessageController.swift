@@ -19,9 +19,7 @@ class PostMessageController: UIViewController {
     
     var user: User? {
         didSet {
-            
             setupProfileImage()
-            
         }
     }
     
@@ -93,9 +91,9 @@ class PostMessageController: UIViewController {
     static let updateFeedNotificationName = NSNotification.Name(rawValue: "UptadeFeed")
 
     fileprivate func setupNavigationButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done
             , target: self, action: #selector(handleCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(handlePost))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .done, target: self, action: #selector(handlePost))
     }
     
     @objc fileprivate func handlePost() {

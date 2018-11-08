@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SafariServices
 
 class VictorProfileHeader: UICollectionViewCell {
     
@@ -69,6 +70,7 @@ class VictorProfileHeader: UICollectionViewCell {
     @objc fileprivate func handleButtonLink(_ sender: UIButton?) {
         
         print("webView button triggered")
+//        self.webViewDelegate = self as? WebViewDelegate
         webViewDelegate?.toWebPage()
         
 //"https://www.github.com/ChangVictor/CVApp/"
