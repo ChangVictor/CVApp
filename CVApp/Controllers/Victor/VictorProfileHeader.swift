@@ -13,6 +13,7 @@ import SafariServices
 class VictorProfileHeader: UICollectionViewCell {
     
     var webViewDelegate : WebViewDelegate?
+    var url: String?
     
     let profileImageView: CustomImageView = {
         let victorProfile = "victorProfile"
@@ -70,17 +71,23 @@ class VictorProfileHeader: UICollectionViewCell {
     @objc fileprivate func handleButtonLink(_ sender: UIButton?) {
         
         print("webView button triggered")
-//        self.webViewDelegate = self as? WebViewDelegate
-        webViewDelegate?.toWebPage()
+        if sender == githubButton {
+            url = "https://www.github.com/ChangVictor/"
+        } else if sender == linkedinButton {
+            url = "https://www.linkedin.com/in/victorchangyu/"
+        } else if sender == instagramButton {
+            url = "https://www.instagram.com/veectorch/"
+        } else {
+            url = "https://victorchangyu.com/"
+        }
         
-//"https://www.github.com/ChangVictor/CVApp/"
-//"https://www.linkedin.com/in/victorchangyu/"
-//"https://www.instagram.com/veectorch/"
-//"https://victorchangyu.com/"
+        webViewDelegate?.toWebPage(url:url)
 
-        
     }
-    
+    //"https://www.github.com/ChangVictor/CVApp/"
+    //"https://www.linkedin.com/in/victorchangyu/"
+    //"https://www.instagram.com/veectorch/"
+    //"https://victorchangyu.com/"
     fileprivate func setupSocialMediaBar() {
         
         let topDividerView = UIView()

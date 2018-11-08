@@ -10,16 +10,15 @@ import UIKit
 import SafariServices
 
 protocol WebViewDelegate {
-    func toWebPage()
+    func toWebPage(url: String?)
 }
 
 class VictorProfileController: UICollectionViewController, WebViewDelegate, UIViewControllerTransitioningDelegate {
     
-    func toWebPage() {
-//        let webViewController = WebSocialMediaViewController()
-//        let navController = UINavigationController(rootViewController: webViewController)
-//        self.present(navController, animated: true, completion: nil)
-        if let url = URL(string: "https://www.instagram.com/veectorch/") {
+    
+    func toWebPage(url: String?) {
+        guard let url = url else { return }
+        if let url = URL(string: url) {
             let config = SFSafariViewController.Configuration()
             let viewController = SFSafariViewController(url: url, configuration: config)
             viewController.preferredBarTintColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 1)
