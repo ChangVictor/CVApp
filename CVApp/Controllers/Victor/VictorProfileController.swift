@@ -21,7 +21,7 @@ class VictorProfileController: UICollectionViewController, WebViewDelegate, UIVi
         if let url = URL(string: url) {
             let config = SFSafariViewController.Configuration()
             let viewController = SFSafariViewController(url: url, configuration: config)
-            viewController.preferredBarTintColor = UIColor(red: 224/255, green: 57/255, blue: 62/255, alpha: 1)
+            viewController.preferredBarTintColor = UIColor.black
             viewController.preferredControlTintColor = UIColor.white
             viewController.transitioningDelegate = self //use default modal presentation instead of push
 //            present(viewController, animated: true, completion: nil)

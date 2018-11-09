@@ -27,8 +27,8 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
-    static func mainBlue() -> UIColor {
-        return UIColor.rgb(red: 17, green: 154, blue: 237)
+    static func mainRed() -> UIColor {
+        return UIColor.rgb(red: 224, green: 57, blue: 62)
     }
     
 }
@@ -67,7 +67,7 @@ extension UIView {
 
 extension Date {
     func timeAgoDisplay() -> String {
-        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let secondsAgo = Int(Date().timeIntervalSince(self))    
         
         let minute = 60
         let hour = 60 * minute
@@ -100,4 +100,17 @@ extension Date {
         return "\(quotient) \(unit)\(quotient == 1 ? "" : "s") ago"
         
     }
+    
+    static func postedOn(string: String , formatter:String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        
+        let date: Date? = dateFormatterGet.date(from: "2018-02-01T19:10:04+00:00")
+        print("Date",dateFormatterPrint.string(from: date!)) // Feb 01,2018
+        return dateFormatterPrint.string(from: date!);
+    }
+    
 }

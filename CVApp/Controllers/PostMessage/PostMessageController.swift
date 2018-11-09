@@ -19,7 +19,7 @@ class PostMessageController: UIViewController {
     
     var user: User? {
         didSet {
-            setupProfileImage()
+//            setupProfileImage()
         }
     }
     
@@ -63,13 +63,10 @@ class PostMessageController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         textView.delegate = self
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
-        profileImageView.layer.borderColor = UIColor.rgb(red: 214, green: 48, blue: 49).cgColor
-        profileImageView.layer.borderWidth = 2
-        profileImageView.layer.masksToBounds = true
         navigationItem.title = "Leave a comment"
         setupNavigationButton()
         setupConstrains()
-        
+        setupProfileImage()
         fetchUser()
     }
     
@@ -129,7 +126,9 @@ class PostMessageController: UIViewController {
     }
     
     fileprivate func setupProfileImage() {
-        
+        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.layer.borderWidth = 1.5
+        profileImageView.layer.masksToBounds = true
         print("Did set user: \(user?.username ?? "no user set")")
         guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
         guard let url = URL(string: "\(profileImageUrl)") else { return }

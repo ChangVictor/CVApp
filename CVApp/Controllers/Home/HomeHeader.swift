@@ -21,12 +21,13 @@ class HomeHeader: UICollectionViewCell {
         
         logoImageView.contentMode = .scaleAspectFill
         view.addSubview(logoImageView)
-        logoImageView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 100, height: 100)
-        logoImageView.layer.cornerRadius = 100 / 2
+        logoImageView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 105, height: 105)
+        logoImageView.layer.cornerRadius = 105 / 2
         print("\(logoImageView.widthAnchor)")
         logoImageView.layer.masksToBounds = true
-        logoImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
-        logoImageView.layer.borderWidth = 3
+//        logoImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
+        logoImageView.layer.borderColor = UIColor.black.cgColor
+        logoImageView.layer.borderWidth = 2.5
         logoImageView.clipsToBounds = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 //        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 40).isActive = true

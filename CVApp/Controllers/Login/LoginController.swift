@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 //import FacebookLogin
 import FBSDKLoginKit
-import Kingfisher
 
 class  LoginController: UIViewController {
 

@@ -30,13 +30,8 @@ class UserProfileHeader: UICollectionViewCell {
         
         backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         addSubview(profileImageView)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
-        profileImageView.layer.cornerRadius = 80 / 2
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.masksToBounds = true
-        profileImageView.layer.borderWidth = 2
-        profileImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
         
+        setupProfileImage()
     }
     
     fileprivate func setupProfileImage() {
@@ -57,6 +52,14 @@ class UserProfileHeader: UICollectionViewCell {
                 self.profileImageView.image = image
             }
             }.resume()
+        
+        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
+        profileImageView.layer.cornerRadius = 80 / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.borderWidth = 2
+        //        profileImageView.layer.borderColor = UIColor.rgb(red: 224, green: 57, blue: 62).cgColor
+        profileImageView.layer.borderColor = UIColor.darkGray.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {

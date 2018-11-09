@@ -84,10 +84,7 @@ class VictorProfileHeader: UICollectionViewCell {
         webViewDelegate?.toWebPage(url:url)
 
     }
-    //"https://www.github.com/ChangVictor/CVApp/"
-    //"https://www.linkedin.com/in/victorchangyu/"
-    //"https://www.instagram.com/veectorch/"
-    //"https://victorchangyu.com/"
+
     fileprivate func setupSocialMediaBar() {
         
         let topDividerView = UIView()
@@ -115,7 +112,7 @@ class VictorProfileHeader: UICollectionViewCell {
         addSubview(infoLabel)
         addSubview(profileImageView)
         
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 120, height: 120)
+        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 110, height: 110)
         setupProfileImage()
         
         nameLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
@@ -124,11 +121,12 @@ class VictorProfileHeader: UICollectionViewCell {
     }
     
     fileprivate func setupProfileImage() {
-        profileImageView.layer.cornerRadius = 120 / 2
+        profileImageView.layer.cornerRadius = 110 / 2
         profileImageView.layer.masksToBounds = true
         profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = UIColor.rgb(red: 224, green: 57, blue: 62).cgColor
-        profileImageView.layer.borderWidth = 3
+//        profileImageView.layer.borderColor = UIColor.rgb(red: 224, green: 57, blue: 62).cgColor
+        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.layer.borderWidth = 2.5
         profileImageView.contentMode = .scaleAspectFill
         //        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
