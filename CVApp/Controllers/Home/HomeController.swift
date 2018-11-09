@@ -32,13 +32,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         self.collectionView?.refreshControl?.endRefreshing()
-
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView?.refreshControl = refreshControl
         
+        setupHeaderSeparator()
+        
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        fetchAllposts()
@@ -52,6 +54,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.reloadData()
         fetchAllposts()
         
+    }
+    
+    fileprivate func setupHeaderSeparator() {
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.sectionInset = UIEdgeInsets(top: 12.0, left: 0, bottom: 0, right: 0)
     }
     
     fileprivate func fetchPost() {
@@ -113,7 +120,7 @@ extension HomeController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height / 3)
+        return CGSize(width: view.frame.width, height: view.frame.height / 4)
     }
 }
 
@@ -133,9 +140,12 @@ extension HomeController {
         return CGSize(width: view.frame.width, height: height)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 1
     }
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count

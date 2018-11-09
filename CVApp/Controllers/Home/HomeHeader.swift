@@ -11,7 +11,7 @@ import UIKit
 class HomeHeader: UICollectionViewCell {
     
     let containerView: UIView = {
-        let coverImage = "pink_bg"
+        let coverImage = "cloth_macbook"
         let view = UIImageView()
         let logoImageView: UIImageView = {
             let imageView = UIImageView()
@@ -21,19 +21,21 @@ class HomeHeader: UICollectionViewCell {
         
         logoImageView.contentMode = .scaleAspectFill
         view.addSubview(logoImageView)
-        logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 120, height: 120)
-        logoImageView.layer.cornerRadius = 120 / 2
+        logoImageView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 100, height: 100)
+        logoImageView.layer.cornerRadius = 100 / 2
+        print("\(logoImageView.widthAnchor)")
         logoImageView.layer.masksToBounds = true
         logoImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
         logoImageView.layer.borderWidth = 3
         logoImageView.clipsToBounds = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 70).isActive = true
+//        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 40).isActive = true
         
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
 //        view.backgroundColor = UIColor.init(patternImage: (coverImage ?? nil)!.withRenderingMode(.alwaysOriginal))
         view.image = UIImage(named: coverImage)
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         
         logoImageView.image = UIImage(named: "VictorMemoji630x630")
         logoImageView.contentMode = .center
