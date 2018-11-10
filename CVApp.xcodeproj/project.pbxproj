@@ -38,7 +38,7 @@
 		567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E1216FCB0C00C6FFFC /* Comment.swift */; };
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
 		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
-		5674A4F2218CD1FF00C50F91 /*  PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674A4F1218CD1FF00C50F91 /*  PinterestLayout.swift */; };
+		5674A4F2218CD1FF00C50F91 /* HeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */; };
 		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
 		56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */; };
 		751D5544818DB274325076C0 /* Pods_CVAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D41604481DBB1CEED984D18 /* Pods_CVAppUITests.framework */; };
@@ -101,7 +101,7 @@
 		567074E1216FCB0C00C6FFFC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
-		5674A4F1218CD1FF00C50F91 /*  PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " PinterestLayout.swift"; sourceTree = "<group>"; };
+		5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLayout.swift; sourceTree = "<group>"; };
 		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
 		56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileCell.swift; sourceTree = "<group>"; };
 		5DED6B3807E8D23C3ECB657D /* Pods-CVApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVApp/Pods-CVApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 				56254D3F216D4B02005C6FA0 /* Extension.swift */,
 				566442D621793363008FDF60 /* FirebaseUtils.swift */,
 				566442D821793524008FDF60 /* CustomImageView.swift */,
-				5674A4F1218CD1FF00C50F91 /*  PinterestLayout.swift */,
+				5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -626,7 +626,7 @@
 				567074E4216FCBC600C6FFFC /* Post.swift in Sources */,
 				567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */,
 				561B980F218B42E700BA41F4 /* VictorProfileHeader.swift in Sources */,
-				5674A4F2218CD1FF00C50F91 /*  PinterestLayout.swift in Sources */,
+				5674A4F2218CD1FF00C50F91 /* HeaderLayout.swift in Sources */,
 				562EB04F2172122500939D94 /* UserProfileViewController.swift in Sources */,
 				562E5800216D07CF00A517E2 /* ViewController.swift in Sources */,
 				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,
