@@ -16,7 +16,7 @@ class VictorProfileHeader: UICollectionViewCell {
     var url: String?
     
     let profileImageView: CustomImageView = {
-        let victorProfile = "victorProfile"
+        let victorProfile = "victor_profile"
         let imageView = CustomImageView()
         imageView.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         imageView.image = UIImage(named: victorProfile)

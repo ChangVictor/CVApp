@@ -69,7 +69,7 @@ class UserProfileCell: UICollectionViewCell {
 
         let postedOn = Date.postedOn(date: post.creationDate)
         
-        attributedText.append(NSAttributedString(string: postedOn, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        attributedText.append(NSAttributedString(string: postedOn, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
         self.messageLabel.attributedText = attributedText
         
