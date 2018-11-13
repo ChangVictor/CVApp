@@ -15,7 +15,6 @@ protocol WebViewDelegate {
 
 class VictorProfileController: UICollectionViewController, WebViewDelegate, UIViewControllerTransitioningDelegate {
     
-    
     func toWebPage(url: String?) {
         guard let url = url else { return }
         if let url = URL(string: url) {
@@ -33,14 +32,12 @@ class VictorProfileController: UICollectionViewController, WebViewDelegate, UIVi
         }
     }
     
-    
     private var cellId = "cellId"
     private var headerId = "victorHeader"
     var photos = Photo.allPhotos()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         navigationItem.title = "About Me"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -68,7 +65,7 @@ extension VictorProfileController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: view.frame.height / 3)
+        return CGSize(width: view.frame.width, height: (view.frame.height / 3))
         
     }
     

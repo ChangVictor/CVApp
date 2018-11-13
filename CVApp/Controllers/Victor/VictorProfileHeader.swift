@@ -23,6 +23,14 @@ class VictorProfileHeader: UICollectionViewCell {
         return imageView
     }()
     
+    let personalInfoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Born 8 August 1990 /n Based in Buenos Aires"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .lightGray
+        return label
+    }()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Victor Chang"
@@ -35,7 +43,7 @@ class VictorProfileHeader: UICollectionViewCell {
         let label = UILabel()
         let attributedText = NSMutableAttributedString(string: "Former Business Analyst transitioning into iOS Developer", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
-        attributedText.append(NSAttributedString(string: "Insert some text in here", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.systemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "Constantly striving to learn new technologies and good practices in order to create nice appealing UI while writing highly readable clean code.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.systemFont(ofSize: 14)]))
         label.attributedText = attributedText
         label.numberOfLines = 0
         label.textAlignment = .center
