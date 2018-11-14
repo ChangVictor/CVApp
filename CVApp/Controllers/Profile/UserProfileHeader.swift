@@ -19,9 +19,11 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
-    let userNameLabel: UILabel = {
+    let userInfoLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Email: ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: "\(Auth.auth().currentUser?.displayName ?? "No user set")", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 5)]))
+        attributedText.append(NSAttributedString(string: "Email: ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]))
         attributedText.append(NSAttributedString(string: "\(Auth.auth().currentUser?.email ?? "no email set")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
         label.attributedText = attributedText
         label.numberOfLines = 0
@@ -41,9 +43,9 @@ class UserProfileHeader: UICollectionViewCell {
         
         backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         addSubview(profileImageView)
-        addSubview(userNameLabel)
+        addSubview(userInfoLabel)
         
-        userNameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        userInfoLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         setupProfileImage()
     }

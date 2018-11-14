@@ -27,6 +27,7 @@ class UserProfileController: UICollectionViewController {
         
         collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue:240)
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "User Profile"
         setupLogOutButton()
         fetchUser()
         refreshControl()
@@ -102,8 +103,8 @@ class UserProfileController: UICollectionViewController {
             self.user = User(uid: uid, dictionary: ["uid": uid,
                                                     "username": username,
                                                     "profileImageUrl": profileImageUrl as Any])
-                
-            self.navigationItem.title = Auth.auth().currentUser?.displayName
+            
+//            self.navigationItem.title = Auth.auth().currentUser?.displayName
             
         } else {
             guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -112,7 +113,7 @@ class UserProfileController: UICollectionViewController {
                 guard let dictionary = snapshot.value as? [String: Any] else { return }
                 
                 self.user = User(uid: uid, dictionary: dictionary)
-                self.navigationItem.title = self.user?.username
+//                self.navigationItem.title = self.user?.username
                 
                 self.collectionView.reloadData()
                 
