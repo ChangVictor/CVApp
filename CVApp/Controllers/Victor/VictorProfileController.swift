@@ -46,7 +46,12 @@ class VictorProfileController: UICollectionViewController, WebViewDelegate, UIVi
         collectionView.register(VictorProfileCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -65,14 +70,16 @@ extension VictorProfileController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: (view.frame.height / 3))
+//        return CGSize(width: view.frame.width, height: (view.frame.height / 3))
+//        let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+//        return size
+        
+        return CGSize(width: self.collectionView.bounds.width, height: 258)
         
     }
-    
 }
 
 extension VictorProfileController {
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count

@@ -19,6 +19,17 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
+    let userNameLabel: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(string: "Email: ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: "\(Auth.auth().currentUser?.email ?? "no email set")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+        label.attributedText = attributedText
+        label.numberOfLines = 0
+        label.textAlignment = .left
+//        label.text = "email: \(Auth.auth().currentUser?.email ?? "no email set")"
+        return label
+    }()
+    
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.white
@@ -30,6 +41,9 @@ class UserProfileHeader: UICollectionViewCell {
         
         backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         addSubview(profileImageView)
+        addSubview(userNameLabel)
+        
+        userNameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         setupProfileImage()
     }
