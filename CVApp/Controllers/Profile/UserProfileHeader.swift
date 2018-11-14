@@ -21,9 +21,9 @@ class UserProfileHeader: UICollectionViewCell {
     
     let userInfoLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "\(Auth.auth().currentUser?.displayName ?? "No user set")", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+        let attributedText = NSMutableAttributedString(string: "\(Auth.auth().currentUser?.displayName ?? "No user set")", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.boldSystemFont(ofSize: 18)])
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 5)]))
-        attributedText.append(NSAttributedString(string: "Email: ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "email: ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]))
         attributedText.append(NSAttributedString(string: "\(Auth.auth().currentUser?.email ?? "no email set")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
         label.attributedText = attributedText
         label.numberOfLines = 0
@@ -75,7 +75,7 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 2
         //        profileImageView.layer.borderColor = UIColor.rgb(red: 224, green: 57, blue: 62).cgColor
-        profileImageView.layer.borderColor = UIColor.darkGray.cgColor
+        profileImageView.layer.borderColor = UIColor.black.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
