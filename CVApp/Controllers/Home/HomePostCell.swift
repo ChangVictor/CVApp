@@ -16,7 +16,6 @@ class HomePostCell: UICollectionViewCell {
     
     var post: Post? {
         didSet {
-            
             guard let profileImageUrl = post?.user.profileImageUrl else { return }
 
             likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -28,9 +27,7 @@ class HomePostCell: UICollectionViewCell {
     }
     
     fileprivate func setupAttributedCaption() {
-        
         guard let post = self.post else { return }
-        
         let attributedText = NSMutableAttributedString(string: post.user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
 
         attributedText.append(NSAttributedString(string: " \(post.message)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
@@ -42,17 +39,7 @@ class HomePostCell: UICollectionViewCell {
         
         self.messageLabel.attributedText = attributedText
     }
-    
-   
-//    let messageTextView: UITextView = {
-//        let textView = UITextView()
-//        textView.font = UIFont.systemFont(ofSize: 14)
-//        textView.isScrollEnabled = false
-//        textView.isSelectable = false
-//        textView.isEditable = false
-//        return textView
-//    }()
-    
+
     let messageLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 0
@@ -70,7 +57,6 @@ class HomePostCell: UICollectionViewCell {
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Username"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -100,9 +86,8 @@ class HomePostCell: UICollectionViewCell {
         
         addSubview(bubbleBackgroundView)
         addSubview(usernameLabel)
-//        addSubview(messageTextView)
         addSubview(userProfileImageView)
-        addSubview(likeButton)
+//        addSubview(likeButton)
         addSubview(messageLabel)
 
         
@@ -115,6 +100,7 @@ class HomePostCell: UICollectionViewCell {
         
         bubbleBackgroundView.anchor(top: usernameLabel.topAnchor, left: leftAnchor, bottom: messageLabel.bottomAnchor, right: rightAnchor, paddingTop: -10, paddingLeft: 12, paddingBottom: -10, paddingRight: 12, width: 0, height: 0)
         
+//        likeButton.anchor(top: nil, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 18, paddingRight: 20, width: 12, height: 12)
     }
     
     required init?(coder aDecoder: NSCoder) {

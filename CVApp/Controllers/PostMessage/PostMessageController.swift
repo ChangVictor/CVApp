@@ -19,7 +19,7 @@ class PostMessageController: UIViewController {
     
     var user: User? {
         didSet {
-//            setupProfileImage()
+            setupProfileImage()
         }
     }
     
@@ -66,7 +66,7 @@ class PostMessageController: UIViewController {
         navigationItem.title = "Leave a comment"
         setupNavigationButton()
         setupConstrains()
-        setupProfileImage()
+//        setupProfileImage()
         fetchUser()
     }
     
@@ -126,25 +126,17 @@ class PostMessageController: UIViewController {
     }
     
     fileprivate func setupProfileImage() {
+        
+        guard let username = user?.username else { return }
+        print("Did set user: \(username)")
+        guard let userImageUrl = user?.profileImageUrl else { return }
+        guard let url = URL(string: "\(userImageUrl)") else { return }
+        
+        profileImageView.loadImage(urlString: "\(url)")
+
         profileImageView.layer.borderColor = UIColor.black.cgColor
         profileImageView.layer.borderWidth = 1.5
         profileImageView.layer.masksToBounds = true
-        print("Did set user: \(user?.username ?? "no user set")")
-        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
-        guard let url = URL(string: "\(profileImageUrl)") else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // check for error & construc image using data
-            if let error = error {
-                print("Failed to fetch profile image: ", error)
-                return
-            }
-            // could check for response 200 (HTTP OK)
-            guard let data = data else { return }
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.profileImageView.image = image
-            }
-            }.resume()
     }
     
     fileprivate func fetchUser() {

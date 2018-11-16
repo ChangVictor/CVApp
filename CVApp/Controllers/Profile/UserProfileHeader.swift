@@ -12,28 +12,32 @@ import FBSDKLoginKit
 import FacebookCore
 
 class UserProfileHeader: UICollectionViewCell {
-    
+
     var user: User? {
         didSet {
+            usernameLabel.text = user?.username
             setupProfileImage()
         }
     }
     
-    let userInfoLabel: UILabel = {
+    let usernameLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "\(Auth.auth().currentUser?.displayName ?? "No user set")", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.boldSystemFont(ofSize: 18)])
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 5)]))
-        attributedText.append(NSAttributedString(string: "email: ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]))
-        attributedText.append(NSAttributedString(string: "\(Auth.auth().currentUser?.email ?? "no email set")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
-        label.attributedText = attributedText
-        label.numberOfLines = 0
-        label.textAlignment = .left
-//        label.text = "email: \(Auth.auth().currentUser?.email ?? "no email set")"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.textColor = .darkGray
         return label
     }()
     
-    let profileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let userInfoLabel: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(string: "email: ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, kCTFontAttributeName as NSAttributedString.Key: UIFont.systemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: "\(Auth.auth().currentUser?.email ?? "no email set")", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]))
+        label.attributedText = attributedText
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let profileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.backgroundColor = UIColor.white
         return imageView
     }()
@@ -43,31 +47,24 @@ class UserProfileHeader: UICollectionViewCell {
         
         backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         addSubview(profileImageView)
+        addSubview(usernameLabel)
         addSubview(userInfoLabel)
         
-        userInfoLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        usernameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        userInfoLabel.anchor(top: usernameLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 8, paddingLeft: 10, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
-        setupProfileImage()
+//        setupProfileImage()
     }
     
     fileprivate func setupProfileImage() {
         
-        print("Did set user: \(user?.username ?? "no user set")")
-        guard let profileImageUrl = Auth.auth().currentUser?.photoURL else { return }
-        guard let url = URL(string: "\(profileImageUrl)") else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // check for error & construc image using data
-            if let error = error {
-                print("Failed to fetch profile image: ", error)
-                return
-            }
-            // could check for response 200 (HTTP OK)
-            guard let data = data else { return }
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.profileImageView.image = image
-            }
-            }.resume()
+        guard let username = user?.username else { return }
+        print("Did set user: \(username)")
+        guard let userImageUrl = user?.profileImageUrl else { return }
+        guard let url = URL(string: "\(userImageUrl)") else { return }
+        
+        profileImageView.loadImage(urlString: "\(url)")
+
         
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
         profileImageView.layer.cornerRadius = 80 / 2
