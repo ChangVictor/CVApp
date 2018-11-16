@@ -52,7 +52,7 @@ class VictorProfileHeader: UICollectionViewCell {
         attributedText.append(NSAttributedString(string: "Constantly striving to learn new technologies and good practices in order to create nice appealing UI while writing highly readable clean code.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.systemFont(ofSize: 13)]))
         label.attributedText = attributedText
         label.numberOfLines = 0
-        label.textAlignment = .center
+        label.textAlignment = .left
         return label
     }()
     

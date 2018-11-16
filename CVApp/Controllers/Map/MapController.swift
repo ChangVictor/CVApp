@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class MapController: UIViewController {
+class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
