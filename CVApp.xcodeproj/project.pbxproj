@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A62098069B04286E5F47CF0 /* Pods_CVApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F8E22F281E824566C44BF6 /* Pods_CVApp.framework */; };
+		5601407621A4BC6800E04983 /* SliderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5601407521A4BC6800E04983 /* SliderController.swift */; };
 		56051669217CB99700674029 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56051668217CB99700674029 /* UserProfileHeader.swift */; };
 		5605166B217D38B200674029 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605166A217D38B200674029 /* UserProfileCell.swift */; };
 		561B980F218B42E700BA41F4 /* VictorProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		34F8E22F281E824566C44BF6 /* Pods_CVApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5601407521A4BC6800E04983 /* SliderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderController.swift; sourceTree = "<group>"; };
 		56051668217CB99700674029 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		5605166A217D38B200674029 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		561B980E218B42E700BA41F4 /* VictorProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileHeader.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				562EB04C2172111000939D94 /* MapController.swift */,
 				563B938E21971443008DCEE8 /* MenuController.swift */,
+				5601407521A4BC6800E04983 /* SliderController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				562E5800216D07CF00A517E2 /* ViewController.swift in Sources */,
 				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,
 				562E57FE216D07CF00A517E2 /* AppDelegate.swift in Sources */,
+				5601407621A4BC6800E04983 /* SliderController.swift in Sources */,
 				5605166B217D38B200674029 /* UserProfileCell.swift in Sources */,
 				565A2C7A21938B6400E851EC /* WebSocialMediaViewController.swift in Sources */,
 				56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */,

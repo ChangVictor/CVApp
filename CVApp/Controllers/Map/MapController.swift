@@ -33,7 +33,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setupBarButtons()
         let navBar = navigationController?.navigationBar
         navigationController?.navigationBar.addSubview(searchBar)
