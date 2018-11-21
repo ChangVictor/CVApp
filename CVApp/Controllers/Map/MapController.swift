@@ -44,12 +44,16 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     fileprivate func setupBarButtons() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSideView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleOpenSlideView))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
+    var menuViewController = MenuController()
     
-    @objc fileprivate func handleSideView() {
+    @objc fileprivate func handleOpenSlideView() {
         print("sideView triggered")
+        menuViewController.view.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height)
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(menuViewController.view)
     }
     
     override func loadView() {

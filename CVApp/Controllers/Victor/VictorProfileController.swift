@@ -39,6 +39,7 @@ class VictorProfileController: UICollectionViewController, WebViewDelegate, UIVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         navigationItem.title = "About Me"
         navigationController?.navigationBar.prefersLargeTitles = true
         collectionView.backgroundColor = .white

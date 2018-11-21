@@ -14,7 +14,7 @@ class DarkCoverView: UIView {}
 
 class SliderController: UIViewController {
     
-    var menuController = MenuController()
+//    var menuController = MenuController()
     var rightViewController: UIViewController = UINavigationController(rootViewController: MapController())
     
     let redView: RightContainerView = {
@@ -40,7 +40,48 @@ class SliderController: UIViewController {
         view.backgroundColor = .white
         
         setupView()
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        view.addGestureRecognizer(panGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss))
+        darkCoverView.addGestureRecognizer(tapGesture)
     
+    }
+    
+    @objc func handleTapDismiss() {
+        // closeMenu
+    }
+    
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        var x = translation.x
+        
+        x = isMenuOpened ? x + menuWidth : x
+        x = min(menuWidth, x)
+        x = max(0, x)
+        
+        redViewLeadingConstraint.constant = x
+        redViewTrailingConstraint.constant = x
+        darkCoverView.alpha = x / menuWidth
+        
+        if gesture.state == .ended {
+            // handleEnded
+        }
+    }
+    
+    func openMenu() {
+        isMenuOpened = true
+        redViewLeadingConstraint.constant = menuWidth
+        redViewTrailingConstraint.constant = menuWidth
+        performAnimation()
+    }
+    
+    func closeMenu() {
+        isMenuOpened = false
+        redViewTrailingConstraint.constant = 0
+        redViewLeadingConstraint.constant = 0
+        performAnimation()
     }
     
     var redViewLeadingConstraint: NSLayoutConstraint!
@@ -48,6 +89,13 @@ class SliderController: UIViewController {
     fileprivate let menuWidth: CGFloat = 300
     fileprivate let velocityOpenThreshold: CGFloat = 500
     fileprivate var isMenuOpened = false
+
+    fileprivate func performAnimation() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+            self.darkCoverView.alpha = self.isMenuOpened ? 1 : 0
+        }, completion: nil)
+    }
     
     fileprivate func setupView() {
 
