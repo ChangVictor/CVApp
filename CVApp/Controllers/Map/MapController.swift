@@ -11,6 +11,8 @@ import GoogleMaps
 
 class MapController: UIViewController, UIGestureRecognizerDelegate {
     
+    fileprivate let menuWidth: CGFloat = 300
+    
     override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -51,9 +53,26 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc fileprivate func handleOpenSlideView() {
         print("sideView triggered")
-        menuViewController.view.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height)
+        menuViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: self.view.frame.height)
         let mainWindow = UIApplication.shared.keyWindow
         mainWindow?.addSubview(menuViewController.view)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            // Final position of the menu controller
+            self.menuViewController.view.transform = CGAffineTransform(translationX: self.menuWidth, y: 0)
+        }, completion: nil)
+        
+        addChild(menuViewController)
+    }
+    
+    @objc func handleHide() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            // Final position of the menu controller
+            self.menuViewController.view.transform = .identity
+        }, completion: nil)
+        
+//        menuViewController.view.removeFromSuperview()
+//        menuViewController.removeFromParent()
     }
     
     override func loadView() {
