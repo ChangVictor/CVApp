@@ -19,7 +19,10 @@ class MenuController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
+        
+        
     }
+
     
 //    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        let customHeaderView = CustomMenuHeaderView()

@@ -62,8 +62,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         darkCoverView.frame = mainWindow?.frame ?? .zero
     }
     fileprivate func setupPangeGesture() {
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         darkCoverView.addGestureRecognizer(panGesture)
+        panGesture.delegate = self
     }
     
     fileprivate func setupBarButtons() {
@@ -78,10 +80,21 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         addChild(menuController)
     }
     
-    fileprivate func performAnimations(transfrom: CGAffineTransform) {
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//         return true
+//    }
+    
+    fileprivate func performAnimations(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.menuController.view.transform = transfrom
-            self.darkCoverView.transform = transfrom
+            self.menuController.view.transform = transform
+            self.darkCoverView.transform = transform
+            if transform == .identity {
+                self.darkCoverView.alpha = 0
+                self.darkCoverView.isUserInteractionEnabled = false
+            } else {
+                self.darkCoverView.alpha = 0.6
+                self.darkCoverView.isUserInteractionEnabled = true
+            }
         })
     }
     
@@ -89,16 +102,16 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         isMenuOpened = true
         print("sideView triggered")
         setupMenuController()
-        performAnimations(transfrom: CGAffineTransform(translationX: self.menuWidth, y: 0))
-        self.darkCoverView.alpha = 0.6
-        self.darkCoverView.isUserInteractionEnabled = true
+        performAnimations(transform: CGAffineTransform(translationX: self.menuWidth, y: 0))
+//        self.darkCoverView.alpha = 0.6
+//        self.darkCoverView.isUserInteractionEnabled = true
     }
     
     @objc func handleHide() {
         isMenuOpened = false
-        performAnimations(transfrom: .identity)
-        self.darkCoverView.isUserInteractionEnabled = false
-        self.darkCoverView.alpha = 0
+        performAnimations(transform: .identity)
+//        self.darkCoverView.isUserInteractionEnabled = false
+//        self.darkCoverView.alpha = 0
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
