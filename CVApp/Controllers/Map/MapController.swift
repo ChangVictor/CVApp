@@ -54,17 +54,16 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     let darkCoverView = UIView()
     
     fileprivate func setupDarkCoverView() {
+        darkCoverView.alpha = 0
         darkCoverView.backgroundColor = UIColor(white: 0, alpha: 0.6)
-        darkCoverView.isUserInteractionEnabled = false 
-//        navigationController?.view.addSubview(darkCoverView)
-//        darkCoverView.frame = view.frame
+        darkCoverView.isUserInteractionEnabled = false
         let mainWindow = UIApplication.shared.keyWindow
         mainWindow?.addSubview(darkCoverView)
         darkCoverView.frame = mainWindow?.frame ?? .zero
     }
     fileprivate func setupPangeGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        view.addGestureRecognizer(panGesture)
+        darkCoverView.addGestureRecognizer(panGesture)
     }
     
     fileprivate func setupBarButtons() {
@@ -81,8 +80,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     fileprivate func performAnimations(transfrom: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            // some code
             self.menuController.view.transform = transfrom
+            self.darkCoverView.transform = transfrom
         })
     }
     
@@ -91,11 +90,15 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         print("sideView triggered")
         setupMenuController()
         performAnimations(transfrom: CGAffineTransform(translationX: self.menuWidth, y: 0))
+        self.darkCoverView.alpha = 0.6
+        self.darkCoverView.isUserInteractionEnabled = true
     }
     
     @objc func handleHide() {
         isMenuOpened = false
         performAnimations(transfrom: .identity)
+        self.darkCoverView.isUserInteractionEnabled = false
+        self.darkCoverView.alpha = 0
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
@@ -115,6 +118,11 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
             
             let transform = CGAffineTransform(translationX: x, y: 0)
             menuController.view.transform = transform
+            darkCoverView.transform = transform
+            
+//            let alpha = x / menuWidth
+//            darkCoverView.alpha = alpha
+            
         } else if gesture.state == .ended {
             handleEnded(gesture: gesture)
         }
