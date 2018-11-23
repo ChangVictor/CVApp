@@ -12,6 +12,9 @@ import GoogleMaps
 class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     fileprivate let menuWidth: CGFloat = 300
+    fileprivate var isMenuOpened = false
+    var menuController = MenuController()
+    fileprivate let velocityOpenThreshold: CGFloat = 500
     
     override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -43,36 +46,106 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         view.backgroundColor = .white
         
         loadView()
+        setupPangeGesture()
+        setupDarkCoverView()
+    }
+    
+    // MARK:- Fileprivate
+    let darkCoverView = UIView()
+    
+    fileprivate func setupDarkCoverView() {
+        darkCoverView.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        darkCoverView.isUserInteractionEnabled = false 
+//        navigationController?.view.addSubview(darkCoverView)
+//        darkCoverView.frame = view.frame
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(darkCoverView)
+        darkCoverView.frame = mainWindow?.frame ?? .zero
+    }
+    fileprivate func setupPangeGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        view.addGestureRecognizer(panGesture)
     }
     
     fileprivate func setupBarButtons() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleOpenSlideView))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
-    var menuViewController = MenuController()
+    
+    fileprivate func setupMenuController() {
+        menuController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: self.view.frame.height)
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(menuController.view)
+        addChild(menuController)
+    }
+    
+    fileprivate func performAnimations(transfrom: CGAffineTransform) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            // some code
+            self.menuController.view.transform = transfrom
+        })
+    }
     
     @objc fileprivate func handleOpenSlideView() {
+        isMenuOpened = true
         print("sideView triggered")
-        menuViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: self.view.frame.height)
-        let mainWindow = UIApplication.shared.keyWindow
-        mainWindow?.addSubview(menuViewController.view)
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            // Final position of the menu controller
-            self.menuViewController.view.transform = CGAffineTransform(translationX: self.menuWidth, y: 0)
-        }, completion: nil)
-        
-        addChild(menuViewController)
+        setupMenuController()
+        performAnimations(transfrom: CGAffineTransform(translationX: self.menuWidth, y: 0))
     }
     
     @objc func handleHide() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            // Final position of the menu controller
-            self.menuViewController.view.transform = .identity
-        }, completion: nil)
+        isMenuOpened = false
+        performAnimations(transfrom: .identity)
+    }
+    
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
         
-//        menuViewController.view.removeFromSuperview()
-//        menuViewController.removeFromParent()
+        let translation = gesture.translation(in: view)
+        
+        if gesture.state == .changed {
+            var x = translation.x
+            
+            if isMenuOpened {
+                
+                x += menuWidth
+            }
+            
+            x = min(menuWidth, x)
+            x = max(0, x)
+            
+            let transform = CGAffineTransform(translationX: x, y: 0)
+            menuController.view.transform = transform
+        } else if gesture.state == .ended {
+            handleEnded(gesture: gesture)
+        }
+    }
+    
+    fileprivate func handleEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        
+        let velocity = gesture.velocity(in: view)
+        
+        if isMenuOpened {
+            if abs(velocity.x) > velocityOpenThreshold {
+                handleHide()
+                return
+            }
+            if abs(translation.x) < menuWidth / 2 {
+                handleOpenSlideView()
+            } else {
+                handleHide()
+            }
+        } else {
+            if velocity.x > velocityOpenThreshold {
+                handleOpenSlideView()
+                return
+            }
+            if translation.x < menuWidth / 2 {
+            handleHide()
+        } else {
+            handleOpenSlideView()
+            }
+        }
     }
     
     override func loadView() {
