@@ -10,11 +10,12 @@ import UIKit
 import GoogleMaps
 
 class MapController: UIViewController, UIGestureRecognizerDelegate {
-    
+    var menuController = MenuController()
     fileprivate let menuWidth: CGFloat = 300
     fileprivate var isMenuOpened = false
-    var menuController = MenuController()
     fileprivate let velocityOpenThreshold: CGFloat = 500
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -44,22 +45,59 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor , bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 50, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         view.backgroundColor = .white
-        
+
         loadView()
         setupPangeGesture()
         setupDarkCoverView()
+//        setupViewControllers()
     }
     
     // MARK:- Fileprivate
     let darkCoverView = UIView()
+    var darkCoverLeftConstraint: NSLayoutConstraint!
+    
+    let menuView = UIView()
+    
+    fileprivate func setupViewControllers() {
+        menuView.addSubview(menuController.view)
+
+        menuController.view.anchor(top: menuView.topAnchor, left: menuView.leftAnchor, bottom: menuView.bottomAnchor, right: menuView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        addChild(menuController)
+    }
     
     fileprivate func setupDarkCoverView() {
         darkCoverView.alpha = 0
         darkCoverView.backgroundColor = UIColor(white: 0, alpha: 0.6)
         darkCoverView.isUserInteractionEnabled = false
+        guard let mainWindow = UIApplication.shared.keyWindow else { return }
+        mainWindow.addSubview(darkCoverView)
+        darkCoverView.frame = mainWindow.frame
+        darkCoverView.anchor(top: mainWindow.topAnchor, left: nil, bottom: mainWindow.bottomAnchor, right: mainWindow.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: (mainWindow?.leftAnchor)!, constant: 0)
+        self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: mainWindow.leftAnchor, constant: 0)
+        darkCoverLeftConstraint.isActive = true
+//        setupMenuView()
+    }
+    fileprivate func setupMenuView() {
+//        menuView.backgroundColor = .blue
         let mainWindow = UIApplication.shared.keyWindow
-        mainWindow?.addSubview(darkCoverView)
-        darkCoverView.frame = mainWindow?.frame ?? .zero
+//        mainWindow?.addSubview(menuView)
+//
+//        menuView.anchor(top: mainWindow?.topAnchor, left: nil, bottom: mainWindow?.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: self.menuWidth, height: 0)
+        /////////////////////////////
+        mainWindow?.addSubview(menuController.view)
+        addChild(menuController)
+        menuController.view.anchor(top: mainWindow?.topAnchor, left: nil, bottom: mainWindow?.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: self.menuWidth, height: 0)
+        
+//        setupViewControllers()
+    }
+    
+    fileprivate func setupMenuController() {
+        menuController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: self.view.frame.height)
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(menuController.view)
+        //        menuController.view.anchor(top: darkCoverView.topAnchor, left: darkCoverView.leftAnchor, bottom: darkCoverView.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        addChild(menuController)
     }
     fileprivate func setupPangeGesture() {
         
@@ -73,13 +111,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
     
-    fileprivate func setupMenuController() {
-        menuController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: self.view.frame.height)
-        let mainWindow = UIApplication.shared.keyWindow
-        mainWindow?.addSubview(menuController.view)
-        addChild(menuController)
-    }
-    
 //    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 //         return true
 //    }
@@ -87,6 +118,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     fileprivate func performAnimations(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.menuController.view.transform = transform
+//            self.menuView.transform = transform
             self.darkCoverView.transform = transform
             if transform == .identity {
                 self.darkCoverView.alpha = 0
@@ -101,17 +133,14 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     @objc fileprivate func handleOpenSlideView() {
         isMenuOpened = true
         print("sideView triggered")
-        setupMenuController()
+//        setupMenuController()
+        setupMenuView()
         performAnimations(transform: CGAffineTransform(translationX: self.menuWidth, y: 0))
-//        self.darkCoverView.alpha = 0.6
-//        self.darkCoverView.isUserInteractionEnabled = true
     }
     
     @objc func handleHide() {
         isMenuOpened = false
         performAnimations(transform: .identity)
-//        self.darkCoverView.isUserInteractionEnabled = false
-//        self.darkCoverView.alpha = 0
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
