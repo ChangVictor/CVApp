@@ -38,9 +38,8 @@ class MenuController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MenuItemCell(style: .default, reuseIdentifier: "cellId")
-//        let menuItem = menuItems[indexPath.row]
-//        cell.iconImageView.image = menuItem.icon
-//        cell.titleLabel.text = menuItem.title
+
+        cell.textLabel?.text = "Menu Item row: \(indexPath.row)"
         return cell
     }
     

@@ -19,7 +19,6 @@ class MenuItemCell: UITableViewCell {
     let iconImageView: IconImageView = {
         let iv = IconImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = #imageLiteral(resourceName: "profile")
         return iv
     }()
     
@@ -36,7 +35,6 @@ class MenuItemCell: UITableViewCell {
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 12
-        titleLabel.text = "Profile"
         
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -44,7 +42,7 @@ class MenuItemCell: UITableViewCell {
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = .init(top: 8, left: 12, bottom: 8, right: 12)
+        stackView.layoutMargins = .init(top: 4, left: 12, bottom: 4, right: 12)
     }
     
     required init?(coder aDecoder: NSCoder) {

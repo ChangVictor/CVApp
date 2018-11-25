@@ -9,32 +9,49 @@
 import UIKit
 
 class MenuHeader: UICollectionViewCell {
+    let nameLabel = UILabel()
+    let usernameLabel = UILabel()
+    let headerTitleLabel = UILabel()
+    let profileImageView = ProfileImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .white
-        let nameLabel = UILabel()
-        nameLabel.text = "Victor Chang"
-        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        let usernameLabel = UILabel()
-        usernameLabel.text = "@veectorCH"
         
-        let statsLabel = UILabel()
-        statsLabel.text = "42 Following 7091 Followers"
+        setupComponents()
         
-        let arrangedSubviews = [UIView(), nameLabel, usernameLabel, SpacerView(space: 16), statsLabel]
+        setupStackView()
+    }
+    
+    fileprivate func setupStackView() {
+        let arrangedSubviews = [UIView(),
+                                UIStackView(arrangedSubviews: [profileImageView, UIView()]),
+                                nameLabel,
+                                usernameLabel,
+                                SpacerView(space: 16),
+                                headerTitleLabel]
         let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
         stackView.axis = .vertical
         stackView.spacing = 4
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
-//        stackView.customSpacing(after: usernameLabel)
+        stackView.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 12, right: 24)
+        //        stackView.customSpacing(after: usernameLabel)
         addSubview(stackView)
         stackView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
-    
+    fileprivate func setupComponents() {
+        nameLabel.text = "Victor Chang"
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        usernameLabel.text = "@veectorCH"
+        headerTitleLabel.text = "Victor's Places"
+        profileImageView.image = #imageLiteral(resourceName: "VictorMemoji630x630")
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 45 / 2
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
