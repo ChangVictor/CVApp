@@ -110,15 +110,11 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleOpenSlideView))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
-    
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//         return true
-//    }
+
     
     fileprivate func performAnimations(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.menuController.view.transform = transform
-//            self.menuView.transform = transform
             self.darkCoverView.transform = transform
             if transform == .identity {
                 self.darkCoverView.alpha = 0
@@ -127,6 +123,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
                 self.darkCoverView.alpha = 0.6
                 self.darkCoverView.isUserInteractionEnabled = true
             }
+            self.view.layoutIfNeeded()
         })
     }
     

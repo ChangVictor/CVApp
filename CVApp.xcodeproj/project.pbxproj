@@ -43,6 +43,7 @@
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
 		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
 		5674A4F2218CD1FF00C50F91 /* HeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */; };
+		568B8DB921AAD21F00ED2F0E /* MenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568B8DB821AAD21F00ED2F0E /* MenuHeader.swift */; };
 		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
 		56DD4C0C218B7E8E00BF5E54 /* VictorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */; };
 		751D5544818DB274325076C0 /* Pods_CVAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D41604481DBB1CEED984D18 /* Pods_CVAppUITests.framework */; };
@@ -110,6 +111,7 @@
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLayout.swift; sourceTree = "<group>"; };
+		568B8DB821AAD21F00ED2F0E /* MenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeader.swift; sourceTree = "<group>"; };
 		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
 		56DD4C0B218B7E8E00BF5E54 /* VictorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileCell.swift; sourceTree = "<group>"; };
 		5DED6B3807E8D23C3ECB657D /* Pods-CVApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVApp/Pods-CVApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				563B938E21971443008DCEE8 /* MenuController.swift */,
 				5601407521A4BC6800E04983 /* SliderController.swift */,
 				5653B8F321A6234000C50E72 /* MenuCell.swift */,
+				568B8DB821AAD21F00ED2F0E /* MenuHeader.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				566B7304218F24D700AF9634 /* Photo.swift in Sources */,
 				562EB04A2171427200939D94 /* LoginController.swift in Sources */,
 				566442D921793524008FDF60 /* CustomImageView.swift in Sources */,
+				568B8DB921AAD21F00ED2F0E /* MenuHeader.swift in Sources */,
 				56254D40216D4B02005C6FA0 /* Extension.swift in Sources */,
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
 				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
