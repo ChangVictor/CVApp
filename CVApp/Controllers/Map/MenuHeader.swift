@@ -19,7 +19,6 @@ class MenuHeader: UICollectionViewCell {
         backgroundColor = .white
         
         setupComponents()
-        
         setupStackView()
     }
     
@@ -46,7 +45,7 @@ class MenuHeader: UICollectionViewCell {
         nameLabel.text = "Victor Chang"
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         usernameLabel.text = "Explore Victor's Places"
-        usernameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        usernameLabel.font = UIFont.boldSystemFont(ofSize: 22)
         profileImageView.image = #imageLiteral(resourceName: "VictorMemoji630x630")
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.clipsToBounds = true

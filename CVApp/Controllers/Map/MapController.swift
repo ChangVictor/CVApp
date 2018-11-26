@@ -71,17 +71,21 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         darkCoverView.isUserInteractionEnabled = false
         guard let mainWindow = UIApplication.shared.keyWindow else { return }
         mainWindow.addSubview(darkCoverView)
+//        mainWindow.addSubview(menuView)
+        menuView.backgroundColor = .gray
         darkCoverView.frame = mainWindow.frame
         darkCoverView.anchor(top: mainWindow.topAnchor, left: nil, bottom: mainWindow.bottomAnchor, right: mainWindow.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        menuView.anchor(top: mainWindow.topAnchor, left: mainWindow.leftAnchor, bottom: mainWindow.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
 //        self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: (mainWindow?.leftAnchor)!, constant: 0)
         self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: mainWindow.leftAnchor, constant: 0)
         darkCoverLeftConstraint.isActive = true
-//        setupMenuView()
+        
     }
     fileprivate func setupMenuView() {
         let mainWindow = UIApplication.shared.keyWindow
         mainWindow?.addSubview(menuController.view)
-        addChild(menuController)
+
+//        addChild(menuController)
         menuController.view.anchor(top: mainWindow?.topAnchor, left: nil, bottom: mainWindow?.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: self.menuWidth, height: 0)
     }
     
