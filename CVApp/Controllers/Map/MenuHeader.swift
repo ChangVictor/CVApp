@@ -35,7 +35,7 @@ class MenuHeader: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 1
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 12, right: 12)
+        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 12)
         //        stackView.customSpacing(after: usernameLabel)
         addSubview(stackView)
         stackView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -45,7 +45,8 @@ class MenuHeader: UICollectionViewCell {
     fileprivate func setupComponents() {
         nameLabel.text = "Victor Chang"
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        usernameLabel.text = "Explore Victor's Places!"
+        usernameLabel.text = "Explore Victor's Places"
+        usernameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         profileImageView.image = #imageLiteral(resourceName: "VictorMemoji630x630")
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.clipsToBounds = true
