@@ -11,7 +11,6 @@ import UIKit
 class MenuHeader: UICollectionViewCell {
     let nameLabel = UILabel()
     let usernameLabel = UILabel()
-    let headerTitleLabel = UILabel()
     let profileImageView = ProfileImageView()
     
     override init(frame: CGRect) {
@@ -25,17 +24,18 @@ class MenuHeader: UICollectionViewCell {
     }
     
     fileprivate func setupStackView() {
-        let arrangedSubviews = [UIView(),
+        let arrangedSubviews = [
                                 UIStackView(arrangedSubviews: [profileImageView, UIView()]),
+//                                profileImageView,
                                 nameLabel,
-                                usernameLabel,
-                                SpacerView(space: 16),
-                                headerTitleLabel]
+                                SpacerView(space: 8),
+                                usernameLabel
+                                ]
         let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
         stackView.axis = .vertical
-        stackView.spacing = 4
+        stackView.spacing = 1
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 12, right: 24)
+        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 12, right: 12)
         //        stackView.customSpacing(after: usernameLabel)
         addSubview(stackView)
         stackView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -45,8 +45,7 @@ class MenuHeader: UICollectionViewCell {
     fileprivate func setupComponents() {
         nameLabel.text = "Victor Chang"
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        usernameLabel.text = "@veectorCH"
-        headerTitleLabel.text = "Victor's Places"
+        usernameLabel.text = "Explore Victor's Places!"
         profileImageView.image = #imageLiteral(resourceName: "VictorMemoji630x630")
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.clipsToBounds = true

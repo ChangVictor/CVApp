@@ -79,24 +79,16 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
 //        setupMenuView()
     }
     fileprivate func setupMenuView() {
-//        menuView.backgroundColor = .blue
         let mainWindow = UIApplication.shared.keyWindow
-//        mainWindow?.addSubview(menuView)
-//
-//        menuView.anchor(top: mainWindow?.topAnchor, left: nil, bottom: mainWindow?.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: self.menuWidth, height: 0)
-        /////////////////////////////
         mainWindow?.addSubview(menuController.view)
         addChild(menuController)
         menuController.view.anchor(top: mainWindow?.topAnchor, left: nil, bottom: mainWindow?.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: self.menuWidth, height: 0)
-        
-//        setupViewControllers()
     }
     
     fileprivate func setupMenuController() {
         menuController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: self.view.frame.height)
         let mainWindow = UIApplication.shared.keyWindow
         mainWindow?.addSubview(menuController.view)
-        //        menuController.view.anchor(top: darkCoverView.topAnchor, left: darkCoverView.leftAnchor, bottom: darkCoverView.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         addChild(menuController)
     }
     fileprivate func setupPangeGesture() {
@@ -111,7 +103,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
-    
     fileprivate func performAnimations(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.menuController.view.transform = transform
@@ -130,7 +121,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     @objc fileprivate func handleOpenSlideView() {
         isMenuOpened = true
         print("sideView triggered")
-//        setupMenuController()
         setupMenuView()
         performAnimations(transform: CGAffineTransform(translationX: self.menuWidth, y: 0))
     }
@@ -158,9 +148,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
             let transform = CGAffineTransform(translationX: x, y: 0)
             menuController.view.transform = transform
             darkCoverView.transform = transform
-            
-//            let alpha = x / menuWidth
-//            darkCoverView.alpha = alpha
             
         } else if gesture.state == .ended {
             handleEnded(gesture: gesture)
