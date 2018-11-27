@@ -34,7 +34,7 @@ class MenuHeader: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 1
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 12)
+        stackView.layoutMargins = UIEdgeInsets(top: 18, left: 18, bottom: 12, right: 18)
         //        stackView.customSpacing(after: usernameLabel)
         addSubview(stackView)
         stackView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)

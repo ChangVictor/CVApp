@@ -17,6 +17,7 @@ class MenuController: UITableViewController {
         MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Another place")
     ]
     
+    var placesDelegate: PlacesDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,14 @@ class MenuController: UITableViewController {
         return cell
     }
     
+}
+
+extension MenuController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected menu Item: ", indexPath.row)
+
+        placesDelegate?.selectPlace(indexPath: indexPath.row)
+    }
 }
 
 struct MenuItem {

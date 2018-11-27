@@ -9,13 +9,16 @@
 import UIKit
 import GoogleMaps
 
+protocol PlacesDelegate {
+    func selectPlace(indexPath: Int?)
+//    func selectPlace(marker: GMSMarker)
+}
+
 class MapController: UIViewController, UIGestureRecognizerDelegate {
     var menuController = MenuController()
     fileprivate let menuWidth: CGFloat = 300
     fileprivate var isMenuOpened = false
     fileprivate let velocityOpenThreshold: CGFloat = 500
-    
-
     
     override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -38,6 +41,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        menuController.placesDelegate = self
         
         setupBarButtons()
         let navBar = navigationController?.navigationBar
@@ -71,12 +75,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         darkCoverView.isUserInteractionEnabled = false
         guard let mainWindow = UIApplication.shared.keyWindow else { return }
         mainWindow.addSubview(darkCoverView)
-//        mainWindow.addSubview(menuView)
-        menuView.backgroundColor = .gray
         darkCoverView.frame = mainWindow.frame
         darkCoverView.anchor(top: mainWindow.topAnchor, left: nil, bottom: mainWindow.bottomAnchor, right: mainWindow.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        menuView.anchor(top: mainWindow.topAnchor, left: mainWindow.leftAnchor, bottom: mainWindow.bottomAnchor, right: darkCoverView.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: (mainWindow?.leftAnchor)!, constant: 0)
         self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: mainWindow.leftAnchor, constant: 0)
         darkCoverLeftConstraint.isActive = true
         
@@ -234,9 +234,14 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
 //        let ULlgocation = marker.position.longitude
 //
 //    }
-   
+
 }
 
-extension MapController: UISearchBarDelegate {
-    
+extension MapController: PlacesDelegate {
+    func selectPlace(indexPath: Int?) {
+        guard let indexPath = indexPath else { return }
+        print("protocol triggered: ", indexPath)
+        handleHide()
+        // should hide menu controller and open a bottom sheet view
+    }
 }
