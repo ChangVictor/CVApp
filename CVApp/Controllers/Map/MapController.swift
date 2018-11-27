@@ -239,8 +239,32 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
 
 extension MapController: PlacesDelegate {
     func selectPlace(indexPath: Int?) {
+        
+        /* handle camera position & CLLocationCoordiante2DMake:
+         option 1: set hardcoded markers and use
+         
+         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: -33.868, longitude: 151.208))
+         
+         to animate to a location.
+         
+         - consider usin bearing to add motion effect
+         mapView.animate(toBearing: 0)
+
+        */
         guard let indexPath = indexPath else { return }
-        print("protocol triggered: ", indexPath)
+        
+        switch indexPath {
+        case 0:
+            print("Showing place at \(indexPath)")
+        case 1:
+            print("Showing place at \(indexPath)")
+        case 2:
+            print("Showing place at \(indexPath)")
+        default:
+            print("Showing place at \(indexPath)")
+
+        }
+        
         handleHide()
         // should hide menu controller and open a bottom sheet view
     }

@@ -42,6 +42,14 @@ class UserProfileHeader: UICollectionViewCell {
         return imageView
     }()
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.text = "Sent Messages:"
+        label.textAlignment = .left
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -49,9 +57,12 @@ class UserProfileHeader: UICollectionViewCell {
         addSubview(profileImageView)
         addSubview(usernameLabel)
         addSubview(userInfoLabel)
+        addSubview(titleLabel)
         
         usernameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         userInfoLabel.anchor(top: usernameLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 8, paddingLeft: 10, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
+        titleLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 12, paddingBottom: 12, paddingRight: 0, width: 0, height: 0)
         
 //        setupProfileImage()
     }
@@ -64,8 +75,6 @@ class UserProfileHeader: UICollectionViewCell {
         guard let url = URL(string: "\(userImageUrl)") else { return }
         
         profileImageView.loadImage(urlString: "\(url)")
-
-        
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
         profileImageView.layer.cornerRadius = 80 / 2
         profileImageView.clipsToBounds = true
@@ -78,6 +87,4 @@ class UserProfileHeader: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

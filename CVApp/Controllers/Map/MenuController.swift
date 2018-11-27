@@ -53,8 +53,6 @@ class MenuController: UITableViewController {
 
 extension MenuController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected menu Item: ", indexPath.row)
-
         placesDelegate?.selectPlace(indexPath: indexPath.row)
     }
 }
