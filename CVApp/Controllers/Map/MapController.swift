@@ -188,8 +188,12 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     override func loadView() {
         
-        let camera = GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 15.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+//        let camera = GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 15.0)
+//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        
+        let mapView = GMSMapView(frame: .zero)
+        
+        
         mapView.settings.myLocationButton = true
         view = mapView
         
@@ -209,12 +213,17 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         gymMarker.layer.cornerRadius = 5
         gymMarker.map = mapView
         
-//        let universityMarker = GMSMarker()
-//        universityMarker.position = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: CLLocationDegrees)
-//        universityMarker.title = "Universidad del CEMA"
-//        universityMarker.snippet = "BA degree in Business Administration"
-//        universityMarker.map = mapView
+        let universityMarker = GMSMarker()
+        universityMarker.position = CLLocationCoordinate2D(latitude: -34.5986073, longitude: -58.3758671)
+        universityMarker.title = "Universidad del CEMA"
+        universityMarker.snippet = "BA degree in Business Administration"
+        universityMarker.map = mapView
         
+        //
+        let bounds = GMSCoordinateBounds(coordinate: homeMarker.position, coordinate: universityMarker.position)
+        
+        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
+        mapView.camera = camera
         
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
@@ -250,6 +259,12 @@ extension MapController: PlacesDelegate {
          - consider usin bearing to add motion effect
          mapView.animate(toBearing: 0)
 
+         - Set the camera such that every marker appear on the same view:
+         let vancouver = CLLocationCoordinate2D(latitude: 49.26, longitude: -123.11)
+         let calgary = CLLocationCoordinate2D(latitude: 51.05,longitude: -114.05)
+         let bounds = GMSCoordinateBounds(coordinate: vancouver, coordinate: calgary)
+         let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
+         mapView.camera = camera
         */
         guard let indexPath = indexPath else { return }
         
