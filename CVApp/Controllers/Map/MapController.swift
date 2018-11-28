@@ -188,15 +188,13 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
 //    let camera = GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 12.0)
     let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 12.0))
-    
     override func loadView() {
-        
-        
         
         self.mapView.settings.myLocationButton = true
         view = mapView
         
         let homeMarker = placeMarker(title: "Victor's home", snippet: "", latitude: -34.610668, longitude: -58.433800)
+
         homeMarker.map = mapView
         
         let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
@@ -205,7 +203,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         let universityMarker = placeMarker(title: "Universidad del Cema", snippet: "BA degree in Business Administration", latitude: -34.5986073, longitude: -58.3758671)
         universityMarker.map = mapView
         
-        //
 //        let bounds = GMSCoordinateBounds(coordinate: homeMarker.position, coordinate: universityMarker.position)
 //        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
 //        mapView.camera = camera
@@ -225,7 +222,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     private func placeMarker(title: String, snippet: String?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> GMSMarker {
-        
         let marker = GMSMarker()
         marker.title = title
         marker.opacity = 0.9
@@ -233,18 +229,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         marker.position = CLLocationCoordinate2DMake(latitude, longitude)
         return marker
     }
-    
-    // getTappedLocation
-//    func mapView(mapViewUIView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-//        marker.position.latitude = coordinate.latitude
-//        marker.position.longitude = coordinate.longitude
-//
-//        println(marker.position.latitude)
-//        let ULlocation = marker.position.latitude
-//        let ULlgocation = marker.position.longitude
-//
-//    }
-
 }
 
 extension MapController: PlacesDelegate {
@@ -271,53 +255,54 @@ extension MapController: PlacesDelegate {
         
         switch indexPath {
         case 0:
-            
+            CATransaction.begin()
+            CATransaction.setValue(1.2, forKey: kCATransactionAnimationDuration)
             let camera = GMSCameraPosition.camera(withLatitude: -34.610668,
                                                  longitude: -58.433800,
-                                                 zoom: 10,
-                                                 bearing: 270,
+                                                 zoom: 17,
+                                                 bearing: 345,
                                                  viewingAngle: 45)
             
-            self.mapView.camera = camera
             self.mapView.animate(to: camera)
-            self.mapView.animate(toZoom: 10.5)
-            self.mapView.animate(toZoom: 11)
-            self.mapView.animate(toZoom: 11.5)
-            self.mapView.animate(toZoom: 12)
-            self.mapView.animate(toZoom: 13)
-            self.mapView.animate(toZoom: 14)
-            self.mapView.animate(toZoom: 15)
-            self.mapView.animate(toZoom: 16)
+            CATransaction.commit()
 
-
-            
         case 1:
+            CATransaction.begin()
+            CATransaction.setValue(1.2, forKey: kCATransactionAnimationDuration)
             let camera = GMSCameraPosition.camera(withLatitude: -34.54881224693877,
                                                   longitude: -58.44375559591837,
-                                                  zoom: 10,
-                                                  bearing: 270,
+                                                  zoom: 16,
+                                                  bearing: 235,
                                                   viewingAngle: 45)
             
-            self.mapView.camera = camera
             self.mapView.animate(to: camera)
-            self.mapView.animate(toZoom: 10.5)
-            self.mapView.animate(toZoom: 11)
-            self.mapView.animate(toZoom: 11.5)
-            self.mapView.animate(toZoom: 12)
-            self.mapView.animate(toZoom: 13)
-            self.mapView.animate(toZoom: 14)
-            self.mapView.animate(toZoom: 15)
-            self.mapView.animate(toZoom: 16)
-
+            CATransaction.commit()
 
         case 2:
-            print("Showing place at \(indexPath)")
+            CATransaction.begin()
+            CATransaction.setValue(2.5, forKey: kCATransactionAnimationDuration)
+            let camera = GMSCameraPosition.camera(withLatitude: -18.478518,
+                                                  longitude: -70.3210596,
+                                                  zoom: 8,
+                                                  bearing: 0,
+                                                  viewingAngle: 0)
+            self.mapView.animate(to: camera)
+            CATransaction.commit()
         default:
-            print("Showing place at \(indexPath)")
-
+                CATransaction.begin()
+                CATransaction.setValue(1.2, forKey: kCATransactionAnimationDuration)
+                let camera = GMSCameraPosition.camera(withLatitude: -34.5986073,
+                                                      longitude: -58.3758671,
+                                                      zoom: 16,
+                                                      bearing: 0,
+                                                      viewingAngle: 45)
+                
+                self.mapView.animate(to: camera)
+                CATransaction.commit()
         }
         
         handleHide()
         // should hide menu controller and open a bottom sheet view
     }
 }
+
