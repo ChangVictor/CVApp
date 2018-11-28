@@ -30,7 +30,6 @@ extension UIColor {
     static func mainRed() -> UIColor {
         return UIColor.rgb(red: 224, green: 57, blue: 62)
     }
-    
 }
 
 extension UIView {
@@ -111,5 +110,4 @@ extension Date {
         dateFormatterGet.date(from: dateFormatterGet.dateFormat)
         return "posted on \(dateFormatterPrint.string(from: date))"
     }
-    
 }

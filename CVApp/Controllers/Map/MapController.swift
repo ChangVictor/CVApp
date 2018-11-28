@@ -186,44 +186,29 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+//    let camera = GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 12.0)
+    let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 12.0))
+    
     override func loadView() {
         
-//        let camera = GMSCameraPosition.camera(withLatitude: -34.608795, longitude: -58.434670, zoom: 15.0)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        
-        let mapView = GMSMapView(frame: .zero)
         
         
-        mapView.settings.myLocationButton = true
+        self.mapView.settings.myLocationButton = true
         view = mapView
         
-//         map center marker -34.610668, -58.433800
-        let homeMarker = GMSMarker()
-        homeMarker.position = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
-        homeMarker.title = "Victor's Home Location"
-        homeMarker.snippet = "I've been living in Caballito for more than 20."
-        homeMarker.opacity = 0.6
+        let homeMarker = placeMarker(title: "Victor's home", snippet: "", latitude: -34.610668, longitude: -58.433800)
         homeMarker.map = mapView
         
-        let gymMarker = GMSMarker()
-        gymMarker.position = CLLocationCoordinate2D(latitude: -34.612626, longitude: -58.432023)
-        gymMarker.title = "Tuluka Crossfit"
-        gymMarker.snippet = "This is where I usually work out"
-        gymMarker.opacity = 0.6
-        gymMarker.layer.cornerRadius = 5
+        let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
         gymMarker.map = mapView
         
-        let universityMarker = GMSMarker()
-        universityMarker.position = CLLocationCoordinate2D(latitude: -34.5986073, longitude: -58.3758671)
-        universityMarker.title = "Universidad del CEMA"
-        universityMarker.snippet = "BA degree in Business Administration"
+        let universityMarker = placeMarker(title: "Universidad del Cema", snippet: "BA degree in Business Administration", latitude: -34.5986073, longitude: -58.3758671)
         universityMarker.map = mapView
         
         //
-        let bounds = GMSCoordinateBounds(coordinate: homeMarker.position, coordinate: universityMarker.position)
-        
-        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
-        mapView.camera = camera
+//        let bounds = GMSCoordinateBounds(coordinate: homeMarker.position, coordinate: universityMarker.position)
+//        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
+//        mapView.camera = camera
         
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
@@ -231,6 +216,22 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         circle.strokeColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.75)
         circle.map = mapView
         
+        let bornPlace = placeMarker(title: "Arica", snippet: "Victor's born place", latitude: -18.478518, longitude: -70.3210596)
+        bornPlace.map = mapView
+        
+        let digitalHouseMarker = placeMarker(title: "Digital House", snippet: "Coding School", latitude: -34.54881224693877, longitude: -58.44375559591837)
+        digitalHouseMarker.map = mapView
+        
+    }
+    
+    private func placeMarker(title: String, snippet: String?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> GMSMarker {
+        
+        let marker = GMSMarker()
+        marker.title = title
+        marker.opacity = 0.9
+        marker.snippet = snippet
+        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
+        return marker
     }
     
     // getTappedLocation
@@ -270,9 +271,45 @@ extension MapController: PlacesDelegate {
         
         switch indexPath {
         case 0:
-            print("Showing place at \(indexPath)")
+            
+            let camera = GMSCameraPosition.camera(withLatitude: -34.610668,
+                                                 longitude: -58.433800,
+                                                 zoom: 10,
+                                                 bearing: 270,
+                                                 viewingAngle: 45)
+            
+            self.mapView.camera = camera
+            self.mapView.animate(to: camera)
+            self.mapView.animate(toZoom: 10.5)
+            self.mapView.animate(toZoom: 11)
+            self.mapView.animate(toZoom: 11.5)
+            self.mapView.animate(toZoom: 12)
+            self.mapView.animate(toZoom: 13)
+            self.mapView.animate(toZoom: 14)
+            self.mapView.animate(toZoom: 15)
+            self.mapView.animate(toZoom: 16)
+
+
+            
         case 1:
-            print("Showing place at \(indexPath)")
+            let camera = GMSCameraPosition.camera(withLatitude: -34.54881224693877,
+                                                  longitude: -58.44375559591837,
+                                                  zoom: 10,
+                                                  bearing: 270,
+                                                  viewingAngle: 45)
+            
+            self.mapView.camera = camera
+            self.mapView.animate(to: camera)
+            self.mapView.animate(toZoom: 10.5)
+            self.mapView.animate(toZoom: 11)
+            self.mapView.animate(toZoom: 11.5)
+            self.mapView.animate(toZoom: 12)
+            self.mapView.animate(toZoom: 13)
+            self.mapView.animate(toZoom: 14)
+            self.mapView.animate(toZoom: 15)
+            self.mapView.animate(toZoom: 16)
+
+
         case 2:
             print("Showing place at \(indexPath)")
         default:
