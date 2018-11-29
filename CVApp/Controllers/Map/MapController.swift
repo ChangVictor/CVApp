@@ -15,6 +15,7 @@ protocol PlacesDelegate {
 }
 
 class MapController: UIViewController, UIGestureRecognizerDelegate {
+    
     var menuController = MenuController()
     fileprivate let menuWidth: CGFloat = 300
     fileprivate var isMenuOpened = false
@@ -193,28 +194,22 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         self.mapView.settings.myLocationButton = true
         view = mapView
         
-        let homeMarker = placeMarker(title: "Victor's home", snippet: "", latitude: -34.610668, longitude: -58.433800)
-
+        let bornPlace = placeMarker(title: "Arica", snippet: "Victor's born place", latitude: -18.478518, longitude: -70.3210596)
+        bornPlace.map = mapView
+        
+        let homeMarker = placeMarker(title: "Victor's home", snippet: nil, latitude: -34.610668, longitude: -58.433800)
         homeMarker.map = mapView
-        
-        let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
-        gymMarker.map = mapView
-        
-        let universityMarker = placeMarker(title: "Universidad del Cema", snippet: "BA degree in Business Administration", latitude: -34.5986073, longitude: -58.3758671)
-        universityMarker.map = mapView
-        
-//        let bounds = GMSCoordinateBounds(coordinate: homeMarker.position, coordinate: universityMarker.position)
-//        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
-//        mapView.camera = camera
-        
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
         circle.fillColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.2)
         circle.strokeColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.75)
         circle.map = mapView
         
-        let bornPlace = placeMarker(title: "Arica", snippet: "Victor's born place", latitude: -18.478518, longitude: -70.3210596)
-        bornPlace.map = mapView
+        let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
+        gymMarker.map = mapView
+        
+        let universityMarker = placeMarker(title: "Universidad del CEMA", snippet: "BA degree in Business Administration", latitude: -34.598595, longitude: -58.372364)
+        universityMarker.map = mapView
         
         let digitalHouseMarker = placeMarker(title: "Digital House", snippet: "Coding School", latitude: -34.54881224693877, longitude: -58.44375559591837)
         digitalHouseMarker.map = mapView
@@ -228,6 +223,18 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         marker.snippet = snippet
         marker.position = CLLocationCoordinate2DMake(latitude, longitude)
         return marker
+    }
+    
+    func addBottomSheetView() {
+        let bottomSheetController = BottomSheetController()
+        self.addChild(bottomSheetController)
+        self.view.addSubview(bottomSheetController.view)
+        bottomSheetController.didMove(toParent: self)
+        
+        let height = view.frame.height
+        let width = view.frame.width
+        bottomSheetController.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+
     }
 }
 
@@ -255,54 +262,32 @@ extension MapController: PlacesDelegate {
         
         switch indexPath {
         case 0:
-            CATransaction.begin()
-            CATransaction.setValue(1.2, forKey: kCATransactionAnimationDuration)
-            let camera = GMSCameraPosition.camera(withLatitude: -34.610668,
-                                                 longitude: -58.433800,
-                                                 zoom: 17,
-                                                 bearing: 345,
-                                                 viewingAngle: 45)
             
-            self.mapView.animate(to: camera)
-            CATransaction.commit()
+            triggerMapTransition(withDuration: 3, latitude: -18.478518, longitude: -70.3210596, zoom: 8, bearing: 0, viewAngle: 0)
 
         case 1:
-            CATransaction.begin()
-            CATransaction.setValue(1.2, forKey: kCATransactionAnimationDuration)
-            let camera = GMSCameraPosition.camera(withLatitude: -34.54881224693877,
-                                                  longitude: -58.44375559591837,
-                                                  zoom: 16,
-                                                  bearing: 235,
-                                                  viewingAngle: 45)
             
-            self.mapView.animate(to: camera)
-            CATransaction.commit()
+            triggerMapTransition(withDuration: 1.3, latitude: -34.610668, longitude: -58.433800, zoom: 17, bearing: 340, viewAngle: 45)
 
         case 2:
-            CATransaction.begin()
-            CATransaction.setValue(2.5, forKey: kCATransactionAnimationDuration)
-            let camera = GMSCameraPosition.camera(withLatitude: -18.478518,
-                                                  longitude: -70.3210596,
-                                                  zoom: 8,
-                                                  bearing: 0,
-                                                  viewingAngle: 0)
-            self.mapView.animate(to: camera)
-            CATransaction.commit()
+            
+            triggerMapTransition(withDuration: 1.2, latitude: -34.598595, longitude: -58.372364, zoom: 16, bearing: 0, viewAngle: 45)
+            
         default:
-                CATransaction.begin()
-                CATransaction.setValue(1.2, forKey: kCATransactionAnimationDuration)
-                let camera = GMSCameraPosition.camera(withLatitude: -34.5986073,
-                                                      longitude: -58.3758671,
-                                                      zoom: 16,
-                                                      bearing: 0,
-                                                      viewingAngle: 45)
-                
-                self.mapView.animate(to: camera)
-                CATransaction.commit()
+            
+            triggerMapTransition(withDuration: 1.3, latitude: -34.54881224693877, longitude: -58.44375559591837, zoom: 16, bearing: 235, viewAngle: 45)
+            
         }
         
         handleHide()
-        // should hide menu controller and open a bottom sheet view
+    }
+    
+    func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {
+        CATransaction.begin()
+        CATransaction.setValue(withDuration, forKey: kCATransactionAnimationDuration)
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoom, bearing: bearing, viewingAngle: viewAngle)
+        self.mapView.animate(to: camera)
+        CATransaction.commit()
     }
 }
 

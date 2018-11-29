@@ -27,6 +27,7 @@
 		562EB051217212D400939D94 /* VictorProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB050217212D400939D94 /* VictorProfileController.swift */; };
 		562EB05321729A5F00939D94 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562EB05221729A5F00939D94 /* SignUpController.swift */; };
 		5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630EBD02170ED5200098749 /* GoogleService-Info.plist */; };
+		5635FE0221B038D400D98785 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5635FE0121B038D400D98785 /* BottomSheetController.swift */; };
 		563B938F21971443008DCEE8 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B938E21971443008DCEE8 /* MenuController.swift */; };
 		5653B8F421A6234000C50E72 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653B8F321A6234000C50E72 /* MenuCell.swift */; };
 		5653B8F621A623CA00C50E72 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653B8F521A623CA00C50E72 /* SpacerView.swift */; };
@@ -96,6 +97,7 @@
 		562EB050217212D400939D94 /* VictorProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictorProfileController.swift; sourceTree = "<group>"; };
 		562EB05221729A5F00939D94 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5630EBD02170ED5200098749 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5635FE0121B038D400D98785 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
 		563B938E21971443008DCEE8 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		5653B8F321A6234000C50E72 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		5653B8F521A623CA00C50E72 /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				5601407521A4BC6800E04983 /* SliderController.swift */,
 				5653B8F321A6234000C50E72 /* MenuCell.swift */,
 				568B8DB821AAD21F00ED2F0E /* MenuHeader.swift */,
+				5635FE0121B038D400D98785 /* BottomSheetController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
 				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
 				562EB04D2172111000939D94 /* MapController.swift in Sources */,
+				5635FE0221B038D400D98785 /* BottomSheetController.swift in Sources */,
 				568B8DBB21AAEEFB00ED2F0E /* ProfileImageView.swift in Sources */,
 				566442D721793363008FDF60 /* FirebaseUtils.swift in Sources */,
 				56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */,

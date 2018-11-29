@@ -11,10 +11,10 @@ import UIKit
 class MenuController: UITableViewController {
     
     let menuItems = [
-        MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "Where I Live?"),
-        MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Education"),
-        MenuItem(icon: #imageLiteral(resourceName: "bookmark"), title: "Some other place"),
-        MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Another place")
+        MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "My birt place!"),
+        MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Where I live?"),
+        MenuItem(icon: #imageLiteral(resourceName: "bookmark"), title: "University"),
+        MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Coding School")
     ]
     
     var placesDelegate: PlacesDelegate?
