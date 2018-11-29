@@ -39,6 +39,11 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.rgb(red: 250, green: 250, blue: 250)
         return searchBar
     }()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addBottomSheetView()
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
