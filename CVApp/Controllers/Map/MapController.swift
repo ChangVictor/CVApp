@@ -42,7 +42,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addBottomSheetView()
+//        addBottomSheetView()
     }
    
     override func viewDidLoad() {
@@ -52,16 +52,17 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         setupBarButtons()
         let navBar = navigationController?.navigationBar
         navigationController?.navigationBar.addSubview(searchBar)
-        searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor , bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 50, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor , bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 55, paddingBottom: 0, paddingRight: 65, width: 0, height: 0)
         
         view.backgroundColor = .white
 
         loadView()
-        setupPangeGesture()
+        setupDarkCoverViewGesture()
         setupDarkCoverView()
 //        setupViewControllers()
+        
     }
-    
+
     // MARK:- Fileprivate
     let darkCoverView = UIView()
     var darkCoverLeftConstraint: NSLayoutConstraint!
@@ -101,20 +102,23 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         mainWindow?.addSubview(menuController.view)
         addChild(menuController)
     }
-    fileprivate func setupPangeGesture() {
+    fileprivate func setupDarkCoverViewGesture() {
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         darkCoverView.addGestureRecognizer(panGesture)
         panGesture.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss))
+        darkCoverView.addGestureRecognizer(tapGesture)
     }
     
     fileprivate func setupBarButtons() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleOpenSlideView))
-        navigationItem.rightBarButtonItem?.tintColor = .white
+//        navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "map").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMapViewReset))
     }
 
     fileprivate func performAnimations(transform: CGAffineTransform) {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1.2, options: .curveEaseOut, animations: {
             self.menuController.view.transform = transform
             self.darkCoverView.transform = transform
             if transform == .identity {
@@ -127,7 +131,9 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
             self.view.layoutIfNeeded()
         })
     }
-    
+    @objc fileprivate func handleMapViewReset() {
+        triggerMapTransition(withDuration: 1, latitude: -34.608795, longitude: -58.434670, zoom: 12, bearing: 0, viewAngle: 0)
+    }
     @objc fileprivate func handleOpenSlideView() {
         isMenuOpened = true
         print("sideView triggered")
@@ -138,6 +144,11 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     @objc func handleHide() {
         isMenuOpened = false
         performAnimations(transform: .identity)
+    }
+    
+    
+    @objc fileprivate func handleTapDismiss() {
+        handleHide()
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {

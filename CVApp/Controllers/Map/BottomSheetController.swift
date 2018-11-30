@@ -35,7 +35,7 @@ class BottomSheetController: ViewController {
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
         let translatoin = gesture.translation(in: view)
         let y = self.view.frame.minY
-        self.view.frame = CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+//        self.view.frame = CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
     }
     
     func prepareBackgroundView() {

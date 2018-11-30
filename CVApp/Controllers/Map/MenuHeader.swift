@@ -50,6 +50,7 @@ class MenuHeader: UICollectionViewCell {
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 45 / 2
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
