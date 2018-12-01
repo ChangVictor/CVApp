@@ -18,4 +18,12 @@ class PlaceDetailView: UIView {
     @IBOutlet weak var placeDescription: UILabel!
     @IBOutlet weak var placeImageView: UIImageView!
 
+    static func initFromNib() -> PlaceDetailView {
+        return Bundle.main.loadNibNamed("PlaceDetailView", owner: self, options: nil)?.first as! PlaceDetailView
+    }
+    
+    deinit {
+        print("PlaceDetailView memory being reclaimed...")
+    }
+    
 }

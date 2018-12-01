@@ -255,6 +255,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
 }
 
 extension MapController: PlacesDelegate {
+    
     func selectPlace(indexPath: Int?) {
         
         /* handle camera position & CLLocationCoordiante2DMake:
@@ -296,9 +297,20 @@ extension MapController: PlacesDelegate {
         }
         
         handleHide()
-        let placeDetailView = Bundle.main.loadNibNamed("PlaceDetailView", owner: self, options: nil)?.first as! PlaceDetailView
-        placeDetailView.frame = self.view.frame
+        setupPlaceDetailView()
+    }
+
+    func setupPlaceDetailView() {
+        
+        let placeDetailView = PlaceDetailView.initFromNib()
+//        placeDetailView.frame = self.view.frame
         mapView.addSubview(placeDetailView)
+        placeDetailView.translatesAutoresizingMaskIntoConstraints = false
+
+        placeDetailView.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -200).isActive = true 
+        placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {

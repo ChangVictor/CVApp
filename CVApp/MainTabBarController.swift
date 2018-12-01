@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tabBar
         self.delegate = self
         
         if Auth.auth().currentUser == nil {
