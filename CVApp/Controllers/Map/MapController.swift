@@ -296,6 +296,9 @@ extension MapController: PlacesDelegate {
         }
         
         handleHide()
+        let placeDetailView = Bundle.main.loadNibNamed("PlaceDetailView", owner: self, options: nil)?.first as! PlaceDetailView
+        placeDetailView.frame = self.view.frame
+        mapView.addSubview(placeDetailView)
     }
     
     func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {

@@ -10,6 +10,7 @@ import UIKit
 
 class MenuController: UITableViewController {
     
+    let darkCoverView = DarkCoverView()
     let menuItems = [
         MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "My birth place!"),
         MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Where I live?"),
@@ -55,6 +56,7 @@ class MenuController: UITableViewController {
 extension MenuController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         placesDelegate?.selectPlace(indexPath: indexPath.row)
+        
     }
 }
 

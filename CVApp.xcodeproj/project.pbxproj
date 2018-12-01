@@ -29,6 +29,8 @@
 		5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630EBD02170ED5200098749 /* GoogleService-Info.plist */; };
 		5635FE0221B038D400D98785 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5635FE0121B038D400D98785 /* BottomSheetController.swift */; };
 		563B938F21971443008DCEE8 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B938E21971443008DCEE8 /* MenuController.swift */; };
+		564BA79621B2E4820090C30E /* PlaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564BA79521B2E4820090C30E /* PlaceDetailView.swift */; };
+		564BA79921B2E79F0090C30E /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 564BA79821B2E79F0090C30E /* PlaceDetailView.xib */; };
 		5653B8F421A6234000C50E72 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653B8F321A6234000C50E72 /* MenuCell.swift */; };
 		5653B8F621A623CA00C50E72 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653B8F521A623CA00C50E72 /* SpacerView.swift */; };
 		565A2C7A21938B6400E851EC /* WebSocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A2C7921938B6400E851EC /* WebSocialMediaViewController.swift */; };
@@ -99,6 +101,8 @@
 		5630EBD02170ED5200098749 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5635FE0121B038D400D98785 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
 		563B938E21971443008DCEE8 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		564BA79521B2E4820090C30E /* PlaceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailView.swift; sourceTree = "<group>"; };
+		564BA79821B2E79F0090C30E /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceDetailView.xib; sourceTree = "<group>"; };
 		5653B8F321A6234000C50E72 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		5653B8F521A623CA00C50E72 /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
 		565A2C7921938B6400E851EC /* WebSocialMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocialMediaViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 			children = (
 				56CCE4922178C6FC000E4AC6 /* Services */,
 				562EB04B217210E200939D94 /* Controllers */,
+				564BA79721B2E7790090C30E /* Views */,
 				56254D45216D4B54005C6FA0 /* Model */,
 				566442D521793333008FDF60 /* Utils */,
 				562E57FD216D07CF00A517E2 /* AppDelegate.swift */,
@@ -291,6 +296,15 @@
 				56254D41216D4B29005C6FA0 /* Profile */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		564BA79721B2E7790090C30E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				564BA79521B2E4820090C30E /* PlaceDetailView.swift */,
+				564BA79821B2E79F0090C30E /* PlaceDetailView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		566442D521793333008FDF60 /* Utils */ = {
@@ -468,6 +482,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564BA79921B2E79F0090C30E /* PlaceDetailView.xib in Resources */,
 				562E5808216D07D000A517E2 /* LaunchScreen.storyboard in Resources */,
 				5630EBD12170ED5200098749 /* GoogleService-Info.plist in Resources */,
 				566B7311218F3F5C00AF9634 /* Photos.xcassets in Resources */,
@@ -640,6 +655,7 @@
 				56254D40216D4B02005C6FA0 /* Extension.swift in Sources */,
 				56254D3E216D3AA8005C6FA0 /* HomeController.swift in Sources */,
 				567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */,
+				564BA79621B2E4820090C30E /* PlaceDetailView.swift in Sources */,
 				562EB04D2172111000939D94 /* MapController.swift in Sources */,
 				5635FE0221B038D400D98785 /* BottomSheetController.swift in Sources */,
 				568B8DBB21AAEEFB00ED2F0E /* ProfileImageView.swift in Sources */,
