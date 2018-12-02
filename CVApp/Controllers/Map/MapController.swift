@@ -16,6 +16,9 @@ protocol PlacesDelegate {
 
 class MapController: UIViewController, UIGestureRecognizerDelegate {
     
+    var expandedTopAnchorConstraint: NSLayoutConstraint!
+    var minimizedTopAnchorConstraint: NSLayoutConstraint!
+    
     var menuController = MenuController()
     fileprivate let menuWidth: CGFloat = 300
     fileprivate var isMenuOpened = false
@@ -60,7 +63,27 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         setupDarkCoverViewGesture()
         setupDarkCoverView()
 //        setupViewControllers()
+
+    }
+    
+    @objc func minimizePlaceDetails() {
         
+        minimizedTopAnchorConstraint.isActive = true
+        expandedTopAnchorConstraint.isActive = false
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc func expandPlaceDetails() {
+        minimizedTopAnchorConstraint.isActive = false
+        expandedTopAnchorConstraint.constant = -200
+        expandedTopAnchorConstraint.isActive = true
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 
     // MARK:- Fileprivate
@@ -268,12 +291,6 @@ extension MapController: PlacesDelegate {
          - consider usin bearing to add motion effect
          mapView.animate(toBearing: 0)
 
-         - Set the camera such that every marker appear on the same view:
-         let vancouver = CLLocationCoordinate2D(latitude: 49.26, longitude: -123.11)
-         let calgary = CLLocationCoordinate2D(latitude: 51.05,longitude: -114.05)
-         let bounds = GMSCoordinateBounds(coordinate: vancouver, coordinate: calgary)
-         let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
-         mapView.camera = camera
         */
         guard let indexPath = indexPath else { return }
         
@@ -303,14 +320,21 @@ extension MapController: PlacesDelegate {
     func setupPlaceDetailView() {
         
         let placeDetailView = PlaceDetailView.initFromNib()
-//        placeDetailView.frame = self.view.frame
+
         mapView.addSubview(placeDetailView)
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
-
-        placeDetailView.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -200).isActive = true 
+        
+        expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo:  mapView.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            expandedTopAnchorConstraint.isActive = true
+        
+        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -70)
+        minimizedTopAnchorConstraint.isActive = false
+        
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        perform(#selector(expandPlaceDetails), with: nil, afterDelay: 1)
+
     }
     
     func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {
