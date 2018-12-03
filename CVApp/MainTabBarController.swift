@@ -28,7 +28,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar
         self.delegate = self
         
         if Auth.auth().currentUser == nil {
@@ -40,11 +39,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 
             return
         }
-        
-//        let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
-//        let navController = UINavigationController(rootViewController: homeController)
-//        self.present(navController, animated: true, completion: nil)
-//
         setupViewControllers()
     }
     
@@ -73,7 +67,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         for item in items {
             item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
         }
-        
     }
     
     private func templateNavController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
