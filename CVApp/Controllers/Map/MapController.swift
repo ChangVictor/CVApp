@@ -21,8 +21,9 @@ protocol PlacesDelegate {
 
 class MapController: UIViewController, UIGestureRecognizerDelegate {
     
-    var expandedTopAnchorConstraint: NSLayoutConstraint!
-    var minimizedTopAnchorConstraint: NSLayoutConstraint!
+    var expandedTopAnchorConstraint: NSLayoutConstraint?
+    var minimizedTopAnchorConstraint: NSLayoutConstraint?
+    
     let placeDetailView = PlaceDetailView.initFromNib()
 
     var menuController = MenuController()
@@ -35,6 +36,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+//        placeDetailView.layoutIfNeeded()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -74,8 +79,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     func minimizePlaceDetails() {
 
-        minimizedTopAnchorConstraint.isActive = true
-        expandedTopAnchorConstraint.isActive = false
+        expandedTopAnchorConstraint?.isActive = false
+        minimizedTopAnchorConstraint?.isActive = true
         
         let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         
@@ -86,11 +91,11 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         })
     }
     
-    func expandPlaceDetails() {
+    @objc func expandPlaceDetails() {
         
-        expandedTopAnchorConstraint.isActive = true
-        expandedTopAnchorConstraint.constant = -250
-        minimizedTopAnchorConstraint.isActive = false
+        minimizedTopAnchorConstraint?.isActive = false
+        expandedTopAnchorConstraint?.isActive = true
+        expandedTopAnchorConstraint?.constant = (view.frame.height / 2)
         let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         
         mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
@@ -103,7 +108,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     // MARK:- Fileprivate
     let darkCoverView = UIView()
     var darkCoverLeftConstraint: NSLayoutConstraint!
-    
     let menuView = UIView()
     
     fileprivate func setupViewControllers() {
@@ -304,17 +308,6 @@ extension MapController: PlacesDelegate {
     
     func selectPlace(indexPath: Int?) {
         
-        /* handle camera position & CLLocationCoordiante2DMake:
-         option 1: set hardcoded markers and use
-         
-         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: -33.868, longitude: 151.208))
-         
-         to animate to a location.
-         
-         - consider usin bearing to add motion effect
-         mapView.animate(toBearing: 0)
-
-        */
         guard let indexPath = indexPath else { return }
         
         switch indexPath {
@@ -335,29 +328,29 @@ extension MapController: PlacesDelegate {
             triggerMapTransition(withDuration: 1.3, latitude: -34.54881224693877, longitude: -58.44375559591837, zoom: 16, bearing: 235, viewAngle: 45)
 
         }
-        
         handleHide()
         setupPlaceDetailView()
-        expandPlaceDetails()
+        perform(#selector(expandPlaceDetails), with: nil, afterDelay: 1)
+        
     }
 
     func setupPlaceDetailView() {
         guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
     
         mapView.addSubview(placeDetailView)
+        
+//        mapView.insertSubview(placeDetailView, belowSubview: mainTabBar.tabBar)
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
         
-        expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-            expandedTopAnchorConstraint.isActive = true
+        expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: view.frame.height)
+        expandedTopAnchorConstraint?.isActive = true
         
         minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -64)
-        minimizedTopAnchorConstraint.isActive = false
+        minimizedTopAnchorConstraint?.isActive = false
         
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        placeDetailView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor).isActive = true
+        placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-    
     }
     
     func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {
