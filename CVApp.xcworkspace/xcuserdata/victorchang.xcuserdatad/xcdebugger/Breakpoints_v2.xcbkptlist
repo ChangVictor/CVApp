@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CVApp/Views/PlaceDetailView.swift"
-            timestampString = "565626159.593695"
+            timestampString = "565650777.29924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "handleTapExpand()"
             landmarkType = "7">
          </BreakpointContent>

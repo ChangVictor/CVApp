@@ -26,6 +26,7 @@ class PlaceDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapExpand)))
+        self.layer.cornerRadius = 22
     }
     
     @objc func handleTapExpand() {
@@ -36,6 +37,7 @@ class PlaceDetailView: UIView {
     
     static func initFromNib() -> PlaceDetailView {
         return Bundle.main.loadNibNamed("PlaceDetailView", owner: self, options: nil)?.first as! PlaceDetailView
+        
     }
     
     deinit {

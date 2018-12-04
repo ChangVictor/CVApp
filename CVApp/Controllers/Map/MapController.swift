@@ -23,9 +23,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     var expandedTopAnchorConstraint: NSLayoutConstraint?
     var minimizedTopAnchorConstraint: NSLayoutConstraint?
+    var hiddenTopAnchorConstraint: NSLayoutConstraint?
     
     let placeDetailView = PlaceDetailView.initFromNib()
-
+    
     var menuController = MenuController()
     fileprivate let menuWidth: CGFloat = 300
     fileprivate var isMenuOpened = false
@@ -108,6 +109,20 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     var darkCoverLeftConstraint: NSLayoutConstraint!
     let menuView = UIView()
     
+    fileprivate func hidePlaceDetails() {
+        minimizedTopAnchorConstraint?.isActive = false
+        expandedTopAnchorConstraint?.isActive = true
+        expandedTopAnchorConstraint?.constant = view.frame.height
+        
+        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBar?.tabBar.transform = .identity
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+
+    }
+    
     fileprivate func setupViewControllers() {
         menuView.addSubview(menuController.view)
 
@@ -172,7 +187,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     @objc fileprivate func handleMapViewReset() {
         triggerMapTransition(withDuration: 1, latitude: -34.608795, longitude: -58.434670, zoom: 12, bearing: 0, viewAngle: 0)
-        placeDetailView.removeFromSuperview()
+        hidePlaceDetails()
     }
     @objc fileprivate func handleOpenSlideView() {
         isMenuOpened = true
