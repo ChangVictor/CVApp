@@ -39,7 +39,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        placeDetailView.layoutIfNeeded()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -56,7 +55,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        addBottomSheetView()
     }
    
     override func viewDidLoad() {
@@ -91,7 +89,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         })
     }
     
-    @objc func expandPlaceDetails() {
+    @objc func  expandPlaceDetails() {
         
         minimizedTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
@@ -174,6 +172,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     @objc fileprivate func handleMapViewReset() {
         triggerMapTransition(withDuration: 1, latitude: -34.608795, longitude: -58.434670, zoom: 12, bearing: 0, viewAngle: 0)
+        placeDetailView.removeFromSuperview()
     }
     @objc fileprivate func handleOpenSlideView() {
         isMenuOpened = true
@@ -335,7 +334,7 @@ extension MapController: PlacesDelegate {
     }
 
     func setupPlaceDetailView() {
-        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+//        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
     
         mapView.addSubview(placeDetailView)
         
@@ -345,12 +344,18 @@ extension MapController: PlacesDelegate {
         expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: view.frame.height)
         expandedTopAnchorConstraint?.isActive = true
         
-        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -64)
+//        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -70)
+        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -150)
         minimizedTopAnchorConstraint?.isActive = false
         
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+    
+    fileprivate func removeSubview() {
+        print("removing subview")
+        
     }
     
     func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {
