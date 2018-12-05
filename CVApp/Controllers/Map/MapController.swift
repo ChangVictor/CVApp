@@ -27,10 +27,12 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     
 //    var place: Place?
     var places = [
+        
     Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837),
     Place(placeName: "Universidad del CEMA", latitude: -34.598595, longitude: -58.372364),
     Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800),
     Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596)
+        
     ]
     
     let placeDetailView = PlaceDetailView.initFromNib()
@@ -144,8 +146,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         darkCoverView.anchor(top: mainWindow.topAnchor, left: nil, bottom: mainWindow.bottomAnchor, right: mainWindow.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         self.darkCoverLeftConstraint = darkCoverView.leftAnchor.constraint(equalTo: mainWindow.leftAnchor, constant: 0)
         darkCoverLeftConstraint.isActive = true
-        
     }
+    
     fileprivate func setupMenuView() {
         let mainWindow = UIApplication.shared.keyWindow
         mainWindow?.addSubview(menuController.view)
@@ -204,8 +206,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         isMenuOpened = false
         performAnimations(transform: .identity)
     }
-    
-    
+
     @objc fileprivate func handleTapDismiss() {
         handleHide()
     }
@@ -218,10 +219,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
             var x = translation.x
             
             if isMenuOpened {
-                
                 x += menuWidth
             }
-            
             x = min(menuWidth, x)
             x = max(0, x)
             
@@ -272,25 +271,12 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         for place in places {
             markPlace(place: place)
         }
-        
-//        let bornPlace = placeMarker(title: "Arica", snippet: "Victor's born place", latitude: -18.478518, longitude: -70.3210596)
-//        bornPlace.map = mapView
-        
-//        let homeMarker = placeMarker(title: "Victor's home", snippet: nil, latitude: -34.610668, longitude: -58.433800)
-//        homeMarker.map = mapView
+
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
         circle.fillColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.2)
         circle.strokeColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.75)
         circle.map = mapView
-//        let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
-//        gymMarker.map = mapView
-////        let universityMarker = placeMarker(title: "Universidad del CEMA", snippet: "BA degree in Business Administration", latitude: -34.598595, longitude: -58.372364)
-//        universityMarker.map = mapView
-//        let digitalHouseMarker = placeMarker(title: "Digital House", snippet: "Coding School", latitude: -34.54881224693877, longitude: -58.44375559591837)
-//        digitalHouseMarker.map = mapView
-        
-        
     }
     
     @discardableResult
