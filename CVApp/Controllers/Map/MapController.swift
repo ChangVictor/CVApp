@@ -25,6 +25,14 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     var minimizedTopAnchorConstraint: NSLayoutConstraint?
     var hiddenTopAnchorConstraint: NSLayoutConstraint?
     
+//    var place: Place?
+    var places = [
+    Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837),
+    Place(placeName: "Universidad del CEMA", latitude: -34.598595, longitude: -58.372364),
+    Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800),
+    Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596)
+    ]
+    
     let placeDetailView = PlaceDetailView.initFromNib()
     
     var menuController = MenuController()
@@ -77,12 +85,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func minimizePlaceDetails() {
-
         expandedTopAnchorConstraint?.isActive = false
         minimizedTopAnchorConstraint?.isActive = true
         
         let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        
         mainTabBar?.tabBar.transform = .identity
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
@@ -91,12 +97,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func  expandPlaceDetails() {
-        
         minimizedTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
         expandedTopAnchorConstraint?.constant = (view.frame.height / 2)
         let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        
         mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
@@ -265,26 +269,39 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         self.mapView.settings.myLocationButton = true
         view = mapView
         
-        let bornPlace = placeMarker(title: "Arica", snippet: "Victor's born place", latitude: -18.478518, longitude: -70.3210596)
-        bornPlace.map = mapView
+        for place in places {
+            markPlace(place: place)
+        }
         
-        let homeMarker = placeMarker(title: "Victor's home", snippet: nil, latitude: -34.610668, longitude: -58.433800)
-        homeMarker.map = mapView
+//        let bornPlace = placeMarker(title: "Arica", snippet: "Victor's born place", latitude: -18.478518, longitude: -70.3210596)
+//        bornPlace.map = mapView
+        
+//        let homeMarker = placeMarker(title: "Victor's home", snippet: nil, latitude: -34.610668, longitude: -58.433800)
+//        homeMarker.map = mapView
         let circleCenter = CLLocationCoordinate2D(latitude: -34.610668, longitude: -58.433800)
         let circle = GMSCircle(position: circleCenter, radius: 250)
         circle.fillColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.2)
         circle.strokeColor = UIColor(red: 74/255, green: 137/255, blue: 243/255, alpha: 0.75)
         circle.map = mapView
+//        let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
+//        gymMarker.map = mapView
+////        let universityMarker = placeMarker(title: "Universidad del CEMA", snippet: "BA degree in Business Administration", latitude: -34.598595, longitude: -58.372364)
+//        universityMarker.map = mapView
+//        let digitalHouseMarker = placeMarker(title: "Digital House", snippet: "Coding School", latitude: -34.54881224693877, longitude: -58.44375559591837)
+//        digitalHouseMarker.map = mapView
         
-        let gymMarker = placeMarker(title: "Tuluka Crossfit", snippet: "I usually twice or thrice a week", latitude: -34.612626, longitude: -58.432023)
-        gymMarker.map = mapView
         
-        let universityMarker = placeMarker(title: "Universidad del CEMA", snippet: "BA degree in Business Administration", latitude: -34.598595, longitude: -58.372364)
-        universityMarker.map = mapView
-        
-        let digitalHouseMarker = placeMarker(title: "Digital House", snippet: "Coding School", latitude: -34.54881224693877, longitude: -58.44375559591837)
-        digitalHouseMarker.map = mapView
-        
+    }
+    
+    @discardableResult
+    private func markPlace(place: Place) -> GMSMarker {
+        let marker = GMSMarker()
+        marker.title = place.name
+        marker.position = CLLocationCoordinate2DMake(place.latitude, place.longitude)
+        marker.snippet = place.snippet
+        marker.opacity = 0.9
+        marker.map = mapView
+        return marker
     }
     
     private func placeMarker(title: String, snippet: String?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> GMSMarker {

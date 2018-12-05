@@ -9,13 +9,15 @@
 import Foundation
 import GoogleMaps
 
-class Place {
-    var placeName: String
+struct Place {
+    var name: String
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
+    var snippet: String?
+    var description: String?
     
     init(placeName: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        self.placeName = placeName
+        self.name = placeName
         self.latitude = latitude
         self.longitude = longitude
     }
