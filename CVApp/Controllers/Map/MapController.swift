@@ -27,13 +27,13 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     var hiddenTopAnchorConstraint: NSLayoutConstraint?
     
 //    var place: Place?
-    var places = [birthPlaceMarker, homeMarker, digitalHouse, universityMarker]
-        
-    let digitalHouse = Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837)
-    let universityMarker = Place(placeName: "Universidad del CEMA", latitude: -34.598595, longitude: -58.372364)
-    let homeMarker = Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800)
-    let birthPlaceMarker = Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596)
-    
+    var places = [
+                    Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596),
+                    Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837),
+                    Place(placeName: "Universidad del CEMA", latitude: -34.598595, longitude: -58.372364),
+                    Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800)
+                ]
+
     let placeDetailView = PlaceDetailView.initFromNib()
     
     var menuController = MenuController()
@@ -345,7 +345,6 @@ extension MapController: PlacesDelegate {
             triggerMapTransition(withDuration: 1.3, latitude: -34.54881224693877, longitude: -58.44375559591837, zoom: 16, bearing: 235, viewAngle: 45)
         }
         
-        let place = self.places[indexPath.row]
         handleHide()
         setupPlaceDetailView()
         
