@@ -17,7 +17,7 @@ class MenuController: UITableViewController {
         MenuItem(icon: #imageLiteral(resourceName: "bookmark"), title: "University"),
         MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Coding School")
     ]
-    
+  
     var placesDelegate: PlacesDelegate?
     
     override func viewDidLoad() {
