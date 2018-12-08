@@ -356,11 +356,14 @@ extension MapController: PlacesDelegate {
         guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
         guard let mainWindow = UIApplication.shared.keyWindow else { return }
         
-        
         mapView.addSubview(placeDetailView)
-        mainWindow.insertSubview(placeDetailView, aboveSubview: mainTabBar.view)
+//        mainTabBar.view.insertSubview(placeDetailView, belowSubview: mainTabBar)
+//        mainTabBar.view.addSubview(placeDetailView)
 //        mapView.insertSubview(placeDetailView, aboveSubview: mainWindow)
-        
+        darkCoverView.isUserInteractionEnabled = true
+        self.view.bringSubviewToFront(placeDetailView)
+//        mainWindow.removeFromSuperview()
+        mainWindow.isUserInteractionEnabled = true
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
         
         initialTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: view.frame.height)
@@ -375,7 +378,6 @@ extension MapController: PlacesDelegate {
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
     }
     
     fileprivate func removeSubview() {
