@@ -26,6 +26,7 @@ class PlaceDetailView: UIView {
         // should create a protocol to call minimizePlaceDetails()
         expandableDelegate?.minimizeTopConstraint()
         print("dismissButton pressed")
+        miniPlaceView.isUserInteractionEnabled = true
     }
     
     @IBOutlet weak var placeTitle: UILabel!
@@ -33,14 +34,20 @@ class PlaceDetailView: UIView {
     @IBOutlet weak var placeImageView: UIImageView!
 
     var expandableDelegate: ExpandableDelegate?
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapExpand)))
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
         self.layer.cornerRadius = 22
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapExpand)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        self.addGestureRecognizer(panGesture)
+        
     }
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         print("Panning")

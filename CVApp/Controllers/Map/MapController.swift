@@ -26,7 +26,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     var minimizedTopAnchorConstraint: NSLayoutConstraint?
     var hiddenTopAnchorConstraint: NSLayoutConstraint?
     
-//    var place: Place?
+//    var place: Place
     var places = [
                     Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596),
                     Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837),
@@ -94,7 +94,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         minimizedTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = true
-                
+
         let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         mainTabBar?.tabBar.transform = .identity
         
@@ -299,16 +299,16 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
             self.view.layoutIfNeeded()
             self.placeDetailView.expandeedStakView.alpha = 0
             self.placeDetailView.miniPlaceView.alpha = 1
+            
         })
     }
-    
+
     @objc func  expandPlaceDetails() {
+        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         minimizedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
-        
-        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
@@ -354,8 +354,12 @@ extension MapController: PlacesDelegate {
 
     func setupPlaceDetailView() {
 //        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-        mapView.addSubview(placeDetailView)
-//        mapView.insertSubview(placeDetailView, belowSubview: mainTabBar.tabBar)
+        let mainWindow = UIApplication.shared.keyWindow
+        
+        
+//        mapView.addSubview(placeDetailView)
+        mainWindow?.insertSubview(placeDetailView, aboveSubview: mapView)
+        
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
         
         initialTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: view.frame.height)
