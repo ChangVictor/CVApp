@@ -292,8 +292,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         minimizedTopAnchorConstraint?.isActive = true
         
         
-        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBar?.tabBar.transform = .identity
+//        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+//        mainTabBar?.tabBar.transform = .identity
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
@@ -304,8 +304,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @objc func  expandPlaceDetails() {
-        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+//        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+//        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         minimizedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
@@ -353,12 +353,13 @@ extension MapController: PlacesDelegate {
     }
 
     func setupPlaceDetailView() {
-//        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-        let mainWindow = UIApplication.shared.keyWindow
+        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+        guard let mainWindow = UIApplication.shared.keyWindow else { return }
         
         
-//        mapView.addSubview(placeDetailView)
-        mainWindow?.insertSubview(placeDetailView, aboveSubview: mapView)
+        mapView.addSubview(placeDetailView)
+        mainWindow.insertSubview(placeDetailView, aboveSubview: mainTabBar.view)
+//        mapView.insertSubview(placeDetailView, aboveSubview: mainWindow)
         
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -374,6 +375,7 @@ extension MapController: PlacesDelegate {
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
     }
     
     fileprivate func removeSubview() {
