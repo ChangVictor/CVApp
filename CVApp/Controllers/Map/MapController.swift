@@ -308,7 +308,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         minimizedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
-        bottomAnchorConstraint?.constant = view.frame.height / 2
+        bottomAnchorConstraint?.constant = view.frame.height /* tweak this */
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.placeDetailView.layoutIfNeeded()
@@ -373,7 +373,7 @@ extension MapController: PlacesDelegate {
 //        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -70)
         minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: -85)
         minimizedTopAnchorConstraint?.isActive = false
-        bottomAnchorConstraint = placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height / 3)
+        bottomAnchorConstraint = placeDetailView.bottomAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: view.frame.height )
         bottomAnchorConstraint?.isActive = true
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
