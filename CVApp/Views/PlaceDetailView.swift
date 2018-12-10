@@ -68,6 +68,7 @@ class PlaceDetailView: UIView {
         print("tapping to maximize")
         // calling the same map protocol in order to expand the place detail view
         expandableDelegate?.expandTopConstraint()
+        
     }
     
     static func initFromNib() -> PlaceDetailView {

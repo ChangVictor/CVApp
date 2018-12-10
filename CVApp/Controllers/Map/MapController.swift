@@ -290,13 +290,12 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = false
         minimizedTopAnchorConstraint?.isActive = true
-        
-        
+   
 //        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
 //        mainTabBar?.tabBar.transform = .identity
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
+            self.placeDetailView.layoutIfNeeded()
             self.placeDetailView.expandeedStakView.alpha = 0
             self.placeDetailView.miniPlaceView.alpha = 1
             
@@ -311,7 +310,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         expandedTopAnchorConstraint?.isActive = true
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
+            self.placeDetailView.layoutIfNeeded()
             
             self.placeDetailView.expandeedStakView.alpha = 1
             self.placeDetailView.miniPlaceView.alpha = 0
@@ -355,24 +354,24 @@ extension MapController: PlacesDelegate {
     func setupPlaceDetailView() {
         guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
         guard let mainWindow = UIApplication.shared.keyWindow else { return }
-        
-        mapView.addSubview(placeDetailView)
+
+        mainWindow.addSubview(placeDetailView)
 //        mainTabBar.view.insertSubview(placeDetailView, belowSubview: mainTabBar)
 //        mainTabBar.view.addSubview(placeDetailView)
 //        mapView.insertSubview(placeDetailView, aboveSubview: mainWindow)
-        darkCoverView.isUserInteractionEnabled = true
+        
         self.view.bringSubviewToFront(placeDetailView)
 //        mainWindow.removeFromSuperview()
-        mainWindow.isUserInteractionEnabled = true
+        
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
         
-        initialTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: view.frame.height)
+        initialTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.topAnchor, constant: view.frame.height)
         initialTopAnchorConstraint?.isActive = true
         
-        expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: view.frame.height / 2)
+        expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.topAnchor, constant: view.frame.height / 2)
         expandedTopAnchorConstraint?.isActive = false
 //        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -70)
-        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -150)
+        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: -85)
         minimizedTopAnchorConstraint?.isActive = false
         
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
