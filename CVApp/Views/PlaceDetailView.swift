@@ -27,6 +27,8 @@ class PlaceDetailView: UIView {
         expandableDelegate?.minimizeTopConstraint()
         print("dismissButton pressed")
         miniPlaceView.isUserInteractionEnabled = true
+        panGesture.isEnabled = true
+        
     }
     
     @IBOutlet weak var placeTitle: UILabel!
@@ -34,7 +36,7 @@ class PlaceDetailView: UIView {
     @IBOutlet weak var placeImageView: UIImageView!
 
     var expandableDelegate: ExpandableDelegate?
-
+    var panGesture: UIPanGestureRecognizer!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -45,36 +47,45 @@ class PlaceDetailView: UIView {
         self.layer.cornerRadius = 22
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapExpand)))
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         self.addGestureRecognizer(panGesture)
-        
     }
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
-        print("Panning")
-        if gesture.state == .began {
-            print("Began")
-        } else if gesture.state == .changed {
-            print("Changed")
-            let translation = gesture.translation(in: self.superview)
-            self.transform = CGAffineTransform(translationX: 0, y: translation.y)
-//            print(translation.y)
-            self.miniPlaceView.alpha = 1 + translation.y / 200
-            self.expandeedStakView.alpha = -translation.y / 200
-            
+        if gesture.state == .changed {
+            handlePanChanged(gesture: gesture)
         } else if gesture.state == .ended {
+            handlePanEnded(gesture: gesture)
+        }
+    }
+    
+    fileprivate func handlePanChanged(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        self.miniPlaceView.alpha = 1 + translation.y / 200
+        self.expandeedStakView.alpha = -translation.y / 200
+    }
+    
+    fileprivate func handlePanEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = .identity
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                self.expandableDelegate?.expandTopConstraint()
+                gesture.isEnabled = false
+            } else {
                 self.miniPlaceView.alpha = 1
                 self.expandeedStakView.alpha = 0
- 
-            }, completion: nil)
-        }
+            }
+            
+        }, completion: nil)
     }
     @objc func handleTapExpand() {
         print("tapping to maximize")
         // calling the same map protocol in order to expand the place detail view
         expandableDelegate?.expandTopConstraint()
+        panGesture.isEnabled = false
         
     }
     

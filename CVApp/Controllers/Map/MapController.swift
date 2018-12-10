@@ -24,6 +24,7 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     var initialTopAnchorConstraint: NSLayoutConstraint?
     var expandedTopAnchorConstraint: NSLayoutConstraint?
     var minimizedTopAnchorConstraint: NSLayoutConstraint?
+    var bottomAnchorConstraint: NSLayoutConstraint?
     var hiddenTopAnchorConstraint: NSLayoutConstraint?
     
 //    var place: Place
@@ -284,13 +285,13 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         let height = view.frame.height
         let width = view.frame.width
         bottomSheetController.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
-
     }
+    
     func minimizePlaceDetails() {
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = false
+        bottomAnchorConstraint?.constant = view.frame.height / 2
         minimizedTopAnchorConstraint?.isActive = true
-   
 //        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
 //        mainTabBar?.tabBar.transform = .identity
         
@@ -298,7 +299,6 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
             self.placeDetailView.layoutIfNeeded()
             self.placeDetailView.expandeedStakView.alpha = 0
             self.placeDetailView.miniPlaceView.alpha = 1
-            
         })
     }
 
@@ -308,10 +308,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         minimizedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
+        bottomAnchorConstraint?.constant = view.frame.height / 2
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.placeDetailView.layoutIfNeeded()
-            
             self.placeDetailView.expandeedStakView.alpha = 1
             self.placeDetailView.miniPlaceView.alpha = 0
         })
@@ -360,7 +360,7 @@ extension MapController: PlacesDelegate {
 //        mainTabBar.view.addSubview(placeDetailView)
 //        mapView.insertSubview(placeDetailView, aboveSubview: mainWindow)
         
-        self.view.bringSubviewToFront(placeDetailView)
+//        self.view.bringSubviewToFront(mainTabBar.view)
 //        mainWindow.removeFromSuperview()
         
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
@@ -373,9 +373,9 @@ extension MapController: PlacesDelegate {
 //        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -70)
         minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: -85)
         minimizedTopAnchorConstraint?.isActive = false
-        
+        bottomAnchorConstraint = placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height / 3)
+        bottomAnchorConstraint?.isActive = true
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        placeDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
