@@ -57,10 +57,17 @@ class PlaceDetailView: UIView {
             print("Changed")
             let translation = gesture.translation(in: self.superview)
             self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+//            print(translation.y)
+            self.miniPlaceView.alpha = 1 + translation.y / 200
+            self.expandeedStakView.alpha = -translation.y / 200
+            
         } else if gesture.state == .ended {
-            print("Ended")
+            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.transform = .identity
+                self.miniPlaceView.alpha = 1
+                self.expandeedStakView.alpha = 0
+ 
             }, completion: nil)
         }
     }
