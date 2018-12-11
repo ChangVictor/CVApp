@@ -292,8 +292,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         expandedTopAnchorConstraint?.isActive = false
         bottomAnchorConstraint?.constant = view.frame.height / 2
         minimizedTopAnchorConstraint?.isActive = true
-//        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-//        mainTabBar?.tabBar.transform = .identity
+        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBar?.tabBar.transform = .identity
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.placeDetailView.layoutIfNeeded()
@@ -303,8 +303,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @objc func  expandPlaceDetails() {
-//        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-//        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         minimizedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
@@ -336,6 +336,7 @@ extension MapController: PlacesDelegate {
         switch indexPath {
         case 0:
             triggerMapTransition(withDuration: 3, latitude: -18.478518, longitude: -70.3210596, zoom: 8, bearing: 0, viewAngle: 0)
+            placeDetailView.placeTitle.text = "some place"
         case 1:
             triggerMapTransition(withDuration: 1.3, latitude: -34.610668, longitude: -58.433800, zoom: 17, bearing: 340, viewAngle: 45)
         case 2:
