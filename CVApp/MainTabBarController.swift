@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
+    var handler: AuthStateDidChangeListenerHandle?
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.index(of: viewController)
         
@@ -26,19 +26,23 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         return true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handler = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            self.checkLoggedInUserStatus()
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let handler = handler else { return }
+        Auth.auth().removeStateDidChangeListener(handler)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         
-        if Auth.auth().currentUser == nil {
-            DispatchQueue.main.async {
-                let loginController = LoginController()
-                let navController = UINavigationController(rootViewController: loginController)
-                self.present(navController, animated: true, completion: nil)
-            }
-
-            return
-        }
         setupViewControllers()
     }
     
@@ -67,6 +71,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         for item in items {
             item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
         }
+    }
+    
+    fileprivate func checkLoggedInUserStatus() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
+            }
+            return
+        }
+
     }
     
     private func templateNavController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {

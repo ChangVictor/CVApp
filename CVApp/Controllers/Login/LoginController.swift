@@ -8,10 +8,11 @@
 
 import Foundation
 import Firebase
-//import FacebookLogin
+import FacebookLogin
 import FBSDKLoginKit
+import GoogleSignIn
 
-class  LoginController: UIViewController {
+class  LoginController: UIViewController, GIDSignInUIDelegate {
 
     let emailTextField: UITextField = {
         let textField = UITextField()
@@ -91,8 +92,25 @@ class  LoginController: UIViewController {
     }()
     
     @objc fileprivate func handleFacebookLogin() {
+        
+        
+        let loginManager = LoginManager()
+        
+        loginManager.logIn(readPermissions: [.publicProfile, .email], viewController: self) { (result) in
+            switch result {
+            case .success(grantedPermissions: _, declinedPermissions: _, token: _):
+                print("Loggin in")
+                self.handleFBSDK()
+            case .failed(let error):
+                print("Failed login: \(error.localizedDescription)")
+            case .cancelled:
+                print("Login Cancelled")
+            }
+        }
+        /*
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+    
             if let error = error {
                 print("Failed to login: \(error.localizedDescription)")
                 return
@@ -181,7 +199,90 @@ class  LoginController: UIViewController {
                 })
                 
             })
+        }  */
+    }
+    
+    fileprivate func handleFBSDK() {
+        
+        guard let accesToken = FBSDKAccessToken.current() else {
+            print("Failed to get acces token")
+            return
         }
+        
+        let credential = FacebookAuthProvider.credential(withAccessToken: accesToken.tokenString)
+        Auth.auth().signInAndRetrieveData(with: credential, completion: { (user, error) in
+            if let error = error {
+                print("Login error: \(error.localizedDescription)")
+                let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(okayAction)
+                self.present(alertController, animated: true, completion: nil)
+                return
+        }
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            let ref = Database.database().reference()
+            ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.hasChild(uid) {
+                    
+                    print("Succesfully logged in with user: ", Auth.auth().currentUser?.displayName ?? "Username not found")
+                    guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                    mainTabBarController.setupViewControllers()
+                    self.dismiss(animated: true, completion: nil)
+                    
+                } else {
+                        
+                        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture.width(480).height(480)"])?.start { (connection, result, error) in
+                            if error != nil {
+                                print("Graph failed: ", error ?? "")
+                                return
+                            }
+                            print(result ?? "")
+                            guard let data = result as? [String: Any] else { return }
+                            guard let email = data["email"] as? String else { return }
+                            guard let username = data["name"] as? String else { return }
+                            if let profilePictureUrl = ((data["picture"] as? [String: Any])? ["data"] as? [String: Any])? ["url"] as? String {
+                                print(profilePictureUrl)
+                                guard let url = URL(string: profilePictureUrl) else { return }
+                                guard let data = NSData(contentsOf: url) else { return }
+                                guard let uid = Auth.auth().currentUser?.uid else { return }
+                                let image = UIImage(data: data as Data)
+                                guard let uploadData = image?.jpegData(compressionQuality: 0.4) else { return }
+                                Storage.storage().reference().child("profile_images").child(uid).putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                    if let error = error {
+                                        print("Failed to save facebook profile picture on storage", error)
+                                        return
+                                    }
+                                    Storage.storage().reference().child("profile_pictures").child(uid).downloadURL(completion: { (downloadUrl, error) in
+                                        guard let profileImageUrl = downloadUrl?.absoluteString else { return }
+                                        print("Succesfully uploaded profile image", profileImageUrl)
+                                        
+                                    })
+                                })
+                                
+                                let userInfo: [String: Any] = ["uid": uid,
+                                                               "username": username,
+                                                               "email": email,
+                                                               "profileImageUrl": profilePictureUrl
+                                ]
+                                let values = [uid: userInfo]
+                                Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                                    if let error = error {
+                                        print("Failed top save Facebook user into database", error)
+                                        return
+                                    }
+                                    
+                                    print("Succesfully saved Facebook user into Database", reference)
+                                    
+                                })
+                            }
+                        }
+                        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                        maintabBarController.setupViewControllers()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+            })
+        })
     }
     
     let googleLoginButton: UIButton = {
@@ -197,6 +298,11 @@ class  LoginController: UIViewController {
     
     @objc fileprivate func handleGoogleLogin() {
         print("Google login not yet set")
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+        maintabBarController.setupViewControllers()
+        self.dismiss(animated: true, completion: nil)
     }
     
     let dontHaveAccountButton: UIButton = {
@@ -217,15 +323,23 @@ class  LoginController: UIViewController {
         
     }
     
+    fileprivate func signInWithFacebook() {
+        guard let accesToken = FBSDKAccessToken.current() else {
+            print("Failed to get acces token")
+            return
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance().signIn()
         
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         navigationController?.isNavigationBarHidden = true
         
         view.addSubview(loginButton)
-        
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 12, paddingRight: 0, width: 0, height: 50)
         

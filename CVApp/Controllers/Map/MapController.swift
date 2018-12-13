@@ -293,8 +293,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         bottomAnchorConstraint?.constant = view.frame.height / 2
         minimizedTopAnchorConstraint?.isActive = true
         let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBar?.tabBar.transform = .identity
-        
+//        mainTabBar?.tabBar.transform = .identity
+        mainTabBar?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.placeDetailView.layoutIfNeeded()
             self.placeDetailView.expandeedStakView.alpha = 0

@@ -29,5 +29,7 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'GoogleSignIn'
+pod ''
 
 end
