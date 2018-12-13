@@ -93,7 +93,6 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
     
     @objc fileprivate func handleFacebookLogin() {
         
-        
         let loginManager = LoginManager()
         
         loginManager.logIn(readPermissions: [.publicProfile, .email], viewController: self) { (result) in
