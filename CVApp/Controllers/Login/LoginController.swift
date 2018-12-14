@@ -298,12 +298,9 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
     @objc fileprivate func handleGoogleLogin() {
         print("Google login not yet set")
         
-        guard let authentication = GIDSignIn.sharedInstance()?.currentUser.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
         GIDSignIn.sharedInstance().signIn()
-        Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
-            //... write logic 
-        }
+        
 //        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
 //        maintabBarController.setupViewControllers()
 //        self.dismiss(animated: true, completion: nil)
