@@ -24,7 +24,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>facebook</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb277680879546095</string>
@@ -34,7 +34,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>google</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.598607921351-p6cm4dkssnft45rji56ms67vpu9e7bo7</string>

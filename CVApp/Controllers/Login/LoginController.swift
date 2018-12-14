@@ -297,11 +297,15 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
     
     @objc fileprivate func handleGoogleLogin() {
         print("Google login not yet set")
-        GIDSignIn.sharedInstance().uiDelegate = self
+        
         GIDSignIn.sharedInstance().signIn()
-        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-        maintabBarController.setupViewControllers()
-        self.dismiss(animated: true, completion: nil)
+
+//        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+//        maintabBarController.setupViewControllers()
+//        self.dismiss(animated: true, completion: nil)
+    }
+    fileprivate func googleLoginHandler() {
+        
     }
     
     let dontHaveAccountButton: UIButton = {
