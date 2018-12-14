@@ -84,14 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         guard let name = user.profile.name else { return }
         guard let email = user.profile.email else { return }
         let profilePic = user.profile.imageURL(withDimension: 3)
-        Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
-            if let error = error {
-                print("Google login error: \(error.localizedDescription)")
             }
-            print("Logged with user \(name), with email: \(email)")
-                
-        }
-    }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
