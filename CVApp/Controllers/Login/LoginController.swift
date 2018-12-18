@@ -279,7 +279,7 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
                         guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
                         maintabBarController.setupViewControllers()
                         self.dismiss(animated: true, completion: nil)
-                    }
+                }
             })
         })
     }
@@ -297,14 +297,21 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
     
     @objc fileprivate func handleGoogleLogin() {
         print("Google login not yet set")
-        
-        
         GIDSignIn.sharedInstance().signIn()
         
-//        guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-//        maintabBarController.setupViewControllers()
-//        self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
+//
+//            guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+//            maintabBarController.setupViewControllers()
+//            self.dismiss(animated: true, completion: nil)
     }
+    
+    @objc fileprivate func didSignIn() {
+        guard let mainTabbarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+        mainTabbarController.setupViewControllers()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     fileprivate func googleLoginHandler() {
         
     }
@@ -339,7 +346,7 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().signIn()
-        
+    
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         navigationController?.isNavigationBarHidden = true
         
@@ -353,9 +360,9 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
 //        view.addSubview(fbloginButton)
 //        fbloginButton.center = view.center
         
-        if let accesToken = FBSDKAccessToken.current() {
-            print(accesToken)
-        }
+//        if let accesToken = FBSDKAccessToken.current() {
+//            print(accesToken)
+//        }
         
         setupInputFields()
 //        fbloginButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
@@ -377,7 +384,7 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
     }
 
 }
