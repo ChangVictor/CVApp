@@ -336,13 +336,17 @@ extension MapController: PlacesDelegate {
         switch indexPath {
         case 0:
             triggerMapTransition(withDuration: 3, latitude: -18.478518, longitude: -70.3210596, zoom: 8, bearing: 0, viewAngle: 0)
-            placeDetailView.placeTitle.text = "some place"
+            placeDetailView.placeTitle.text = "Arica, Chile."
         case 1:
             triggerMapTransition(withDuration: 1.3, latitude: -34.610668, longitude: -58.433800, zoom: 17, bearing: 340, viewAngle: 45)
+            placeDetailView.placeTitle.text = "Victor's Home"
+            placeDetailView.placeDescription.text = "I've lived in the heart of Buenos Aires for over 25 years."
         case 2:
             triggerMapTransition(withDuration: 1.2, latitude: -34.598595, longitude: -58.372364, zoom: 16, bearing: 0, viewAngle: 45)
+            placeDetailView.placeTitle.text = "Universidad del CEMA"
         default:
             triggerMapTransition(withDuration: 1.3, latitude: -34.54881224693877, longitude: -58.44375559591837, zoom: 16, bearing: 235, viewAngle: 45)
+            placeDetailView.placeTitle.text = "Digital House Coding School"
         }
         
         handleHide()

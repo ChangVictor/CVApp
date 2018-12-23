@@ -14,10 +14,13 @@ class PlaceDetailView: UIView {
     
     var place: Place? {
         didSet {
+            
             placeTitle.text = place?.name
             placeDescription.text = place?.description
+            
         }
     }
+    
     @IBOutlet weak var miniPlaceImageView: UIImageView!
     @IBOutlet weak var miniPlaceView: UIView!
     @IBOutlet weak var expandeedStakView: UIStackView!
@@ -32,7 +35,7 @@ class PlaceDetailView: UIView {
     }
     
     @IBOutlet weak var placeTitle: UILabel!
-    @IBOutlet weak var placeDescription: UILabel!
+    @IBOutlet weak var placeDescription: UITextView!
     @IBOutlet weak var placeImageView: UIImageView!
 
     var expandableDelegate: ExpandableDelegate?
