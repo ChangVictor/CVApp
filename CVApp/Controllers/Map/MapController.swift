@@ -344,6 +344,8 @@ extension MapController: PlacesDelegate {
             placeDetailView.placeDescription.text = "I've lived in the heart of Buenos Aires for over 25 years."
         case 2:
             triggerMapTransition(withDuration: 1.2, latitude: -34.598595, longitude: -58.372364, zoom: 16, bearing: 0, viewAngle: 45)
+            
+//            placeDetailView.miniPlaceTitle.text = "Universidad del CEMA"
             placeDetailView.placeTitle.text = "Universidad del CEMA"
             placeDetailView.placeDescription.text = "In the year 2010 I started studying at the CEMA University, for a Bachelor's degree in Business Administration."
         default:

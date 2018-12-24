@@ -34,6 +34,7 @@ class PlaceDetailView: UIView {
         
     }
     
+    @IBOutlet weak var miniPlaceTitle: UILabel!
     @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var placeDescription: UITextView!
     @IBOutlet weak var placeImageView: UIImageView! {

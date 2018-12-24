@@ -108,6 +108,7 @@
             <connections>
                 <outlet property="expandeedStakView" destination="1j3-wU-TJh" id="U7P-uH-Oeh"/>
                 <outlet property="miniPlaceImageView" destination="4me-Ge-QRJ" id="n8Y-YD-WOd"/>
+                <outlet property="miniPlaceTitle" destination="exh-tH-CRa" id="7Nr-dX-RQk"/>
                 <outlet property="miniPlaceView" destination="exh-tH-CRa" id="Bik-hB-sBz"/>
                 <outlet property="placeButton" destination="DKQ-Z1-uFM" id="R4U-im-0Pr"/>
                 <outlet property="placeDescription" destination="SuH-05-3YI" id="RGR-qL-dXn"/>

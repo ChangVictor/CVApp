@@ -24,27 +24,22 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        view.addSubview(scrollView)
-//        scrollView.fillSuperview()
-//        scrollView.addSubview(imageView)
-//        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
-        
-        
         navigationItem.title = "Home"
         
-        collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
-        collectionView.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
+        setupCollectionView()
+        setupHeaderSeparator()
         self.collectionView?.refreshControl?.endRefreshing()
-        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView?.refreshControl = refreshControl
-        
-        setupHeaderSeparator()
         
     }
     
@@ -52,6 +47,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidAppear(animated)
 //        fetchAllposts()
         handleRefresh()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     @objc fileprivate func handleRefresh() {
@@ -63,9 +64,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
+    fileprivate func setupCollectionView() {
+        collectionView?.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+        collectionView.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.contentInsetAdjustmentBehavior = .never
+    }
+    
     fileprivate func setupHeaderSeparator() {
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsets(top: 12.0, left: 0, bottom: 0, right: 0)
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.sectionInset = .init(top: 16, left: 0, bottom: 0, right: 0)
     }
     
     fileprivate func fetchPost() {
@@ -127,7 +135,8 @@ extension HomeController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height / 4)
+//        return CGSize(width: view.frame.width, height: view.frame.height / 4)
+        return CGSize(width: view.frame.width, height: 340)
     }
 }
 
