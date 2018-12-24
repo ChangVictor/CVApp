@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import Firebase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
     
     private var posts = [Post]()
     var user: User?
@@ -25,6 +26,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        view.addSubview(scrollView)
+//        scrollView.fillSuperview()
+//        scrollView.addSubview(imageView)
+//        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
+        
         
         navigationItem.title = "Home"
         

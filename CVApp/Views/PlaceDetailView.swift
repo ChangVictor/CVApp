@@ -36,7 +36,11 @@ class PlaceDetailView: UIView {
     
     @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var placeDescription: UITextView!
-    @IBOutlet weak var placeImageView: UIImageView!
+    @IBOutlet weak var placeImageView: UIImageView! {
+        didSet {
+            placeImageView.layer.cornerRadius = 10
+        }
+    }
 
     var expandableDelegate: ExpandableDelegate?
     var panGesture: UIPanGestureRecognizer!
