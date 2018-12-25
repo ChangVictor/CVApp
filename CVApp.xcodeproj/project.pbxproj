@@ -46,7 +46,7 @@
 		567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E1216FCB0C00C6FFFC /* Comment.swift */; };
 		567074E4216FCBC600C6FFFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E3216FCBC600C6FFFC /* Post.swift */; };
 		567074E6216FD2F200C6FFFC /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567074E5216FD2F200C6FFFC /* HomePostCell.swift */; };
-		5674A4F2218CD1FF00C50F91 /* HeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */; };
+		5674A4F2218CD1FF00C50F91 /* StrechyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5674A4F1218CD1FF00C50F91 /* StrechyHeaderLayout.swift */; };
 		568B8DB921AAD21F00ED2F0E /* MenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568B8DB821AAD21F00ED2F0E /* MenuHeader.swift */; };
 		568B8DBB21AAEEFB00ED2F0E /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568B8DBA21AAEEFB00ED2F0E /* ProfileImageView.swift */; };
 		56CCE4902178C3A8000E4AC6 /* PostMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */; };
@@ -119,7 +119,7 @@
 		567074E1216FCB0C00C6FFFC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		567074E3216FCBC600C6FFFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		567074E5216FD2F200C6FFFC /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
-		5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLayout.swift; sourceTree = "<group>"; };
+		5674A4F1218CD1FF00C50F91 /* StrechyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrechyHeaderLayout.swift; sourceTree = "<group>"; };
 		568B8DB821AAD21F00ED2F0E /* MenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeader.swift; sourceTree = "<group>"; };
 		568B8DBA21AAEEFB00ED2F0E /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		56CCE48F2178C3A8000E4AC6 /* PostMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageController.swift; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 				56254D3F216D4B02005C6FA0 /* Extension.swift */,
 				566442D621793363008FDF60 /* FirebaseUtils.swift */,
 				566442D821793524008FDF60 /* CustomImageView.swift */,
-				5674A4F1218CD1FF00C50F91 /* HeaderLayout.swift */,
+				5674A4F1218CD1FF00C50F91 /* StrechyHeaderLayout.swift */,
 				5653B8F521A623CA00C50E72 /* SpacerView.swift */,
 				568B8DBA21AAEEFB00ED2F0E /* ProfileImageView.swift */,
 			);
@@ -677,7 +677,7 @@
 				567074E2216FCB0C00C6FFFC /* Comment.swift in Sources */,
 				561B980F218B42E700BA41F4 /* VictorProfileHeader.swift in Sources */,
 				5653B8F421A6234000C50E72 /* MenuCell.swift in Sources */,
-				5674A4F2218CD1FF00C50F91 /* HeaderLayout.swift in Sources */,
+				5674A4F2218CD1FF00C50F91 /* StrechyHeaderLayout.swift in Sources */,
 				562EB04F2172122500939D94 /* UserProfileViewController.swift in Sources */,
 				562E5800216D07CF00A517E2 /* ViewController.swift in Sources */,
 				562EB051217212D400939D94 /* VictorProfileController.swift in Sources */,
