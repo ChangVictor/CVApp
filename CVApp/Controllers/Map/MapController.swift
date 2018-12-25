@@ -309,11 +309,12 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         initialTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = true
         bottomAnchorConstraint?.constant = view.frame.height /* tweak this */
-        
+
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.placeDetailView.layoutIfNeeded()
             self.placeDetailView.expandeedStakView.alpha = 1
             self.placeDetailView.miniPlaceView.alpha = 0
+
         })
     }
 }
@@ -338,25 +339,31 @@ extension MapController: PlacesDelegate {
             triggerMapTransition(withDuration: 3, latitude: -18.478518, longitude: -70.3210596, zoom: 8, bearing: 0, viewAngle: 0)
             placeDetailView.placeTitle.text = "Arica, Chile."
             placeDetailView.placeDescription.text = "Even though I have Taiwanese roots and I grew up in Argentina, I was originally born in  Arica, north of Chile. And moved to Argentina when I turned 3."
+            placeDetailView.placeImageView.image = #imageLiteral(resourceName: "Arica")
+            
         case 1:
             triggerMapTransition(withDuration: 1.3, latitude: -34.610668, longitude: -58.433800, zoom: 17, bearing: 340, viewAngle: 45)
             placeDetailView.placeTitle.text = "Victor's Home"
             placeDetailView.placeDescription.text = "I've lived in the heart of Buenos Aires for over 25 years."
+            placeDetailView.placeImageView.image = #imageLiteral(resourceName: "homePlace")
         case 2:
             triggerMapTransition(withDuration: 1.2, latitude: -34.598595, longitude: -58.372364, zoom: 16, bearing: 0, viewAngle: 45)
             
-//            placeDetailView.miniPlaceTitle.text = "Universidad del CEMA"
             placeDetailView.placeTitle.text = "Universidad del CEMA"
             placeDetailView.placeDescription.text = "In the year 2010 I started studying at the CEMA University, for a Bachelor's degree in Business Administration."
+            placeDetailView.placeImageView.image = #imageLiteral(resourceName: "ucema")
+
         default:
             triggerMapTransition(withDuration: 1.3, latitude: -34.54881224693877, longitude: -58.44375559591837, zoom: 16, bearing: 235, viewAngle: 45)
             placeDetailView.placeTitle.text = "Digital House Coding School"
             placeDetailView.placeDescription.text = "I started my coding journey about a year ago, first learning the basics of HTML, CSS, PHP and Javascript and doing some Web Development, only until I found myself fulfulling the curiousness that was growing on me about the Swift language and iOS development."
+            placeDetailView.placeImageView.image = #imageLiteral(resourceName: "digitalHouse")
         }
         
         handleHide()
         setupPlaceDetailView()
-        
+        placeDetailView.miniPlaceTitle.text = placeDetailView.placeTitle.text
+        placeDetailView.miniPlaceImageView.image = placeDetailView.placeImageView.image
         perform(#selector(expandPlaceDetails), with: nil, afterDelay: 1)
         
     }

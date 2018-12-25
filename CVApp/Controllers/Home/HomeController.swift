@@ -136,7 +136,7 @@ extension HomeController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 //        return CGSize(width: view.frame.width, height: view.frame.height / 4)
-        return CGSize(width: view.frame.width, height: 340)
+        return CGSize(width: view.frame.width, height: 300)
     }
 }
 

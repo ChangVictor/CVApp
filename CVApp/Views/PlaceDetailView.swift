@@ -14,9 +14,11 @@ class PlaceDetailView: UIView {
     
     var place: Place? {
         didSet {
-            
+            // not working
             placeTitle.text = place?.name
             placeDescription.text = place?.description
+            miniPlaceTitle.text = placeTitle.text
+            miniPlaceImageView.image = placeImageView.image
             
         }
     }
