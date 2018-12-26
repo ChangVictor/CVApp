@@ -17,6 +17,12 @@ class HomeHeader: UICollectionViewCell {
         return iv
     }()
     
+    let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .gray
+        return imageView
+    }()
+    
     let containerView: UIView = {
         let coverImage = "cloth_macbook"
         let view = UIImageView()
@@ -58,7 +64,25 @@ class HomeHeader: UICollectionViewCell {
 //        containerView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         addSubview(imageView)
         imageView.fillSuperview()
+        imageView.addSubview(logoImageView)
         
+        setupLogoView()
+        
+    }
+    
+    fileprivate func setupLogoView() {
+        logoImageView.anchor(top: nil, left: nil, bottom: imageView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 105, height: 105)
+        logoImageView.layer.cornerRadius = 105 / 2
+        print("\(logoImageView.widthAnchor)")
+        logoImageView.layer.masksToBounds = true
+        //        logoImageView.layer.borderColor = UIColor.rgb(red: 253, green: 92, blue: 99).cgColor
+        logoImageView.layer.borderColor = UIColor.black.cgColor
+        logoImageView.layer.borderWidth = 2.5
+        logoImageView.clipsToBounds = true
+        logoImageView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        logoImageView.image = UIImage(named: "VictorMemoji630x630")
+        logoImageView.contentMode = .center
+        logoImageView.contentMode = .scaleAspectFill
     }
     
     required init?(coder aDecoder: NSCoder) {
