@@ -364,6 +364,7 @@ extension MapController: PlacesDelegate {
         setupPlaceDetailView()
         placeDetailView.miniPlaceTitle.text = placeDetailView.placeTitle.text
         placeDetailView.miniPlaceImageView.image = placeDetailView.placeImageView.image
+        placeDetailView.panGesture.isEnabled = false
         perform(#selector(expandPlaceDetails), with: nil, afterDelay: 1)
         
     }
@@ -373,12 +374,6 @@ extension MapController: PlacesDelegate {
         guard let mainWindow = UIApplication.shared.keyWindow else { return }
 
         mainWindow.addSubview(placeDetailView)
-//        mainTabBar.view.insertSubview(placeDetailView, belowSubview: mainTabBar)
-//        mainTabBar.view.addSubview(placeDetailView)
-//        mapView.insertSubview(placeDetailView, aboveSubview: mainWindow)
-        
-//        self.view.bringSubviewToFront(mainTabBar.view)
-//        mainWindow.removeFromSuperview()
         
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -387,7 +382,7 @@ extension MapController: PlacesDelegate {
         
         expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.topAnchor, constant: view.frame.height / 2)
         expandedTopAnchorConstraint?.isActive = false
-//        minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainTabBar.tabBar.topAnchor, constant: -70)
+
         minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: -85)
         minimizedTopAnchorConstraint?.isActive = false
         bottomAnchorConstraint = placeDetailView.bottomAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: view.frame.height )
