@@ -96,12 +96,12 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         expandedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = true
 
-        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBar?.tabBar.transform = .identity
-        
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         })
+        
+        let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBar?.tabBar.transform = .identity
 
     }
     

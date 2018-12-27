@@ -15,6 +15,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     private var posts = [Post]()
     var user: User?
+    var header: HomeHeader?
     
     
     private var cellId = "cellId"
@@ -61,6 +62,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         posts.removeAll()
         collectionView?.reloadData()
         fetchAllposts()
+
         
     }
     
@@ -124,14 +126,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             print("Failed to fetch following users id: ", error)
             }
         }
-    }
+
+}
 
 extension HomeController {
     
+    
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let contentOffsetY = scrollView.contentOffset.y
+//        print(contentOffsetY)
+//
+//        if contentOffsetY > 0 {
+//            header?.animator.fractionComplete = 0
+//            return
+//        }
+//
+//        header?.animator.fractionComplete = abs(contentOffsetY) / 100
+//    }
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! HomeHeader
+        header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? HomeHeader
         
-        return header
+        return header!
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

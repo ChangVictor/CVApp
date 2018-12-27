@@ -64,10 +64,26 @@ class HomeHeader: UICollectionViewCell {
 //        containerView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         addSubview(imageView)
         imageView.fillSuperview()
+        
+        
+        setupVisualEffectBlur()
         imageView.addSubview(logoImageView)
-        
         setupLogoView()
-        
+
+    }
+    
+    var animator: UIViewPropertyAnimator!
+    
+    fileprivate func setupVisualEffectBlur() {
+        animator = UIViewPropertyAnimator(duration: 3.0, curve: .linear, animations: { [weak self] in
+            
+            // treat this area as the end state of your animation
+            let blurEffect = UIBlurEffect(style: .regular)
+            let visualEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            self?.addSubview(visualEffectView)
+            visualEffectView.fillSuperview()
+        })
     }
     
     fileprivate func setupLogoView() {
