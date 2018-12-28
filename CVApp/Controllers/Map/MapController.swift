@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 protocol ExpandableDelegate {
     func minimizeTopConstraint()
@@ -19,14 +20,16 @@ protocol PlacesDelegate {
 //    func selectPlace(marker: GMSMarker)
 }
 
-class MapController: UIViewController, UIGestureRecognizerDelegate {
+class MapController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     
     var initialTopAnchorConstraint: NSLayoutConstraint?
     var expandedTopAnchorConstraint: NSLayoutConstraint?
     var minimizedTopAnchorConstraint: NSLayoutConstraint?
     var bottomAnchorConstraint: NSLayoutConstraint?
     var hiddenTopAnchorConstraint: NSLayoutConstraint?
-    
+
+    var locationManager = CLLocationManager()
+    var placesClient: GMSPlacesClient!
 //    var place: Place
     var places = [
                     Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596),
@@ -73,6 +76,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
         menuController.placesDelegate = self
         placeDetailView.expandableDelegate = self
         
+        setupLocationManager()
+        
         setupBarButtons()
         let navBar = navigationController?.navigationBar
         navigationController?.navigationBar.addSubview(searchBar)
@@ -87,6 +92,16 @@ class MapController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     // MARK:- Fileprivate
+    
+    fileprivate func setupLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        placesClient = GMSPlacesClient.shared()
+    }
     let darkCoverView = UIView()
     var darkCoverLeftConstraint: NSLayoutConstraint!
     let menuView = UIView()
@@ -336,13 +351,14 @@ extension MapController: PlacesDelegate {
         
         switch indexPath {
         case 0:
-            triggerMapTransition(withDuration: 3, latitude: -18.478518, longitude: -70.3210596, zoom: 8, bearing: 0, viewAngle: 0)
+
+            triggerMapTransition(withDuration: 3, latitude: -19.209054, longitude: -70.272129, zoom: 8, bearing: 0, viewAngle: 0)
             placeDetailView.placeTitle.text = "Arica, Chile."
             placeDetailView.placeDescription.text = "Even though I have Taiwanese roots and I grew up in Argentina, I was originally born in  Arica, north of Chile. And moved to Argentina when I turned 3."
             placeDetailView.placeImageView.image = #imageLiteral(resourceName: "Arica")
             
         case 1:
-            triggerMapTransition(withDuration: 1.3, latitude: -34.610668, longitude: -58.433800, zoom: 17, bearing: 340, viewAngle: 45)
+            triggerMapTransition(withDuration: 1.3, latitude: -34.612157 , longitude: -58.433159, zoom: 17, bearing: 340, viewAngle: 45)
             placeDetailView.placeTitle.text = "Victor's Home"
             placeDetailView.placeDescription.text = "I've lived in the heart of Buenos Aires for over 25 years."
             placeDetailView.placeImageView.image = #imageLiteral(resourceName: "homePlace")
