@@ -355,13 +355,13 @@ extension MapController: PlacesDelegate {
 
             triggerMapTransition(withDuration: 3, latitude: -19.209054, longitude: -70.272129, zoom: 8, bearing: 0, viewAngle: 0)
             placeDetailView.placeTitle.text = "Arica, Chile."
-            placeDetailView.placeDescription.text = "Even though I have Taiwanese roots and I grew up in Argentina, I was originally born in  Arica, north of Chile. And moved to Argentina when I turned 3."
+            placeDetailView.placeDescription.text = "Even though I have Taiwanese ascendance and I grew up in Argentina, I was originally born in  Arica, north of Chile. And moved to Argentina at the age of 3."
             placeDetailView.placeImageView.image = #imageLiteral(resourceName: "Arica")
             
         case 1:
             triggerMapTransition(withDuration: 1.3, latitude: -34.612157, longitude: -58.433159, zoom: 17, bearing: 340, viewAngle: 45)
             placeDetailView.placeTitle.text = "Victor's Home"
-            placeDetailView.placeDescription.text = "I've lived in the heart of Buenos Aires for over 25 years."
+            placeDetailView.placeDescription.text = "I've lived in Caballito for over 25 years. A comfortable neightbourhood right in the heart of Buenos Aires. It might have a low profile, but is full of character character, and yet isn’t too far from the action"
             placeDetailView.placeImageView.image = #imageLiteral(resourceName: "homePlace")
         case 2:
             triggerMapTransition(withDuration: 1.2, latitude: -34.601639, longitude: -58.372542, zoom: 16, bearing: 0, viewAngle: 45)
@@ -392,19 +392,13 @@ extension MapController: PlacesDelegate {
     }
 
     func setupPlaceDetailView() {
-        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
         guard let mainWindow = UIApplication.shared.keyWindow else { return }
-
         mainWindow.addSubview(placeDetailView)
-        
         placeDetailView.translatesAutoresizingMaskIntoConstraints = false
-        
         initialTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.topAnchor, constant: view.frame.height)
         initialTopAnchorConstraint?.isActive = true
-        
         expandedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.topAnchor, constant: view.frame.height / 2)
         expandedTopAnchorConstraint?.isActive = false
-
         minimizedTopAnchorConstraint = placeDetailView.topAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: -85)
         minimizedTopAnchorConstraint?.isActive = false
         bottomAnchorConstraint = placeDetailView.bottomAnchor.constraint(equalTo: mainWindow.bottomAnchor, constant: view.frame.height )

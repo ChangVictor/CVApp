@@ -18,16 +18,9 @@ class MenuController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.separatorStyle = .none
         navigationController?.isNavigationBarHidden = true
-        
-        let birthPlace = Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596)
-        let codingSchool = Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837)
-        let universityPlace = Place(placeName: "Universidad del CEMA", latitude: -34.598595, longitude: -58.372364)
-        let homePlace = Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800)
-        
-       
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "VictorMemoji630x630").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
     }
     
