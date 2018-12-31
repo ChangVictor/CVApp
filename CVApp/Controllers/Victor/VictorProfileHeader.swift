@@ -49,7 +49,7 @@ class VictorProfileHeader: UICollectionViewCell {
         let label = UILabel()
         let attributedText = NSMutableAttributedString(string: "Former Business Analyst transitioning into iOS Developer", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)])
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 6)]))
-        attributedText.append(NSAttributedString(string: "Constantly striving to learn new technologies and good practices in order to create nice appealing UI while writing highly readable clean code.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.systemFont(ofSize: 13)]))
+        attributedText.append(NSAttributedString(string: "Constantly striving to learn new technologies and good practices in order to create nice appealing UI while writing quality code.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, kCTFontAttributeName as NSAttributedString.Key: UIFont.systemFont(ofSize: 13)]))
         label.attributedText = attributedText
         label.numberOfLines = 0
         label.textAlignment = .left

@@ -35,9 +35,10 @@ class MapController: UIViewController, UIGestureRecognizerDelegate, CLLocationMa
                     Place(placeName: "Arica", latitude: -18.478518, longitude: -70.3210596),
                     Place(placeName: "Digital House", latitude: -34.54881224693877, longitude: -58.44375559591837),
                     Place(placeName: "Universidad del CEMA", latitude: -34.598595, longitude: -58.372364),
-                    Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800)
+                    Place(placeName: "Home", latitude: -34.610668, longitude: -58.433800),
+                    Place(placeName: "International Parts Service S.A.", latitude: -34.588219, longitude: -58.465579)
                 ]
-
+    
     let placeDetailView = PlaceDetailView.initFromNib()
     
     var menuController = MenuController()
@@ -80,8 +81,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate, CLLocationMa
         
         setupBarButtons()
         let navBar = navigationController?.navigationBar
-        navigationController?.navigationBar.addSubview(searchBar)
-        searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor , bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 55, paddingBottom: 0, paddingRight: 65, width: 0, height: 0)
+//        navigationController?.navigationBar.addSubview(searchBar)
+//        searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor , bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 55, paddingBottom: 0, paddingRight: 65, width: 0, height: 0)
         
         view.backgroundColor = .white
 
@@ -369,10 +370,15 @@ extension MapController: PlacesDelegate {
             placeDetailView.placeDescription.text = "In the year 2010 I started studying at the CEMA University, for a Bachelor's degree in Business Administration."
             placeDetailView.placeImageView.image = #imageLiteral(resourceName: "ucema")
 
-        default:
+        case 3:
             triggerMapTransition(withDuration: 1.3, latitude: -34.547904, longitude: -58.442442, zoom: 16, bearing: 235, viewAngle: 45)
             placeDetailView.placeTitle.text = "Digital House Coding School"
             placeDetailView.placeDescription.text = "I started my coding journey about a year ago, first learning the basics of HTML, CSS, PHP and Javascript and doing some Web Development, only until I found myself fulfulling the curiousness that was growing on me about the Swift language and iOS development."
+            placeDetailView.placeImageView.image = #imageLiteral(resourceName: "digitalHouse")
+        default:
+            triggerMapTransition(withDuration: 1.3, latitude: -34.591193, longitude: -58.466100, zoom: 16, bearing: 0, viewAngle: 45)
+            placeDetailView.placeTitle.text = "International Parts Service S.A."
+            placeDetailView.placeDescription.text = "Automotive parts SMB"
             placeDetailView.placeImageView.image = #imageLiteral(resourceName: "digitalHouse")
         }
         
@@ -405,11 +411,6 @@ extension MapController: PlacesDelegate {
         bottomAnchorConstraint?.isActive = true
         placeDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         placeDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    }
-    
-    fileprivate func removeSubview() {
-        print("removing subview")
-        
     }
     
     func triggerMapTransition(withDuration: Double, latitude: CLLocationDegrees, longitude: CLLocationDegrees, zoom: Float, bearing: CLLocationDirection, viewAngle: Double) {

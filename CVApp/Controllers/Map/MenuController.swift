@@ -35,7 +35,8 @@ class MenuController: UITableViewController {
         MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "My birth place!"),
         MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Where I live?"),
         MenuItem(icon: #imageLiteral(resourceName: "bookmark"), title: "University"),
-        MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Coding School")
+        MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Coding School"),
+        MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "Current Workplace")
     ]
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
