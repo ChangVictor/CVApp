@@ -108,8 +108,8 @@ class MapController: UIViewController, UIGestureRecognizerDelegate, CLLocationMa
     let menuView = UIView()
     
     fileprivate func hidePlaceDetails() {
-        minimizedTopAnchorConstraint?.isActive = false
         expandedTopAnchorConstraint?.isActive = false
+        minimizedTopAnchorConstraint?.isActive = false
         initialTopAnchorConstraint?.isActive = true
 
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

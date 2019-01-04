@@ -299,11 +299,9 @@ class  LoginController: UIViewController, GIDSignInUIDelegate {
         print("Google login not yet set")
         GIDSignIn.sharedInstance().signIn()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
-//
-//            guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-//            maintabBarController.setupViewControllers()
-//            self.dismiss(animated: true, completion: nil)
+
     }
     
     @objc fileprivate func didSignIn() {
